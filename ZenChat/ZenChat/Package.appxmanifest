@@ -4,7 +4,7 @@
   <mp:PhoneIdentity PhoneProductId="594d6932-e8f3-4a19-8e79-7e7432cf634b" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>ZenChat</DisplayName>
-    <PublisherDisplayName>Pascal</PublisherDisplayName>
+    <PublisherDisplayName>Not Pascal</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -29,5 +29,17 @@
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <Capability Name="codeGeneration" />
+    <uap:Capability Name="contacts" />
+    <uap:Capability Name="musicLibrary" />
+    <uap:Capability Name="chat" />
+    <uap:Capability Name="videosLibrary" />
+    <uap:Capability Name="removableStorage" />
+    <uap:Capability Name="userAccountInformation" />
+    <uap:Capability Name="voipCall" />
+    <uap:Capability Name="picturesLibrary" />
+    <DeviceCapability Name="location" />
+    <DeviceCapability Name="microphone" />
+    <DeviceCapability Name="webcam" />
   </Capabilities>
 </Package>
