@@ -1,0 +1,41 @@
+Teamwork
+========
+Alain Keller, Pascal Honegger und Seraphin Rihm
+Version 1.0, 15.03.2016
+:toc:
+
+== Vorlage
+=== Datum
+=== Problemstellung
+=== Gedanken
+=== Lösung / Was gelernt
+
+
+== Tipps (Copy-Pasta)
+
+=== VCS - Git
+In unserem Projekt haben wir das Versionsverwaltungssystem link:https://git-scm.com/[Git] verwendet. Dieses hat den Vorteil ,dass mehrere Personen an der selben Datei arbeiten können, ohne voneinander abhängig zu sein. Auch ein grosser Vorteil von Git ist link:https://github.com/[Github], welches wir als kostenlosen Git-Server verwenden können. Um mit Github arbeiten zu können, braucht man lediglich eine Git-Installation und einen gratis Github-Account. Um Git konfortabler benutzen zu können, kann man auch die Github-Erweiterung für die jeweilige IDE installieren.
+
+==== Commits
+Mithilfe von Commits kann man jederzeit in der Zeit zurückreisen und sich ansehen, wer was bearbeitet hat.
+image:../Bilder/github.jpg[Git Commits]
+
+==== Diff
+Mithilfe von Git kann man einen sogenannten Diff (Difference) einsehen. In diesem kann man genau sehen, welche Zeilen sich verändert haben. So kann man sogenannte Reviews durchführen und die Code-Qualität zu erhöhen.
+image:../Bilder/gitdiff.jpg[Vergleich von Dateien]
+
+=== UMLet & Asciidoc
+Git ist wirklich gut darin, Textdateien zu verwalten. Verwendet man nun beispielsweise Wrod oder Visio-Dateien, verliert git an Wert. link:http://asciidoc.org/[Asciidoc] Ist beispielsweise ein rein textbasierte Art um ein Dokument zu gestallten. So schreibt man sozusagen Code, welcher danach in ein GTML oder ähnliches "kompiliert" werden kann. Genauso können via link:http://www.umlet.com/[UMLet] UML-Diagramme codiert werden. Am Anfang ist es nützlich ein Cheatsheet zu verwenden, um den Syntax möglichst schnell zu erlernen. 
+
+=== UML-Diagramme auf Papier
+Was uns wirklich viel Zeit gespart hat, war die UML-Diagramme auf Papier zu zeichnen. Später können diese immernoch in Visio / UMLet nachgeführt werden, doch die initiale Version zu erstellen lohnt sich auf Papier viel mehr. Auf Papier investiert man weniger Zeit in das Tool und mehr Zeit in die Erstellung des Diagrammes! 
+
+=== Scrum - Taiga
+Damit die Arbeit mit Git möglichst effizient von statten gehen konnte, mussten wir unsere Arbeit möglichst effizient aufteilen. Hierfür haben wir uns nicht für IPERKA sonder für eine Agile Arbeitsmethode namens Scrum entschieden. Bei Scrum plant man täglich, was man erreichen mlchte und teilt dieses Wissen mit den anderen Teammitgliedern. Dadurch weiss jeder, was der ander an diesem Tag machen möchte und kann seine Arebti an dies anpassen. Diese Planung haltet man in einem Scrum-Board fest - hierfür haben wir den Gratis-Dienst link:https://tree.taiga.io/[Taiga] verwendet.
+image:../Bilder/Taiga.JPG[Scrum Diagramm]
+
+=== Continous Integration
+Auch wenn es viel Zeit beim ersten Aufsetzen frisst, lohnt sich die sogenannte Continous Integration (kurz CI) allemal. Eine CI sorgt grundsätzlich dafür, dass bei jeden Git-Push (heraufladen auf Server) auf einer externen Testmaschine der Code auf Fehler überprüft wird. Diese informiert dann beispielsweise den Ersteller des Fehler mit einer E-Mail. Wir haben die Gratis C#-CI link:https://www.appveyor.com/[AppVeyor] welche mit Github funktioniert. Der grosse vorteil dieser CI ist, dass sie keine zwei Minuten zum Aufsetzen benötigt. Trotzdem macht eine CI nur Sinn, wenn die Applikation über genügend Unit-Tests verfügt!
+image:../Bilder/appveyor.jpg[Auswerung der CI]include::Haupt_Dokumenattion.adoc[]
+include::Konventionen.adoc[]
+include::Dokumentation_Richtlinien.adoc[]

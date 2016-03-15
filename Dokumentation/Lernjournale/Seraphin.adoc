@@ -1,0 +1,5 @@
+Seraphin Lernjournal
+====================
+Alain Keller, Pascal Honegger und Seraphin Rihm
+Version 1.0, 15.12.2015
+:toc:

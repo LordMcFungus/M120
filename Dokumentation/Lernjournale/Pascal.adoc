@@ -1,0 +1,8 @@
+Pascal Lernjournal
+==================
+Pascal Honegger
+Version 1.2, 02.01.2016
+:toc:
+
+=== 30.12.2015
+Gestern haben Seraphin und ich uns den Kopf über das Problem mit dem Spieler, Invader und allgemein Schiffen zerbrochen. Momentan bin ich immer noch mit dem Erstellen des Klassendiagramms beschäftigt. Ich gehe dabei jedoch nicht konventionell vor. Ich habe nicht Visio gestartet und dort ein Klassendiagramm erstellt, stattdessen habe ich Visual Studio gestartet und dort unser Projekt Projekt angepasst. Visual Studio hat die möglichkeit ein Klassendiagramm aus den klassen zu generieren und vice versa. Indem ich das Klassendiagramm in Visual Studio erstelle habe ich zwar nicht die Möglichkeit manuell Relationen einzutragen, dafür generiere ich den Code gleich dazu und muss diesen nicht nachführen. 

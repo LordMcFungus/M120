@@ -1,0 +1,76 @@
+Retro & Planung
+===============
+Alain Keller, Pascal Honegger und Seraphin Rihm
+Version 1.2, 26.01.2016
+:toc:
+
+== Initial Sprint
+
+=== Retro
+
+* Gute Planung
+
+* Wurde durch unerwartete Ereignisse (Frey Input)
+trotzdem nicht erreicht
+
+* Allgemein guter Sprint
+
+* Wenig Programmieren da Planung wichtiger ist
+
+* Mehr Arbeit zuhause erledigen
+
+== Sprint 01
+
+=== Planung
+
+* Alain finalisiert das Design
+
+* Pascal & Seraphin erstellen UseCases
+
+* Alle bestehen den Basic Test B in diesem Sprint
+
+=== Retro
+
+* Ziele zu hoch angesetzt
+
+== Sprint 02
+
+=== Planung
+
+* Logik des Programmes wird von Pascal und Serafin definiert
+
+* Alain erweitert das Design
+
+=== Retro
+
+* Zu viel Zeit von beispielsweise Frey konsumiert
+
+== Sprint 03
+
+=== Planung
+
+* Grundgerüst des Programmes realisieren
+
+=== Retro
+
+* Definitionen Stories genauer spezifizieren
+
+== Sprint 04
+
+=== Planung
+
+* Kompetenzen bei Frey sammeln
+* Lauffähige Version "fertig"-stellen
+
+=== Retro
+-
+
+== Final Sprint
+
+=== Planung
+
+* Projekt abschliessen
+* Dokumentation abschliessen
+
+=== Retro
+-

@@ -1,0 +1,40 @@
+C# Code-Konventionen
+====================
+Alain Keller, Pascal Honegger und Seraphin Rihm 
+Version 1.0, 15.12.2015
+:toc:
+
+=== Namensgebung
+    * CamelCase 
+    * Dateinamen sind gleich wie die Kalsse, die sie beinhalten
+    * Jede Datei enthält nur eine Klasse
+    
+==== Namespaces
+    * Sinvolle benennung
+    
+==== Klassen
+    * Gross geschrieben
+    
+==== Interfaces
+    * Beginnen mit einem I
+    * Nomen: Was es ist z.B. ICar
+    * Fähigkeit: Was es kann z.B. IDriveable
+
+==== Abstract Classes
+    * Enden mit Base
+    
+==== Fields
+    * Fields sind immer Private
+    * Name beginnt mit einem Bodenstrich 
+    * Der erste buchstaben danach ist klein, dann CamelCase
+    
+==== Propertyes
+    * Gross geschrieben
+    * Public
+    
+==== Methoden
+    * beginnen mit Verb
+    * erster Buchstabe gross
+
+=== Sonstiges
+    * Geschweifte Klammern kommen auf neue Zeile

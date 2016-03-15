@@ -1,0 +1,8 @@
+Alain Lernjournal
+=================
+Alain Keller
+Version 1.0, 15.12.2015
+:toc:
+
+=== Aufgaben
+In unserem Projekt war ich hauptsächlich für das GUI zuständig. D.h. ich habe die Texturen erstellt, das Gui mit dem Viewmodel verbunden und die Animationen erstellt. 
