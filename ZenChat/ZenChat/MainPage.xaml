@@ -5,6 +5,7 @@
     xmlns:local="using:ZenChat"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="using:ZenChat.Pages"
     mc:Ignorable="d">
 	<Page.Transitions>
 		<TransitionCollection>
@@ -19,13 +20,13 @@
 	<Pivot x:Uid="Pivot" Title="MY APPLICATION" x:Name="pivot" CommonNavigationTransitionInfo.IsStaggerElement="True">
 		<!--Pivot item one-->
 		<PivotItem Header="Important Textblock">
-			<TextBlock></TextBlock>
+			<TextBlock Text="HELLO TRELLO"></TextBlock>
 		</PivotItem>
 		<PivotItem Header="Important Sway">
-			<TextBlock></TextBlock>
+			<pages:ImportantSway  />
 		</PivotItem>
 		<PivotItem Header="Important SwaySway und so">
-			<TextBlock></TextBlock>
+			<TextBlock Text="HOLLO TROLLO"></TextBlock>
 		</PivotItem>
 	</Pivot>
 
