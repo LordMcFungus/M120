@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) 2016 
+// All rights reserved
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,6 +11,6 @@ namespace ZenChat.Chat
 {
 	class AllChatsViewModel
 	{
-		public ObservableCollection<> 
+		public ObservableCollection<ChatViewModel> MyChats { get; set; }
 	}
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="21087ebf-778b-48e7-9b04-952c617f4294" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f15dfae6-dc2f-4e7f-b00e-930e01c34d18" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -24,11 +24,13 @@
     <MetadataSource Address="http://zenchatservice.azurewebsites.net/ZenChat.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ZenChat.xsd" MetadataType="Schema" ID="89af7162-1798-4ac4-959e-6bb46e03ee83" SourceId="1" SourceUrl="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd1" />
-    <MetadataFile FileName="ZenChat.disco" MetadataType="Disco" ID="05232a35-2dfc-40e2-b78a-ac4467c87479" SourceId="1" SourceUrl="http://zenchatservice.azurewebsites.net/ZenChat.svc?disco" />
-    <MetadataFile FileName="ZenChat.wsdl" MetadataType="Wsdl" ID="afd35d77-3210-4da0-accd-82a5d7d89f76" SourceId="1" SourceUrl="http://zenchatservice.azurewebsites.net/ZenChat.svc?wsdl" />
-    <MetadataFile FileName="ZenChat1.xsd" MetadataType="Schema" ID="f9e81a1d-c1d1-49e9-b0d3-65a80370d68b" SourceId="1" SourceUrl="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd2" />
-    <MetadataFile FileName="ZenChat2.xsd" MetadataType="Schema" ID="9bfcb6a9-c5a0-4dae-ac43-e12517463273" SourceId="1" SourceUrl="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd0" />
+    <MetadataFile FileName="ZenChat.wsdl" MetadataType="Wsdl" ID="a07dbc3c-caa2-478c-93b9-b60164b39cde" SourceId="1" SourceUrl="http://zenchatservice.azurewebsites.net/ZenChat.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="ZenChat.xsd" MetadataType="Schema" ID="5c6e773d-b833-413d-a4e7-7217af336b23" SourceId="1" SourceUrl="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd1" />
+    <MetadataFile FileName="ZenChat1.wsdl" MetadataType="Wsdl" ID="97fec38f-b513-4f6f-9d5f-dc0a215fa605" SourceId="1" SourceUrl="http://zenchatservice.azurewebsites.net/ZenChat.svc?wsdl" />
+    <MetadataFile FileName="ZenChat1.xsd" MetadataType="Schema" ID="0c168cca-c18c-4022-af08-2a57fd9f0e5a" SourceId="1" SourceUrl="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd3" />
+    <MetadataFile FileName="ZenChat.disco" MetadataType="Disco" ID="bd6eb9fb-6319-4058-8516-ca04207f9050" SourceId="1" SourceUrl="http://zenchatservice.azurewebsites.net/ZenChat.svc?disco" />
+    <MetadataFile FileName="ZenChat2.xsd" MetadataType="Schema" ID="1303fc6d-6602-4e72-9494-0e6c42b91fd6" SourceId="1" SourceUrl="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd0" />
+    <MetadataFile FileName="ZenChat4.xsd" MetadataType="Schema" ID="05c3195a-f59a-401e-9b1e-6c21f88b3c7a" SourceId="1" SourceUrl="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -5,7 +5,6 @@
     xmlns:local="using:ZenChat"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:pages="using:ZenChat.Pages"
     xmlns:chat="using:ZenChat.Chat"
     xmlns:group="using:ZenChat.Group"
     xmlns:friends="using:ZenChat.Friends"

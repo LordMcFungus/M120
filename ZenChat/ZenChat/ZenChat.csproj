@@ -109,6 +109,7 @@
       <DependentUpon>AllGroupsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Group\AllGroupsViewModel.cs" />
+    <Compile Include="Group\GroupChatViewModel.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -123,6 +124,7 @@
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -133,16 +135,23 @@
     <None Include="Service References\ZenChatService\ZenChat.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ZenChatService\ZenChat.ZenChatService.ChatRoomBase.datasource">
+    <None Include="Service References\ZenChatService\ZenChat.ZenChatService.ChatBase.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ZenChatService\ZenChat.ZenChatService.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ZenChatService\ZenChat.ZenChatService.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ZenChatService\ZenChat1.wsdl" />
     <None Include="Service References\ZenChatService\ZenChat1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ZenChatService\ZenChat2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ZenChatService\ZenChat4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="ZenChat_TemporaryKey.pfx" />

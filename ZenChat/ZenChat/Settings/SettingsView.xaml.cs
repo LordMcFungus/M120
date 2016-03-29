@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) 2016 
+// All rights reserved
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +24,15 @@ namespace ZenChat.Settings
 	/// </summary>
 	public sealed partial class SettingsView : Page
 	{
+		private SettingsViewModel ViewModel;
+		/// <summary>
+		/// 
+		/// </summary>
 		public SettingsView()
 		{
 			this.InitializeComponent();
+			ViewModel = new SettingsViewModel();
+			DataContext = ViewModel;
 		}
 	}
 }

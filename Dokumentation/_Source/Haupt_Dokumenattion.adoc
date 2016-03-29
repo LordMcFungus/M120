@@ -24,53 +24,27 @@ link:https://github.com/PascalHonegger/SpaceInvaders[Github]
 
 == Pflichtenheft
 
-=== SpaceInvaders Regeln
+=== Chatfunktionen
 
-* Das Schiff
-** Geschwindigkeit
-** Grösse
-** Aussehen
-** Schuss
+* User
+** Registrieren
+** Anmelden
+** Kontakliste
+*** Kann nur mit Leuten in seiner Kontakliste chaten.
+** Status
 
-*** Der Invader
-**** Gibt beim Tod verschiedene Punkte
-**** Kann zurückschiessen
-**** Kann sich nach links und rechts bewegen
-**** Bewegt sich nach unten sobald eine Wand berührt
-**** Hat verschiedene Schwierigkeiten
-**** Hat anderes Aussehen
+* Userinterface
+** Status der Nachricht wird angezeigt (Haken)
+** Logische gliederung der Nachrichten (Rechts und Links)
+** Man wird über neue Nachrichten informiert.
 
-*** Der Spieler
-**** Hat einen Benutzernamen
-**** Hat eine gespeicherte Höchstpunktzahl
-**** Kann zwischen verschiedenen Schiffen auswählen
-**** Hat einen Schuss
-**** Hat Leben (wie viele Schüsse bis zum Tod)
-**** Hat Respawns (wie oft wieder auftauchen nach Tod)
-**** Aussehen
+* Chat
+** Nur Text
+** History
+** Gruppe
 
-* Der Schuss
-** Geschwindigkeit
-** Grösse
-** Schaden
-** Aussehen
-
-* Der Boss
-** Hat viele Leben
-** Gibt viele Punkte
-** Schiesst viele Schüsse zurück
-** Ist grösser als ein normaler Invader
-
-* Das Spielfeld
-** Hat einen Spiel-starten Knopf
-** Hat einen Spiel-beenden / neustarten Knopf, während das Spiel am Laufen ist
-** Das Spiel endet, sobald der Spieler keine Leben mehr hat
-** Zeigt den Benutzernamen, aktuelle Punktzahl und Höchstpunktzahl an
-** Zeigt, in welcher Runde man sich befindet
-** Zeigt eine Auswahl an Schiffen an
 
 == Architektur
 
 
 == Fazit
-Da unser Programm ausschliesslich über automatisierte Tests überprüft wird, ist es relativ einfach zu erkennen, ob das Programm sich in einem guten Zustand befindet. So kann man auf Github und auf link:https://ci.appveyor.com/project/PascalHonegger/spaceinvaders[AppVeyor] ansehen, ob die jetzige Version des Codes Fehler beinhaltet. Grundsätzlich kann man sagen, dass bereits ein fehlgeschlagener Unit-Test heisst, dass ein Kern-Feature nicht korrekt funktioniert.

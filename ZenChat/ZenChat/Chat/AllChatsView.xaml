@@ -5,13 +5,13 @@
     xmlns:local="using:ZenChat.Chat"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:DataContext="{d:DesignData local:AllChatsViewModel}">
+    mc:Ignorable="d" d:DataContext="{d:DesignInstance local:AllChatsViewModel}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<ListView>
+		<ListView ItemsSource="{Binding MyChats}">
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					
+					<TextBlock Text="{Binding User.Name}"/>
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>

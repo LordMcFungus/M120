@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) 2016 
+// All rights reserved
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +24,15 @@ namespace ZenChat.Friends
 	/// </summary>
 	public sealed partial class AllFriendsView : Page
 	{
+		private AllFriendsViewModel ViewModel;
+		/// <summary>
+		/// 
+		/// </summary>
 		public AllFriendsView()
 		{
 			this.InitializeComponent();
+			ViewModel = new AllFriendsViewModel();
+			DataContext = ViewModel;
 		}
 	}
 }

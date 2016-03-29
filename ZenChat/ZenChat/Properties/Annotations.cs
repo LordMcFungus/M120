@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) 2016 
+// All rights reserved
+using System;
 
 #pragma warning disable 1591
 // ReSharper disable UnusedMember.Global

@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿// Copyright (c) 2016 
+// All rights reserved
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 

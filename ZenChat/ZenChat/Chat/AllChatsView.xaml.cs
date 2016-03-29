@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) 2016 
+// All rights reserved
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +24,15 @@ namespace ZenChat.Chat
 	/// </summary>
 	public sealed partial class AllChatsView : Page
 	{
+		private AllChatsViewModel ViewModel;
+		/// <summary>
+		/// WIESOOOOO
+		/// </summary>
 		public AllChatsView()
 		{
 			this.InitializeComponent();
+			ViewModel = new AllChatsViewModel();
+			DataContext = ViewModel;
 		}
 	}
 }

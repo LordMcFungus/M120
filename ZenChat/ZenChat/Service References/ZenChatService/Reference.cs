@@ -20,39 +20,9 @@ namespace ZenChat.ZenChatService {
     [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/ZenChat.ServiceClasses")]
     public partial class User : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private System.Collections.Generic.List<ZenChat.ZenChatService.User> FriendsField;
-        
-        private string IdField;
-        
         private string NameField;
         
         private string PhoneNumberField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<ZenChat.ZenChatService.User> Friends {
-            get {
-                return this.FriendsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FriendsField, value) != true)) {
-                    this.FriendsField = value;
-                    this.RaisePropertyChanged("Friends");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.IdField, value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name {
@@ -92,37 +62,37 @@ namespace ZenChat.ZenChatService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ChatRoomBase", Namespace="http://schemas.datacontract.org/2004/07/ZenChat.ServiceClasses")]
-    public partial class ChatRoomBase : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Runtime.Serialization.DataContractAttribute(Name="ChatRoom", Namespace="http://schemas.datacontract.org/2004/07/ZenChat.ServiceClasses")]
+    public partial class ChatRoom : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private System.DateTime CreatedField;
+        private ZenChat.ZenChatService.User AdminField;
         
-        private string IdField;
+        private int IdField;
         
         private System.Collections.Generic.List<ZenChat.ZenChatService.User> MembersField;
         
         private System.Collections.Generic.List<ZenChat.ZenChatService.ChatMessage> MessagesField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Created {
+        public ZenChat.ZenChatService.User Admin {
             get {
-                return this.CreatedField;
+                return this.AdminField;
             }
             set {
-                if ((this.CreatedField.Equals(value) != true)) {
-                    this.CreatedField = value;
-                    this.RaisePropertyChanged("Created");
+                if ((object.ReferenceEquals(this.AdminField, value) != true)) {
+                    this.AdminField = value;
+                    this.RaisePropertyChanged("Admin");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Id {
+        public int Id {
             get {
                 return this.IdField;
             }
             set {
-                if ((object.ReferenceEquals(this.IdField, value) != true)) {
+                if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
                 }
@@ -174,13 +144,13 @@ namespace ZenChat.ZenChatService {
         
         private ZenChat.ZenChatService.User AuthorField;
         
-        private string IdField;
+        private System.DateTime CreatedField;
+        
+        private int IdField;
         
         private string MessageField;
         
         private System.Collections.Generic.List<ZenChat.ZenChatService.User> ReadByField;
-        
-        private System.DateTime SendDateField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Collections.Generic.List<ZenChat.ZenChatService.User> ArrivedAt {
@@ -209,12 +179,25 @@ namespace ZenChat.ZenChatService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Id {
+        public System.DateTime Created {
+            get {
+                return this.CreatedField;
+            }
+            set {
+                if ((this.CreatedField.Equals(value) != true)) {
+                    this.CreatedField = value;
+                    this.RaisePropertyChanged("Created");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
             get {
                 return this.IdField;
             }
             set {
-                if ((object.ReferenceEquals(this.IdField, value) != true)) {
+                if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
                 }
@@ -247,15 +230,47 @@ namespace ZenChat.ZenChatService {
             }
         }
         
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PrivateConversation", Namespace="http://schemas.datacontract.org/2004/07/ZenChat.ServiceClasses")]
+    public partial class PrivateConversation : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private System.Collections.Generic.List<ZenChat.ZenChatService.User> MembersField;
+        
+        private System.Collections.Generic.List<ZenChat.ZenChatService.ChatMessage> MessagesField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime SendDate {
+        public System.Collections.Generic.List<ZenChat.ZenChatService.User> Members {
             get {
-                return this.SendDateField;
+                return this.MembersField;
             }
             set {
-                if ((this.SendDateField.Equals(value) != true)) {
-                    this.SendDateField = value;
-                    this.RaisePropertyChanged("SendDate");
+                if ((object.ReferenceEquals(this.MembersField, value) != true)) {
+                    this.MembersField = value;
+                    this.RaisePropertyChanged("Members");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<ZenChat.ZenChatService.ChatMessage> Messages {
+            get {
+                return this.MessagesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessagesField, value) != true)) {
+                    this.MessagesField = value;
+                    this.RaisePropertyChanged("Messages");
                 }
             }
         }
@@ -271,41 +286,76 @@ namespace ZenChat.ZenChatService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ZenChatService.IZenChat")]
-    public interface IZenChat {
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://zenchatservice.azurewebsites.net/ZenChat.svc", ConfigurationName="ZenChatService.ZenChatService")]
+    public interface ZenChatService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZenChat/GetUser", ReplyAction="http://tempuri.org/IZenChat/GetUserResponse")]
-        System.Threading.Tasks.Task<ZenChat.ZenChatService.User> GetUserAsync(string userId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUser", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserRespons" +
+            "e")]
+        System.Threading.Tasks.Task<ZenChat.ZenChatService.User> GetUserAsync(string phoneNumber);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZenChat/Login", ReplyAction="http://tempuri.org/IZenChat/LoginResponse")]
-        System.Threading.Tasks.Task<ZenChat.ZenChatService.User> LoginAsync(string mail, string name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/Login", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/LoginResponse")]
+        System.Threading.Tasks.Task<System.Tuple<int, ZenChat.ZenChatService.User>> LoginAsync(string name, string phone);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZenChat/GetChatRoom", ReplyAction="http://tempuri.org/IZenChat/GetChatRoomResponse")]
-        System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoomBase> GetChatRoomAsync(string userId, string chatRoomId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/LoginWithId", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/LoginWithIdRes" +
+            "ponse")]
+        System.Threading.Tasks.Task<ZenChat.ZenChatService.User> LoginWithIdAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZenChat/CreateChatRoom", ReplyAction="http://tempuri.org/IZenChat/CreateChatRoomResponse")]
-        System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoomBase> CreateChatRoomAsync(string userId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetFriends", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetFriendsResp" +
+            "onse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ZenChat.ZenChatService.User>> GetFriendsAsync(int userId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZenChat/JoinChatroom", ReplyAction="http://tempuri.org/IZenChat/JoinChatroomResponse")]
-        System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoomBase> JoinChatroomAsync(string userId, string chatRoomId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetAllChatRoom" +
+            "s", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetAllChatRoom" +
+            "sResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ZenChat.ZenChatService.ChatRoom>> GetAllChatRoomsAsync(int userId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZenChat/WriteChatMessage", ReplyAction="http://tempuri.org/IZenChat/WriteChatMessageResponse")]
-        System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoomBase> WriteChatMessageAsync(string userId, string chatRoomId, string message);
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetChatRoom", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetChatRoomRes" +
+            "ponse")]
+        System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoom> GetChatRoomAsync(int chatRoomId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZenChat/ReadChatMessage", ReplyAction="http://tempuri.org/IZenChat/ReadChatMessageResponse")]
-        System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoomBase> ReadChatMessageAsync(string userId, string chatRoomId, string messageId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/CreateChatRoom" +
+            "", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/CreateChatRoom" +
+            "Response")]
+        System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoom> CreateChatRoomAsync(int userId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZenChat/RecieveChatMessage", ReplyAction="http://tempuri.org/IZenChat/RecieveChatMessageResponse")]
-        System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoomBase> RecieveChatMessageAsync(string userId, string chatRoomId, string messageId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/InviteToChatRo" +
+            "om", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/InviteToChatRo" +
+            "omResponse")]
+        System.Threading.Tasks.Task InviteToChatRoomAsync(int userId, string phoneNumber, int chatRoomId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/WriteGroupChat" +
+            "Message", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/WriteGroupChat" +
+            "MessageResponse")]
+        System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoom> WriteGroupChatMessageAsync(int userId, int chatRoomId, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetPrivateConv" +
+            "ersation", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetPrivateConv" +
+            "ersationResponse")]
+        System.Threading.Tasks.Task<ZenChat.ZenChatService.PrivateConversation> GetPrivateConversationAsync(int userId, string otherPhone);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/WritePrivateCh" +
+            "atMessage", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/WritePrivateCh" +
+            "atMessageResponse")]
+        System.Threading.Tasks.Task<ZenChat.ZenChatService.PrivateConversation> WritePrivateChatMessageAsync(int userId, string otherPhone, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ReadChatMessag" +
+            "e", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ReadChatMessag" +
+            "eResponse")]
+        System.Threading.Tasks.Task ReadChatMessageAsync(int userId, int messageId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RecieveChatMes" +
+            "sage", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RecieveChatMes" +
+            "sageResponse")]
+        System.Threading.Tasks.Task RecieveChatMessageAsync(int userId, int messageId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IZenChatChannel : ZenChat.ZenChatService.IZenChat, System.ServiceModel.IClientChannel {
+    public interface ZenChatServiceChannel : ZenChat.ZenChatService.ZenChatService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ZenChatClient : System.ServiceModel.ClientBase<ZenChat.ZenChatService.IZenChat>, ZenChat.ZenChatService.IZenChat {
+    public partial class ZenChatServiceClient : System.ServiceModel.ClientBase<ZenChat.ZenChatService.ZenChatService>, ZenChat.ZenChatService.ZenChatService {
         
         /// <summary>
         /// Implement this partial method to configure the service endpoint.
@@ -314,58 +364,78 @@ namespace ZenChat.ZenChatService {
         /// <param name="clientCredentials">The client credentials</param>
         static partial void ConfigureEndpoint(System.ServiceModel.Description.ServiceEndpoint serviceEndpoint, System.ServiceModel.Description.ClientCredentials clientCredentials);
         
-        public ZenChatClient(EndpointConfiguration endpointConfiguration) : 
-                base(ZenChatClient.GetBindingForEndpoint(endpointConfiguration), ZenChatClient.GetEndpointAddress(endpointConfiguration)) {
+        public ZenChatServiceClient(EndpointConfiguration endpointConfiguration) : 
+                base(ZenChatServiceClient.GetBindingForEndpoint(endpointConfiguration), ZenChatServiceClient.GetEndpointAddress(endpointConfiguration)) {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public ZenChatClient(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
-                base(ZenChatClient.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress)) {
+        public ZenChatServiceClient(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
+                base(ZenChatServiceClient.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress)) {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public ZenChatClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(ZenChatClient.GetBindingForEndpoint(endpointConfiguration), remoteAddress) {
+        public ZenChatServiceClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(ZenChatServiceClient.GetBindingForEndpoint(endpointConfiguration), remoteAddress) {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public ZenChatClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ZenChatServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
-        public System.Threading.Tasks.Task<ZenChat.ZenChatService.User> GetUserAsync(string userId) {
-            return base.Channel.GetUserAsync(userId);
+        public System.Threading.Tasks.Task<ZenChat.ZenChatService.User> GetUserAsync(string phoneNumber) {
+            return base.Channel.GetUserAsync(phoneNumber);
         }
         
-        public System.Threading.Tasks.Task<ZenChat.ZenChatService.User> LoginAsync(string mail, string name) {
-            return base.Channel.LoginAsync(mail, name);
+        public System.Threading.Tasks.Task<System.Tuple<int, ZenChat.ZenChatService.User>> LoginAsync(string name, string phone) {
+            return base.Channel.LoginAsync(name, phone);
         }
         
-        public System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoomBase> GetChatRoomAsync(string userId, string chatRoomId) {
-            return base.Channel.GetChatRoomAsync(userId, chatRoomId);
+        public System.Threading.Tasks.Task<ZenChat.ZenChatService.User> LoginWithIdAsync(int id) {
+            return base.Channel.LoginWithIdAsync(id);
         }
         
-        public System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoomBase> CreateChatRoomAsync(string userId) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ZenChat.ZenChatService.User>> GetFriendsAsync(int userId) {
+            return base.Channel.GetFriendsAsync(userId);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ZenChat.ZenChatService.ChatRoom>> GetAllChatRoomsAsync(int userId) {
+            return base.Channel.GetAllChatRoomsAsync(userId);
+        }
+        
+        public System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoom> GetChatRoomAsync(int chatRoomId) {
+            return base.Channel.GetChatRoomAsync(chatRoomId);
+        }
+        
+        public System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoom> CreateChatRoomAsync(int userId) {
             return base.Channel.CreateChatRoomAsync(userId);
         }
         
-        public System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoomBase> JoinChatroomAsync(string userId, string chatRoomId) {
-            return base.Channel.JoinChatroomAsync(userId, chatRoomId);
+        public System.Threading.Tasks.Task InviteToChatRoomAsync(int userId, string phoneNumber, int chatRoomId) {
+            return base.Channel.InviteToChatRoomAsync(userId, phoneNumber, chatRoomId);
         }
         
-        public System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoomBase> WriteChatMessageAsync(string userId, string chatRoomId, string message) {
-            return base.Channel.WriteChatMessageAsync(userId, chatRoomId, message);
+        public System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoom> WriteGroupChatMessageAsync(int userId, int chatRoomId, string message) {
+            return base.Channel.WriteGroupChatMessageAsync(userId, chatRoomId, message);
         }
         
-        public System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoomBase> ReadChatMessageAsync(string userId, string chatRoomId, string messageId) {
-            return base.Channel.ReadChatMessageAsync(userId, chatRoomId, messageId);
+        public System.Threading.Tasks.Task<ZenChat.ZenChatService.PrivateConversation> GetPrivateConversationAsync(int userId, string otherPhone) {
+            return base.Channel.GetPrivateConversationAsync(userId, otherPhone);
         }
         
-        public System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoomBase> RecieveChatMessageAsync(string userId, string chatRoomId, string messageId) {
-            return base.Channel.RecieveChatMessageAsync(userId, chatRoomId, messageId);
+        public System.Threading.Tasks.Task<ZenChat.ZenChatService.PrivateConversation> WritePrivateChatMessageAsync(int userId, string otherPhone, string message) {
+            return base.Channel.WritePrivateChatMessageAsync(userId, otherPhone, message);
+        }
+        
+        public System.Threading.Tasks.Task ReadChatMessageAsync(int userId, int messageId) {
+            return base.Channel.ReadChatMessageAsync(userId, messageId);
+        }
+        
+        public System.Threading.Tasks.Task RecieveChatMessageAsync(int userId, int messageId) {
+            return base.Channel.RecieveChatMessageAsync(userId, messageId);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {
@@ -377,7 +447,7 @@ namespace ZenChat.ZenChatService {
         }
         
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration) {
-            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IZenChat)) {
+            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_ZenChatService)) {
                 System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
                 result.MaxBufferSize = int.MaxValue;
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
@@ -385,7 +455,7 @@ namespace ZenChat.ZenChatService {
                 result.AllowCookies = true;
                 return result;
             }
-            if ((endpointConfiguration == EndpointConfiguration.BasicHttpsBinding_IZenChat)) {
+            if ((endpointConfiguration == EndpointConfiguration.BasicHttpsBinding_ZenChatService)) {
                 System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
                 result.MaxBufferSize = int.MaxValue;
                 result.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
@@ -398,10 +468,10 @@ namespace ZenChat.ZenChatService {
         }
         
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration) {
-            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IZenChat)) {
+            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_ZenChatService)) {
                 return new System.ServiceModel.EndpointAddress("http://zenchatservice.azurewebsites.net/ZenChat.svc");
             }
-            if ((endpointConfiguration == EndpointConfiguration.BasicHttpsBinding_IZenChat)) {
+            if ((endpointConfiguration == EndpointConfiguration.BasicHttpsBinding_ZenChatService)) {
                 return new System.ServiceModel.EndpointAddress("https://zenchatservice.azurewebsites.net/ZenChat.svc");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
@@ -409,9 +479,9 @@ namespace ZenChat.ZenChatService {
         
         public enum EndpointConfiguration {
             
-            BasicHttpBinding_IZenChat,
+            BasicHttpBinding_ZenChatService,
             
-            BasicHttpsBinding_IZenChat,
+            BasicHttpsBinding_ZenChatService,
         }
     }
 }
