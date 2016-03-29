@@ -6,6 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:pages="using:ZenChat.Pages"
+    xmlns:chat="using:ZenChat.Chat"
+    xmlns:group="using:ZenChat.Group"
+    xmlns:friends="using:ZenChat.Friends"
+    xmlns:settings="using:ZenChat.Settings"
     mc:Ignorable="d">
 	<Page.Transitions>
 		<TransitionCollection>
@@ -19,14 +23,17 @@
 
 	<Pivot x:Uid="Pivot" Title="MY APPLICATION" x:Name="pivot" CommonNavigationTransitionInfo.IsStaggerElement="True">
 		<!--Pivot item one-->
-		<PivotItem Header="Important Textblock">
-			<TextBlock Text="HELLO TRELLO"></TextBlock>
+		<PivotItem Header="Chats">
+			<chat:AllChatsView />
 		</PivotItem>
-		<PivotItem Header="Important Sway">
-			<pages:ImportantSway  />
+		<PivotItem Header="Groups">
+			<group:AllGroupsView />
 		</PivotItem>
-		<PivotItem Header="Important SwaySway und so">
-			<TextBlock Text="HOLLO TROLLO"></TextBlock>
+		<PivotItem Header="Friends">
+			<friends:AllFriendsView/>
+		</PivotItem>
+		<PivotItem Header="Settings">
+			<settings:SettingsView/>
 		</PivotItem>
 	</Pivot>
 

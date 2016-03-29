@@ -96,11 +96,21 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Chat\AllChatsView.xaml.cs">
+      <DependentUpon>AllChatsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chat\AllChatsViewModel.cs" />
+    <Compile Include="Chat\ChatViewModel.cs" />
+    <Compile Include="Friends\AllFriendsView.xaml.cs">
+      <DependentUpon>AllFriendsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Friends\AllFriendsViewModel.cs" />
+    <Compile Include="Group\AllGroupsView.xaml.cs">
+      <DependentUpon>AllGroupsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Group\AllGroupsViewModel.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ImportantSway.xaml.cs">
-      <DependentUpon>ImportantSway.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,6 +119,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Settings\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\SettingsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -120,6 +134,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ZenChatService\ZenChat.ZenChatService.ChatRoomBase.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ZenChatService\ZenChat.ZenChatService.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ZenChatService\ZenChat1.xsd">
@@ -158,11 +175,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Chat\AllChatsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Friends\AllFriendsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Group\AllGroupsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\ImportantSway.xaml">
+    <Page Include="Settings\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -172,6 +201,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ZenChatService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

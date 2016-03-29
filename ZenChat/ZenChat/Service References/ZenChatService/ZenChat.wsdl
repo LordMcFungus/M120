@@ -32,6 +32,18 @@
       <xsd:import schemaLocation="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ZenChat.ServiceClasses" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IZenChat_GetUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUser" />
+  </wsdl:message>
+  <wsdl:message name="IZenChat_GetUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZenChat_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IZenChat_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
   <wsdl:message name="IZenChat_GetChatRoom_InputMessage">
     <wsdl:part name="parameters" element="tns:GetChatRoom" />
   </wsdl:message>
@@ -50,7 +62,33 @@
   <wsdl:message name="IZenChat_JoinChatroom_OutputMessage">
     <wsdl:part name="parameters" element="tns:JoinChatroomResponse" />
   </wsdl:message>
+  <wsdl:message name="IZenChat_WriteChatMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:WriteChatMessage" />
+  </wsdl:message>
+  <wsdl:message name="IZenChat_WriteChatMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WriteChatMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZenChat_ReadChatMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadChatMessage" />
+  </wsdl:message>
+  <wsdl:message name="IZenChat_ReadChatMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadChatMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZenChat_RecieveChatMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecieveChatMessage" />
+  </wsdl:message>
+  <wsdl:message name="IZenChat_RecieveChatMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecieveChatMessageResponse" />
+  </wsdl:message>
   <wsdl:portType name="IZenChat">
+    <wsdl:operation name="GetUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZenChat/GetUser" message="tns:IZenChat_GetUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZenChat/GetUserResponse" message="tns:IZenChat_GetUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZenChat/Login" message="tns:IZenChat_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZenChat/LoginResponse" message="tns:IZenChat_Login_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetChatRoom">
       <wsdl:input wsaw:Action="http://tempuri.org/IZenChat/GetChatRoom" message="tns:IZenChat_GetChatRoom_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IZenChat/GetChatRoomResponse" message="tns:IZenChat_GetChatRoom_OutputMessage" />
@@ -63,9 +101,39 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IZenChat/JoinChatroom" message="tns:IZenChat_JoinChatroom_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IZenChat/JoinChatroomResponse" message="tns:IZenChat_JoinChatroom_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="WriteChatMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZenChat/WriteChatMessage" message="tns:IZenChat_WriteChatMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZenChat/WriteChatMessageResponse" message="tns:IZenChat_WriteChatMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadChatMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZenChat/ReadChatMessage" message="tns:IZenChat_ReadChatMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZenChat/ReadChatMessageResponse" message="tns:IZenChat_ReadChatMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecieveChatMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZenChat/RecieveChatMessage" message="tns:IZenChat_RecieveChatMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZenChat/RecieveChatMessageResponse" message="tns:IZenChat_RecieveChatMessage_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IZenChat" type="tns:IZenChat">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction="http://tempuri.org/IZenChat/GetUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IZenChat/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetChatRoom">
       <soap:operation soapAction="http://tempuri.org/IZenChat/GetChatRoom" style="document" />
       <wsdl:input>
@@ -86,6 +154,33 @@
     </wsdl:operation>
     <wsdl:operation name="JoinChatroom">
       <soap:operation soapAction="http://tempuri.org/IZenChat/JoinChatroom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteChatMessage">
+      <soap:operation soapAction="http://tempuri.org/IZenChat/WriteChatMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadChatMessage">
+      <soap:operation soapAction="http://tempuri.org/IZenChat/ReadChatMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecieveChatMessage">
+      <soap:operation soapAction="http://tempuri.org/IZenChat/RecieveChatMessage" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -97,6 +192,24 @@
   <wsdl:binding name="BasicHttpsBinding_IZenChat" type="tns:IZenChat">
     <wsp:PolicyReference URI="#BasicHttpsBinding_IZenChat_policy" />
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction="http://tempuri.org/IZenChat/GetUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IZenChat/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetChatRoom">
       <soap:operation soapAction="http://tempuri.org/IZenChat/GetChatRoom" style="document" />
       <wsdl:input>
@@ -117,6 +230,33 @@
     </wsdl:operation>
     <wsdl:operation name="JoinChatroom">
       <soap:operation soapAction="http://tempuri.org/IZenChat/JoinChatroom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteChatMessage">
+      <soap:operation soapAction="http://tempuri.org/IZenChat/WriteChatMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadChatMessage">
+      <soap:operation soapAction="http://tempuri.org/IZenChat/ReadChatMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecieveChatMessage">
+      <soap:operation soapAction="http://tempuri.org/IZenChat/RecieveChatMessage" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
