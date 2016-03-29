@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ZenChat.ServiceClasses" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ZenChat.ServiceClasses" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="ArrayOfUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
+  <xs:complexType name="ArrayOfChatBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ChatBase" nillable="true" type="tns:ChatBase" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfChatBase" nillable="true" type="tns:ArrayOfChatBase" />
+  <xs:complexType name="ChatBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Members" nillable="true" type="tns:ArrayOfUser" />
+      <xs:element minOccurs="0" name="Messages" nillable="true" type="tns:ArrayOfChatMessage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ChatBase" nillable="true" type="tns:ChatBase" />
+  <xs:complexType name="ArrayOfChatMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ChatMessage" nillable="true" type="tns:ChatMessage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfChatMessage" nillable="true" type="tns:ArrayOfChatMessage" />
+  <xs:complexType name="ChatMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ArrivedAt" nillable="true" type="tns:ArrayOfUser" />
+      <xs:element minOccurs="0" name="Author" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReadBy" nillable="true" type="tns:ArrayOfUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ChatMessage" nillable="true" type="tns:ChatMessage" />
+  <xs:complexType name="ChatRoom">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ChatBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Admin" nillable="true" type="tns:User" />
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ChatRoom" nillable="true" type="tns:ChatRoom" />
+  <xs:complexType name="PrivateConversation">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ChatBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PrivateConversation" nillable="true" type="tns:PrivateConversation" />
+</xs:schema>

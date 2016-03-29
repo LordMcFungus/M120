@@ -119,13 +119,20 @@
     <None Include="Service References\ZenChatService\ZenChat.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ZenChatService\ZenChat.ZenChatService.ChatRoomBase.datasource">
+    <None Include="Service References\ZenChatService\ZenChat.ZenChatService.ChatBase.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ZenChatService\ZenChat.ZenChatService.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ZenChatService\ZenChat1.wsdl" />
     <None Include="Service References\ZenChatService\ZenChat1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ZenChatService\ZenChat2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ZenChatService\ZenChat4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="ZenChat_TemporaryKey.pfx" />
