@@ -67,11 +67,15 @@ namespace ZenChat.ZenChatService {
         
         private ZenChat.ZenChatService.User AdminField;
         
+        private System.DateTime CreatedField;
+        
         private int IdField;
         
         private System.Collections.Generic.List<ZenChat.ZenChatService.User> MembersField;
         
         private System.Collections.Generic.List<ZenChat.ZenChatService.ChatMessage> MessagesField;
+        
+        private string TopicField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public ZenChat.ZenChatService.User Admin {
@@ -82,6 +86,19 @@ namespace ZenChat.ZenChatService {
                 if ((object.ReferenceEquals(this.AdminField, value) != true)) {
                     this.AdminField = value;
                     this.RaisePropertyChanged("Admin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Created {
+            get {
+                return this.CreatedField;
+            }
+            set {
+                if ((this.CreatedField.Equals(value) != true)) {
+                    this.CreatedField = value;
+                    this.RaisePropertyChanged("Created");
                 }
             }
         }
@@ -121,6 +138,19 @@ namespace ZenChat.ZenChatService {
                 if ((object.ReferenceEquals(this.MessagesField, value) != true)) {
                     this.MessagesField = value;
                     this.RaisePropertyChanged("Messages");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Topic {
+            get {
+                return this.TopicField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TopicField, value) != true)) {
+                    this.TopicField = value;
+                    this.RaisePropertyChanged("Topic");
                 }
             }
         }
@@ -294,15 +324,23 @@ namespace ZenChat.ZenChatService {
         System.Threading.Tasks.Task<ZenChat.ZenChatService.User> GetUserAsync(string phoneNumber);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/Login", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/LoginResponse")]
-        System.Threading.Tasks.Task<System.Tuple<int, ZenChat.ZenChatService.User>> LoginAsync(string name, string phone);
+        System.Threading.Tasks.Task<System.Tuple<int, ZenChat.ZenChatService.User>> LoginAsync(string phone, string name);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/LoginWithId", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/LoginWithIdRes" +
-            "ponse")]
-        System.Threading.Tasks.Task<ZenChat.ZenChatService.User> LoginWithIdAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserFromId", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserFromIdR" +
+            "esponse")]
+        System.Threading.Tasks.Task<ZenChat.ZenChatService.User> GetUserFromIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetFriends", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetFriendsResp" +
             "onse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<ZenChat.ZenChatService.User>> GetFriendsAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/AddFriend", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/AddFriendRespo" +
+            "nse")]
+        System.Threading.Tasks.Task AddFriendAsync(int userId, string otherPhone);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RemoveFriend", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RemoveFriendRe" +
+            "sponse")]
+        System.Threading.Tasks.Task RemoveFriendAsync(int userId, string otherPhone);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetAllChatRoom" +
             "s", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetAllChatRoom" +
@@ -311,12 +349,12 @@ namespace ZenChat.ZenChatService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetChatRoom", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetChatRoomRes" +
             "ponse")]
-        System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoom> GetChatRoomAsync(int chatRoomId);
+        System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoom> GetChatRoomAsync(int chatRoomId, int playerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/CreateChatRoom" +
             "", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/CreateChatRoom" +
             "Response")]
-        System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoom> CreateChatRoomAsync(int userId);
+        System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoom> CreateChatRoomAsync(int userId, string topic);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/InviteToChatRo" +
             "om", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/InviteToChatRo" +
@@ -390,28 +428,36 @@ namespace ZenChat.ZenChatService {
             return base.Channel.GetUserAsync(phoneNumber);
         }
         
-        public System.Threading.Tasks.Task<System.Tuple<int, ZenChat.ZenChatService.User>> LoginAsync(string name, string phone) {
-            return base.Channel.LoginAsync(name, phone);
+        public System.Threading.Tasks.Task<System.Tuple<int, ZenChat.ZenChatService.User>> LoginAsync(string phone, string name) {
+            return base.Channel.LoginAsync(phone, name);
         }
         
-        public System.Threading.Tasks.Task<ZenChat.ZenChatService.User> LoginWithIdAsync(int id) {
-            return base.Channel.LoginWithIdAsync(id);
+        public System.Threading.Tasks.Task<ZenChat.ZenChatService.User> GetUserFromIdAsync(int id) {
+            return base.Channel.GetUserFromIdAsync(id);
         }
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<ZenChat.ZenChatService.User>> GetFriendsAsync(int userId) {
             return base.Channel.GetFriendsAsync(userId);
         }
         
+        public System.Threading.Tasks.Task AddFriendAsync(int userId, string otherPhone) {
+            return base.Channel.AddFriendAsync(userId, otherPhone);
+        }
+        
+        public System.Threading.Tasks.Task RemoveFriendAsync(int userId, string otherPhone) {
+            return base.Channel.RemoveFriendAsync(userId, otherPhone);
+        }
+        
         public System.Threading.Tasks.Task<System.Collections.Generic.List<ZenChat.ZenChatService.ChatRoom>> GetAllChatRoomsAsync(int userId) {
             return base.Channel.GetAllChatRoomsAsync(userId);
         }
         
-        public System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoom> GetChatRoomAsync(int chatRoomId) {
-            return base.Channel.GetChatRoomAsync(chatRoomId);
+        public System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoom> GetChatRoomAsync(int chatRoomId, int playerId) {
+            return base.Channel.GetChatRoomAsync(chatRoomId, playerId);
         }
         
-        public System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoom> CreateChatRoomAsync(int userId) {
-            return base.Channel.CreateChatRoomAsync(userId);
+        public System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoom> CreateChatRoomAsync(int userId, string topic) {
+            return base.Channel.CreateChatRoomAsync(userId, topic);
         }
         
         public System.Threading.Tasks.Task InviteToChatRoomAsync(int userId, string phoneNumber, int chatRoomId) {
