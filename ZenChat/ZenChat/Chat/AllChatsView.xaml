@@ -11,7 +11,11 @@
 		<ListView ItemsSource="{Binding MyChats}">
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					<TextBlock Text="{Binding User.Name}"/>
+					<Canvas>
+						<TextBlock Text="{Binding User.Name}"/>
+						<TextBlock Text="{Binding LastSentMessage}"/>
+						<TextBlock Text="{Binding UnreadMessages}"/>
+					</Canvas>
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>

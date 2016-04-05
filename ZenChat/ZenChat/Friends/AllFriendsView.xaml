@@ -8,6 +8,16 @@
     mc:Ignorable="d" d:DataContext="{d:DesignInstance local:AllFriendsViewModel}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+		<ListView ItemsSource="{Binding }">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<Canvas>
+						<TextBlock Text="{Binding }"/>
+						<TextBlock Text="{Binding }"/>
+						<TextBlock Text="{Binding }"/>
+					</Canvas>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
     </Grid>
 </Page>

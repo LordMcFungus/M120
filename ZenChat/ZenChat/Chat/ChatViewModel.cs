@@ -12,6 +12,7 @@ namespace ZenChat.Chat
 	class ChatViewModel
 	{
 		private DateTime _lastSentMessage;
+		private int _unreadMessages;
 
 		public DateTime LastSentMessage
 		{
@@ -27,5 +28,18 @@ namespace ZenChat.Chat
 		}
 
 		public User User { get; set; }
+
+		public int UnreadMessages
+		{
+			get
+			{
+				// TODO GET AMMOUNT OF UNREAD MESSAGES
+				return _unreadMessages;
+			}
+			set
+			{
+				_unreadMessages = value;
+			}
+		}
 	}
 }
