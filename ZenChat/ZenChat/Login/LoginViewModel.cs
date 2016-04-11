@@ -56,13 +56,13 @@ namespace ZenChat.Login
 
 		private void Login()
 		{
-			var Client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
-			var User = Client.LoginAsync(PhoneNumber, Username);
-			Windows.Storage.ApplicationData.Current.LocalSettings.Values["UID"] = User.Result.Item1;
-			
-			Session.UserID = User.Result.Item1;
-			Session.PhoneNumber = User.Result.Item2.PhoneNumber;
-			Session.Username = User.Result.Item2.Name;
+			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
+			var user = client.LoginAsync(PhoneNumber, Username);
+			Windows.Storage.ApplicationData.Current.LocalSettings.Values["UID"] = user.Result.Item1;
+
+			Session.UserID = user.Result.Item1;
+			Session.PhoneNumber = user.Result.Item2.PhoneNumber;
+			Session.Username = user.Result.Item2.Name;
 			ChangeWindow();
 		}
 

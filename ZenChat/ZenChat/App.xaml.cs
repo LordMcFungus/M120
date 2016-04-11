@@ -59,15 +59,14 @@ namespace ZenChat
 				// When the navigation stack isn't restored navigate to the first page,
 				// configuring the new page by passing required information as a navigation
 				// parameter
-				// var id = Windows.Storage.ApplicationData.Current.LocalSettings.Values["UID"] as int?;
-				var id = 21;
-				if (id == 0/*.HasValue*/)
+				var id = Windows.Storage.ApplicationData.Current.LocalSettings.Values["UID"] as int?;
+				if (!id.HasValue)
 				{
 					rootFrame.Navigate(typeof(LoginRegisterPage), e.Arguments);
 				}
 				else
 				{
-					DoStuff(rootFrame, id/*.Value*/);
+					DoStuff(rootFrame, id.Value);
 				}
 			}
 			// Ensure the current window is active
@@ -77,11 +76,19 @@ namespace ZenChat
 		private static async void DoStuff(INavigate rootFrame, int id)
 		{
 			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
-
-			var user = await client.GetUserFromIdAsync(id);
-			Session.Username = user.Name;
-			Session.PhoneNumber = user.PhoneNumber;
-			rootFrame.Navigate(typeof(MainPage));
+			try
+			{
+				var user = await client.GetUserFromIdAsync(id);
+				Session.Username = user.Name;
+				Session.PhoneNumber = user.PhoneNumber;
+				Session.UserID = id;
+				rootFrame.Navigate(typeof(MainPage));
+			}
+			catch (Exception)
+			{
+				//Auto-Login failed
+				rootFrame.Navigate(typeof(LoginRegisterPage));
+			}
 		}
 
 		/// <summary>

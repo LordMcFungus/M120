@@ -4,27 +4,33 @@
     <xsd:schema targetNamespace="http://zenchatservice.azurewebsites.net/ZenChat.svc/Imports">
       <xsd:import schemaLocation="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd0" namespace="http://zenchatservice.azurewebsites.net/ZenChat.svc" />
       <xsd:import schemaLocation="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ZenChat.ServiceClasses" />
+      <xsd:import schemaLocation="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ZenChatService.ServiceClasses" />
       <xsd:import schemaLocation="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="ZenChatService_ChangeUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeUsername" />
+  </wsdl:message>
+  <wsdl:message name="ZenChatService_ChangeUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeUsernameResponse" />
+  </wsdl:message>
   <wsdl:message name="ZenChatService_GetUser_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUser" />
   </wsdl:message>
   <wsdl:message name="ZenChatService_GetUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUserResponse" />
   </wsdl:message>
-  <wsdl:message name="ZenChatService_Login_InputMessage">
-    <wsdl:part name="parameters" element="tns:Login" />
-  </wsdl:message>
-  <wsdl:message name="ZenChatService_Login_OutputMessage">
-    <wsdl:part name="parameters" element="tns:LoginResponse" />
-  </wsdl:message>
   <wsdl:message name="ZenChatService_GetUserFromId_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUserFromId" />
   </wsdl:message>
   <wsdl:message name="ZenChatService_GetUserFromId_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUserFromIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ZenChatService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="ZenChatService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
   <wsdl:message name="ZenChatService_GetFriends_InputMessage">
     <wsdl:part name="parameters" element="tns:GetFriends" />
@@ -68,6 +74,12 @@
   <wsdl:message name="ZenChatService_InviteToChatRoom_OutputMessage">
     <wsdl:part name="parameters" element="tns:InviteToChatRoomResponse" />
   </wsdl:message>
+  <wsdl:message name="ZenChatService_RemoveFromChatRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFromChatRoom" />
+  </wsdl:message>
+  <wsdl:message name="ZenChatService_RemoveFromChatRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFromChatRoomResponse" />
+  </wsdl:message>
   <wsdl:message name="ZenChatService_WriteGroupChatMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:WriteGroupChatMessage" />
   </wsdl:message>
@@ -99,17 +111,21 @@
     <wsdl:part name="parameters" element="tns:RecieveChatMessageResponse" />
   </wsdl:message>
   <wsdl:portType msc:usingSession="false" name="ZenChatService">
+    <wsdl:operation name="ChangeUsername">
+      <wsdl:input wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangeUsername" message="tns:ZenChatService_ChangeUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangeUsernameResponse" message="tns:ZenChatService_ChangeUsername_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetUser">
       <wsdl:input wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUser" message="tns:ZenChatService_GetUser_InputMessage" />
       <wsdl:output wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserResponse" message="tns:ZenChatService_GetUser_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Login">
-      <wsdl:input wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/Login" message="tns:ZenChatService_Login_InputMessage" />
-      <wsdl:output wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/LoginResponse" message="tns:ZenChatService_Login_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetUserFromId">
       <wsdl:input wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserFromId" message="tns:ZenChatService_GetUserFromId_InputMessage" />
       <wsdl:output wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserFromIdResponse" message="tns:ZenChatService_GetUserFromId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/Login" message="tns:ZenChatService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/LoginResponse" message="tns:ZenChatService_Login_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetFriends">
       <wsdl:input wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetFriends" message="tns:ZenChatService_GetFriends_InputMessage" />
@@ -138,6 +154,10 @@
     <wsdl:operation name="InviteToChatRoom">
       <wsdl:input wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/InviteToChatRoom" message="tns:ZenChatService_InviteToChatRoom_InputMessage" />
       <wsdl:output wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/InviteToChatRoomResponse" message="tns:ZenChatService_InviteToChatRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFromChatRoom">
+      <wsdl:input wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RemoveFromChatRoom" message="tns:ZenChatService_RemoveFromChatRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RemoveFromChatRoomResponse" message="tns:ZenChatService_RemoveFromChatRoom_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="WriteGroupChatMessage">
       <wsdl:input wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/WriteGroupChatMessage" message="tns:ZenChatService_WriteGroupChatMessage_InputMessage" />

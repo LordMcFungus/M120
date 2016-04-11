@@ -29,6 +29,15 @@
   <wsdl:types />
   <wsdl:binding name="BasicHttpBinding_ZenChatService" type="i0:ZenChatService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ChangeUsername">
+      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangeUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetUser">
       <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUser" style="document" />
       <wsdl:input>
@@ -38,8 +47,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Login">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/Login" style="document" />
+    <wsdl:operation name="GetUserFromId">
+      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserFromId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -47,8 +56,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetUserFromId">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserFromId" style="document" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/Login" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -112,6 +121,15 @@
     </wsdl:operation>
     <wsdl:operation name="InviteToChatRoom">
       <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/InviteToChatRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFromChatRoom">
+      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RemoveFromChatRoom" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -168,6 +186,15 @@
   <wsdl:binding name="BasicHttpsBinding_ZenChatService" type="i0:ZenChatService">
     <wsp:PolicyReference URI="#BasicHttpsBinding_ZenChatService_policy" />
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ChangeUsername">
+      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangeUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetUser">
       <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUser" style="document" />
       <wsdl:input>
@@ -177,8 +204,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Login">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/Login" style="document" />
+    <wsdl:operation name="GetUserFromId">
+      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserFromId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -186,8 +213,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetUserFromId">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserFromId" style="document" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/Login" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -251,6 +278,15 @@
     </wsdl:operation>
     <wsdl:operation name="InviteToChatRoom">
       <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/InviteToChatRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFromChatRoom">
+      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RemoveFromChatRoom" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
