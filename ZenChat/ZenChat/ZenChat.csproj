@@ -130,6 +130,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
     <None Include="Service References\ZenChatService\ZenChat.wsdl" />
     <None Include="Service References\ZenChatService\ZenChat.xsd">
       <SubType>Designer</SubType>
