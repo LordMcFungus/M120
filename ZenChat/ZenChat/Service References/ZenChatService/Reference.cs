@@ -17,7 +17,7 @@ namespace ZenChat.ZenChatService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/ZenChat.ServiceClasses")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/ZenChatService.ServiceClasses")]
     public partial class User : object, System.ComponentModel.INotifyPropertyChanged {
         
         private string NameField;
@@ -62,10 +62,12 @@ namespace ZenChat.ZenChatService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ChatRoom", Namespace="http://schemas.datacontract.org/2004/07/ZenChat.ServiceClasses")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ChatRoom", Namespace="http://schemas.datacontract.org/2004/07/ZenChatService.ServiceClasses")]
     public partial class ChatRoom : object, System.ComponentModel.INotifyPropertyChanged {
         
         private ZenChat.ZenChatService.User AdminField;
+        
+        private bool CanWriteMessagesField;
         
         private System.DateTime CreatedField;
         
@@ -86,6 +88,19 @@ namespace ZenChat.ZenChatService {
                 if ((object.ReferenceEquals(this.AdminField, value) != true)) {
                     this.AdminField = value;
                     this.RaisePropertyChanged("Admin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CanWriteMessages {
+            get {
+                return this.CanWriteMessagesField;
+            }
+            set {
+                if ((this.CanWriteMessagesField.Equals(value) != true)) {
+                    this.CanWriteMessagesField = value;
+                    this.RaisePropertyChanged("CanWriteMessages");
                 }
             }
         }
@@ -167,7 +182,7 @@ namespace ZenChat.ZenChatService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ChatMessage", Namespace="http://schemas.datacontract.org/2004/07/ZenChat.ServiceClasses")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ChatMessage", Namespace="http://schemas.datacontract.org/2004/07/ZenChatService.ServiceClasses")]
     public partial class ChatMessage : object, System.ComponentModel.INotifyPropertyChanged {
         
         private System.Collections.Generic.List<ZenChat.ZenChatService.User> ArrivedAtField;
@@ -272,7 +287,7 @@ namespace ZenChat.ZenChatService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PrivateConversation", Namespace="http://schemas.datacontract.org/2004/07/ZenChat.ServiceClasses")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PrivateConversation", Namespace="http://schemas.datacontract.org/2004/07/ZenChatService.ServiceClasses")]
     public partial class PrivateConversation : object, System.ComponentModel.INotifyPropertyChanged {
         
         private System.Collections.Generic.List<ZenChat.ZenChatService.User> MembersField;
@@ -319,16 +334,21 @@ namespace ZenChat.ZenChatService {
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://zenchatservice.azurewebsites.net/ZenChat.svc", ConfigurationName="ZenChatService.ZenChatService")]
     public interface ZenChatService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangeUsername" +
+            "", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangeUsername" +
+            "Response")]
+        System.Threading.Tasks.Task<ZenChat.ZenChatService.User> ChangeUsernameAsync(int userId, string newUsername);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUser", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserRespons" +
             "e")]
         System.Threading.Tasks.Task<ZenChat.ZenChatService.User> GetUserAsync(string phoneNumber);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/Login", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/LoginResponse")]
-        System.Threading.Tasks.Task<System.Tuple<int, ZenChat.ZenChatService.User>> LoginAsync(string phone, string name);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserFromId", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserFromIdR" +
             "esponse")]
         System.Threading.Tasks.Task<ZenChat.ZenChatService.User> GetUserFromIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/Login", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/LoginResponse")]
+        System.Threading.Tasks.Task<System.Tuple<int, ZenChat.ZenChatService.User>> LoginAsync(string phone, string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetFriends", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetFriendsResp" +
             "onse")]
@@ -360,6 +380,11 @@ namespace ZenChat.ZenChatService {
             "om", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/InviteToChatRo" +
             "omResponse")]
         System.Threading.Tasks.Task InviteToChatRoomAsync(int userId, string phoneNumber, int chatRoomId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RemoveFromChat" +
+            "Room", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RemoveFromChat" +
+            "RoomResponse")]
+        System.Threading.Tasks.Task RemoveFromChatRoomAsync(int userId, string phoneNumber, int chatRoomId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/WriteGroupChat" +
             "Message", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/WriteGroupChat" +
@@ -424,16 +449,20 @@ namespace ZenChat.ZenChatService {
                 base(binding, remoteAddress) {
         }
         
+        public System.Threading.Tasks.Task<ZenChat.ZenChatService.User> ChangeUsernameAsync(int userId, string newUsername) {
+            return base.Channel.ChangeUsernameAsync(userId, newUsername);
+        }
+        
         public System.Threading.Tasks.Task<ZenChat.ZenChatService.User> GetUserAsync(string phoneNumber) {
             return base.Channel.GetUserAsync(phoneNumber);
         }
         
-        public System.Threading.Tasks.Task<System.Tuple<int, ZenChat.ZenChatService.User>> LoginAsync(string phone, string name) {
-            return base.Channel.LoginAsync(phone, name);
-        }
-        
         public System.Threading.Tasks.Task<ZenChat.ZenChatService.User> GetUserFromIdAsync(int id) {
             return base.Channel.GetUserFromIdAsync(id);
+        }
+        
+        public System.Threading.Tasks.Task<System.Tuple<int, ZenChat.ZenChatService.User>> LoginAsync(string phone, string name) {
+            return base.Channel.LoginAsync(phone, name);
         }
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<ZenChat.ZenChatService.User>> GetFriendsAsync(int userId) {
@@ -462,6 +491,10 @@ namespace ZenChat.ZenChatService {
         
         public System.Threading.Tasks.Task InviteToChatRoomAsync(int userId, string phoneNumber, int chatRoomId) {
             return base.Channel.InviteToChatRoomAsync(userId, phoneNumber, chatRoomId);
+        }
+        
+        public System.Threading.Tasks.Task RemoveFromChatRoomAsync(int userId, string phoneNumber, int chatRoomId) {
+            return base.Channel.RemoveFromChatRoomAsync(userId, phoneNumber, chatRoomId);
         }
         
         public System.Threading.Tasks.Task<ZenChat.ZenChatService.ChatRoom> WriteGroupChatMessageAsync(int userId, int chatRoomId, string message) {

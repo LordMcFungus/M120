@@ -7,13 +7,15 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using ZenChat.Models;
+using ZenChat.ZenChatService;
 
 namespace ZenChat
 {
 	/// <summary>
 	///     Provides application-specific behavior to supplement the default Application class.
 	/// </summary>
-	internal sealed partial class App : Application
+	public sealed partial class App : Application
 	{
 		/// <summary>
 		///     Initializes the singleton application object.  This is the first line of authored code
@@ -57,10 +59,36 @@ namespace ZenChat
 				// When the navigation stack isn't restored navigate to the first page,
 				// configuring the new page by passing required information as a navigation
 				// parameter
-				rootFrame.Navigate(typeof(MainPage), e.Arguments);
+				var id = Windows.Storage.ApplicationData.Current.LocalSettings.Values["UID"] as int?;
+				if (!id.HasValue)
+				{
+					rootFrame.Navigate(typeof(LoginRegisterPage), e.Arguments);
+				}
+				else
+				{
+					DoStuff(rootFrame, id.Value);
+				}
 			}
 			// Ensure the current window is active
 			Window.Current.Activate();
+		}
+
+		private static async void DoStuff(INavigate rootFrame, int id)
+		{
+			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
+			try
+			{
+				var user = await client.GetUserFromIdAsync(id);
+				Session.Username = user.Name;
+				Session.PhoneNumber = user.PhoneNumber;
+				Session.UserID = id;
+				rootFrame.Navigate(typeof(MainPage));
+			}
+			catch (Exception)
+			{
+				//Auto-Login failed
+				rootFrame.Navigate(typeof(LoginRegisterPage));
+			}
 		}
 
 		/// <summary>
