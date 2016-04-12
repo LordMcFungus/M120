@@ -13,6 +13,13 @@ namespace ZenChat.Chat
 	{
 		private DateTime _lastSentMessage;
 		private int _unreadMessages;
+		private PrivateConversation _chat;
+
+		public PrivateConversation Chat
+		{
+			get { return _chat; }
+			set { _chat = value; }
+		}
 
 		public DateTime LastSentMessage
 		{

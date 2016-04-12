@@ -7,17 +7,23 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" d:DataContext="{d:DesignInstance local:AllFriendsViewModel}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<ListView ItemsSource="{Binding }">
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="10*"/>
+			<RowDefinition Height="1*"/>
+			<RowDefinition Height="0.7*"/>
+		</Grid.RowDefinitions>
+		<ListView ItemsSource="{Binding MyFriends}" Grid.RowSpan="3">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<Canvas>
-						<TextBlock Text="{Binding }"/>
-						<TextBlock Text="{Binding }"/>
-						<TextBlock Text="{Binding }"/>
+						<TextBlock Text="{Binding Name}"/>
 					</Canvas>
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
-    </Grid>
+		<TextBox Grid.Row="1" Width="200" Height="30"
+				 Text="{Binding NewFriendPhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="113,11,47,11.667"/>
+		<Button Grid.Row="1" Command="{Binding AddFriendCommand}" Content="ADD Friend" />
+	</Grid>
 </Page>

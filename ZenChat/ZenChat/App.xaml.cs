@@ -59,6 +59,7 @@ namespace ZenChat
 				// When the navigation stack isn't restored navigate to the first page,
 				// configuring the new page by passing required information as a navigation
 				// parameter
+
 				var id = Windows.Storage.ApplicationData.Current.LocalSettings.Values["UID"] as int?;
 				if (!id.HasValue)
 				{
