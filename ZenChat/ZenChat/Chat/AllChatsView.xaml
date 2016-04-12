@@ -12,7 +12,7 @@
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<Canvas>
-						<TextBlock Text="{Binding User.Name}"/>
+						<TextBlock Text="{Binding User}"/>
 						<TextBlock Text="{Binding LastSentMessage}"/>
 						<TextBlock Text="{Binding UnreadMessages}"/>
 					</Canvas>

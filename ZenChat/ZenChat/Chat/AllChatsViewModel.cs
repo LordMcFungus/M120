@@ -15,9 +15,21 @@ namespace ZenChat.Chat
 			GetChats();
 		}
 
-		public void GetChats()
+		public async void GetChats()
 		{
 			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
+			var id = Windows.Storage.ApplicationData.Current.LocalSettings.Values["UID"] as int?;
+			if (id.HasValue)
+			{
+				var friends = await client.GetFriendsAsync(id.Value);
+				foreach (var friend in friends)
+				{
+					var chat = await client.GetPrivateConversationAsync(id.Value, friend.PhoneNumber);
+					var chatModel = new ChatViewModel();
+					chatModel.Chat = chat;
+					MyChats.Add(chatModel);
+				}
+			}
 		}
 	}
 }

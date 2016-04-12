@@ -76,17 +76,16 @@ namespace ZenChat.Friends
 			}
 		}
 
-	/*	private async void LoadFriends()
+		private async void LoadFriends()
 		{
 			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
 			var id = Windows.Storage.ApplicationData.Current.LocalSettings.Values["UID"] as int?;
 			var user = await client.GetFriendsAsync(id.Value);
-		/*	foreach (var friend in User)
+			foreach (var friend in user)
 			{
-				var name = friend;
-				//var MyFriend = new FriendModel(name, phoneNumber);
+				_myFriends.Add(friend);
 			} 
-		}  */
+		}  
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		[NotifyPropertyChangedInvocator]
