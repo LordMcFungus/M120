@@ -1,13 +1,8 @@
 ﻿// Copyright (c) 2016 
 // All rights reserved
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using Windows.ApplicationModel.Appointments.AppointmentsProvider;
 using Microsoft.Practices.Prism.Commands;
 using ZenChat.Annotations;
 using ZenChat.Models;
@@ -15,63 +10,70 @@ using ZenChat.ZenChatService;
 
 namespace ZenChat.Settings
 {
-    internal class SettingsViewModel : INotifyPropertyChanged
-    {
-        private string _username;
-        private string _phonenumber;
-
-        public string Username
-        {
-            get { return _username; }
-            set
-            {
-                _username = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string Phonenumber
-        {
-            get { return _phonenumber; }
-            set
-            {
-                _phonenumber = value;
-                OnPropertyChanged();
-            }
-        }
+	internal class SettingsViewModel : INotifyPropertyChanged
+	{
+		private string _phonenumber;
+		private string _username;
+		private bool _isActive;
 
 
-        public SettingsViewModel()
-        {
-            Username = Session.Username;
-            Phonenumber = Session.PhoneNumber;
-            Change = new DelegateCommand(SaveChanges);
-        }
+		public SettingsViewModel()
+		{
+			Username = Session.Username;
+			Phonenumber = Session.PhoneNumber;
+			Change = new DelegateCommand(SaveChanges);
+		}
+
+		public string Username
+		{
+			get { return _username; }
+			set
+			{
+				_username = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public string Phonenumber
+		{
+			get { return _phonenumber; }
+			set
+			{
+				_phonenumber = value;
+				OnPropertyChanged();
+			}
+		}
 
 
-        public DelegateCommand Change { get; set; }
+		public DelegateCommand Change { get; }
 
-        public async void SaveChanges()
-        {
-            var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
-            await client.ChangeUsernameAsync(Session.UserID, Username);
-            await client.ChangePhoneNumberAsync(Session.UserID, Phonenumber);  
-            var user = client.GetUserAsync(Phonenumber);
-            Phonenumber = user.Result.PhoneNumber;
-            Username = user.Result.Name;
-            Session.PhoneNumber = user.Result.PhoneNumber;
-            Session.Username = user.Result.Name;
-        }
+		public bool IsActive
+		{
+			get { return _isActive; }
+			set
+			{
+				_isActive = value;
+				OnPropertyChanged();
+			}
+		}
 
-        public event PropertyChangedEventHandler PropertyChanged;
+		public event PropertyChangedEventHandler PropertyChanged;
 
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+		private async void SaveChanges()
+		{
+			IsActive = true;
+			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
+			await client.ChangeUsernameAsync(Session.UserID, Username);
+			var user = await client.ChangePhoneNumberAsync(Session.UserID, Phonenumber);
+			Session.PhoneNumber = Phonenumber = user.PhoneNumber;
+			Session.Username = Username = user.Name;
+			IsActive = false;
+		}
 
-
-    }
-
+		[NotifyPropertyChangedInvocator]
+		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
 }

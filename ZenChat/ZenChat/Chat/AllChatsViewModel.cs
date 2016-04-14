@@ -2,23 +2,24 @@
 // All rights reserved
 
 using System.Collections.ObjectModel;
+using Windows.Storage;
 using ZenChat.ZenChatService;
 
 namespace ZenChat.Chat
 {
 	internal class AllChatsViewModel
 	{
-		public ObservableCollection<ChatViewModel> MyChats { get; set; }
-
 		public AllChatsViewModel()
 		{
 			GetChats();
 		}
 
+		public ObservableCollection<ChatViewModel> MyChats { get; set; }
+
 		public async void GetChats()
 		{
 			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
-			var id = Windows.Storage.ApplicationData.Current.LocalSettings.Values["UID"] as int?;
+			var id = ApplicationData.Current.LocalSettings.Values["UID"] as int?;
 			if (id.HasValue)
 			{
 				var friends = await client.GetFriendsAsync(id.Value);

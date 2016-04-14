@@ -7,21 +7,22 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance local:SettingsViewModel}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <TextBlock Text="Account Settings" FontSize="32"/>
-        <TextBlock Text="Username:" FontSize="25" Grid.Row="2"/>
-        <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="3"/>
-        <TextBlock Text="Phone Number:" FontSize="25" Grid.Row="4"/>
-        <TextBox Text="{Binding Phonenumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="5"/>
-        <Button Command="{Binding Change}" Content="Save Changes" Grid.Row="6" IsEnabled="True"/>
-    </Grid>
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="0.5*" />
+			<RowDefinition Height="0.5*" />
+			<RowDefinition Height="0.5*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="0.5*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<TextBlock Text="Account Settings" FontSize="32" />
+		<ProgressRing Grid.Row="1" Grid.RowSpan="6" IsActive="{Binding IsActive}" Height="100" Width="100"/>
+		<TextBlock Text="Username:" FontSize="25" Grid.Row="2" />
+		<TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="3" />
+		<TextBlock Text="Phone Number:" FontSize="25" Grid.Row="4" />
+		<TextBox Text="{Binding Phonenumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="5" />
+		<Button Command="{Binding Change}" Content="Save Changes" Grid.Row="6" IsEnabled="True" />
+	</Grid>
 </Page>

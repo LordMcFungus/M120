@@ -4,6 +4,7 @@
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -60,7 +61,7 @@ namespace ZenChat
 				// configuring the new page by passing required information as a navigation
 				// parameter
 
-				var id = Windows.Storage.ApplicationData.Current.LocalSettings.Values["UID"] as int?;
+				var id = ApplicationData.Current.LocalSettings.Values["UID"] as int?;
 				if (!id.HasValue)
 				{
 					rootFrame.Navigate(typeof(LoginRegisterPage), e.Arguments);

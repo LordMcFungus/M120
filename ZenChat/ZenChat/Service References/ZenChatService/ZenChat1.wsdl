@@ -1,369 +1,427 @@
-<?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:i0="http://zenchatservice.azurewebsites.net/ZenChat.svc" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ZenChat" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsp:Policy wsu:Id="BasicHttpsBinding_ZenChatService_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <sp:HttpsToken RequireClientCertificate="false" />
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsdl:import namespace="http://zenchatservice.azurewebsites.net/ZenChat.svc" location="http://zenchatservice.azurewebsites.net/ZenChat.svc?wsdl=wsdl0" />
-  <wsdl:types />
-  <wsdl:binding name="BasicHttpBinding_ZenChatService" type="i0:ZenChatService">
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="ChangeUsername">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangeUsername" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ChangePhoneNumber">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangePhoneNumber" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetUser">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUser" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetUserFromId">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserFromId" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Login">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/Login" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetFriends">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetFriends" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AddFriend">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/AddFriend" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RemoveFriend">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RemoveFriend" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAllChatRooms">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetAllChatRooms" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetChatRoom">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetChatRoom" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CreateChatRoom">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/CreateChatRoom" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InviteToChatRoom">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/InviteToChatRoom" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RemoveFromChatRoom">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RemoveFromChatRoom" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="WriteGroupChatMessage">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/WriteGroupChatMessage" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetPrivateConversation">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetPrivateConversation" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="WritePrivateChatMessage">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/WritePrivateChatMessage" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ReadChatMessage">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ReadChatMessage" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RecieveChatMessage">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RecieveChatMessage" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:binding name="BasicHttpsBinding_ZenChatService" type="i0:ZenChatService">
-    <wsp:PolicyReference URI="#BasicHttpsBinding_ZenChatService_policy" />
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="ChangeUsername">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangeUsername" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ChangePhoneNumber">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangePhoneNumber" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetUser">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUser" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetUserFromId">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserFromId" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Login">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/Login" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetFriends">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetFriends" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AddFriend">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/AddFriend" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RemoveFriend">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RemoveFriend" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetAllChatRooms">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetAllChatRooms" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetChatRoom">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetChatRoom" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CreateChatRoom">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/CreateChatRoom" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InviteToChatRoom">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/InviteToChatRoom" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RemoveFromChatRoom">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RemoveFromChatRoom" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="WriteGroupChatMessage">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/WriteGroupChatMessage" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetPrivateConversation">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetPrivateConversation" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="WritePrivateChatMessage">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/WritePrivateChatMessage" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ReadChatMessage">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ReadChatMessage" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RecieveChatMessage">
-      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RecieveChatMessage" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:service name="ZenChat">
-    <wsdl:port name="BasicHttpBinding_ZenChatService" binding="tns:BasicHttpBinding_ZenChatService">
-      <soap:address location="http://zenchatservice.azurewebsites.net/ZenChat.svc" />
-    </wsdl:port>
-    <wsdl:port name="BasicHttpsBinding_ZenChatService" binding="tns:BasicHttpsBinding_ZenChatService">
-      <soap:address location="https://zenchatservice.azurewebsites.net/ZenChat.svc" />
-    </wsdl:port>
-  </wsdl:service>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
+                  xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/"
+                  xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
+                  xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+                  xmlns:i0="http://zenchatservice.azurewebsites.net/ZenChat.svc"
+                  xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+                  xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ZenChat" targetNamespace="http://tempuri.org/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	<wsp:Policy wsu:Id="BasicHttpsBinding_ZenChatService_policy">
+		<wsp:ExactlyOne>
+			<wsp:All>
+				<sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+					<wsp:Policy>
+						<sp:TransportToken>
+							<wsp:Policy>
+								<sp:HttpsToken RequireClientCertificate="false" />
+							</wsp:Policy>
+						</sp:TransportToken>
+						<sp:AlgorithmSuite>
+							<wsp:Policy>
+								<sp:Basic256 />
+							</wsp:Policy>
+						</sp:AlgorithmSuite>
+						<sp:Layout>
+							<wsp:Policy>
+								<sp:Strict />
+							</wsp:Policy>
+						</sp:Layout>
+					</wsp:Policy>
+				</sp:TransportBinding>
+			</wsp:All>
+		</wsp:ExactlyOne>
+	</wsp:Policy>
+	<wsdl:import namespace="http://zenchatservice.azurewebsites.net/ZenChat.svc"
+	             location="http://zenchatservice.azurewebsites.net/ZenChat.svc?wsdl=wsdl0" />
+	<wsdl:types />
+	<wsdl:binding name="BasicHttpBinding_ZenChatService" type="i0:ZenChatService">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="ChangeUsername">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangeUsername"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ChangePhoneNumber">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangePhoneNumber"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetUser">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUser"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetUserFromId">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserFromId"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Login">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/Login"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetFriends">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetFriends"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AddFriend">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/AddFriend"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveFriend">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RemoveFriend"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetAllChatRooms">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetAllChatRooms"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetChatRoom">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetChatRoom"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateChatRoom">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/CreateChatRoom"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="InviteToChatRoom">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/InviteToChatRoom"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveFromChatRoom">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RemoveFromChatRoom"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="WriteGroupChatMessage">
+			<soap:operation
+				soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/WriteGroupChatMessage"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetPrivateConversation">
+			<soap:operation
+				soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetPrivateConversation"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="WritePrivateChatMessage">
+			<soap:operation
+				soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/WritePrivateChatMessage"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ReadChatMessage">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ReadChatMessage"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RecieveChatMessage">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RecieveChatMessage"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="BasicHttpsBinding_ZenChatService" type="i0:ZenChatService">
+		<wsp:PolicyReference URI="#BasicHttpsBinding_ZenChatService_policy" />
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="ChangeUsername">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangeUsername"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ChangePhoneNumber">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangePhoneNumber"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetUser">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUser"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetUserFromId">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserFromId"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Login">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/Login"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetFriends">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetFriends"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AddFriend">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/AddFriend"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveFriend">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RemoveFriend"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetAllChatRooms">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetAllChatRooms"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetChatRoom">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetChatRoom"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CreateChatRoom">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/CreateChatRoom"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="InviteToChatRoom">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/InviteToChatRoom"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveFromChatRoom">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RemoveFromChatRoom"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="WriteGroupChatMessage">
+			<soap:operation
+				soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/WriteGroupChatMessage"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetPrivateConversation">
+			<soap:operation
+				soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetPrivateConversation"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="WritePrivateChatMessage">
+			<soap:operation
+				soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/WritePrivateChatMessage"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ReadChatMessage">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ReadChatMessage"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RecieveChatMessage">
+			<soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/RecieveChatMessage"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ZenChat">
+		<wsdl:port name="BasicHttpBinding_ZenChatService" binding="tns:BasicHttpBinding_ZenChatService">
+			<soap:address location="http://zenchatservice.azurewebsites.net/ZenChat.svc" />
+		</wsdl:port>
+		<wsdl:port name="BasicHttpsBinding_ZenChatService" binding="tns:BasicHttpsBinding_ZenChatService">
+			<soap:address location="https://zenchatservice.azurewebsites.net/ZenChat.svc" />
+		</wsdl:port>
+	</wsdl:service>
 </wsdl:definitions>

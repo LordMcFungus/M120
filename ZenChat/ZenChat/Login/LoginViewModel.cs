@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Activation;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.Prism.Commands;
@@ -25,17 +20,12 @@ namespace ZenChat.Login
 			LoginCommand = new DelegateCommand(Login, CanLogin);
 		}
 
-		private bool CanLogin()
-		{
-			return !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(PhoneNumber);
-		}
-
 		public string Username
 		{
 			get { return _username; }
 			set
 			{
-				_username = value; 
+				_username = value;
 				OnPropertyChanged();
 				LoginCommand.RaiseCanExecuteChanged();
 			}
@@ -46,7 +36,7 @@ namespace ZenChat.Login
 			get { return _phoneNumber; }
 			set
 			{
-				_phoneNumber = value; 
+				_phoneNumber = value;
 				OnPropertyChanged();
 				LoginCommand.RaiseCanExecuteChanged();
 			}
@@ -54,11 +44,21 @@ namespace ZenChat.Login
 
 		public DelegateCommand LoginCommand { get; }
 
+
+		/// <summary>
+		/// </summary>
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		private bool CanLogin()
+		{
+			return !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(PhoneNumber);
+		}
+
 		private void Login()
 		{
 			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
 			var user = client.LoginAsync(PhoneNumber, Username);
-			Windows.Storage.ApplicationData.Current.LocalSettings.Values["UID"] = user.Result.Item1;
+			ApplicationData.Current.LocalSettings.Values["UID"] = user.Result.Item1;
 
 			Session.UserID = user.Result.Item1;
 			Session.PhoneNumber = user.Result.Item2.PhoneNumber;
@@ -68,17 +68,10 @@ namespace ZenChat.Login
 
 		private void ChangeWindow()
 		{
-			((Frame)Window.Current.Content).Navigate(typeof(MainPage));
+			((Frame) Window.Current.Content).Navigate(typeof(MainPage));
 		}
 
-
 		/// <summary>
-		/// 
-		/// </summary>
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		/// <summary>
-		/// 
 		/// </summary>
 		/// <param name="propertyName"></param>
 		[NotifyPropertyChangedInvocator]

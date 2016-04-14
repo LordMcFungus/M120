@@ -1,29 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ZenChat.Friends
+﻿namespace ZenChat.Friends
 {
-	class FriendModel
+	internal class FriendModel
 	{
-		private string _name;
-		private string _phoneNumber;
-
-		public string Name
-		{
-			get { return _name; }
-			set { _name = value; }
-		}
-
-		public string PhoneNumber
-		{
-			get { return _phoneNumber; }
-			set { _phoneNumber = value; }
-		}
 		/// <summary>
-		/// 
 		/// </summary>
 		/// <param name="name">Name of the User</param>
 		/// <param name="phoneNumber">PhoneNumber of the User</param>
@@ -32,5 +11,9 @@ namespace ZenChat.Friends
 			Name = name;
 			PhoneNumber = phoneNumber;
 		}
+
+		public string Name { get; set; }
+
+		public string PhoneNumber { get; set; }
 	}
 }

@@ -7,12 +7,12 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance local:AllGroupsViewModel}">
 
-	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<ListView ItemsSource="{Binding AllGroupChats}" Grid.RowSpan="3">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<Canvas>
-						<TextBlock Text="{Binding Topic}"/>
+						<TextBlock Text="{Binding Topic}" />
 					</Canvas>
 				</DataTemplate>
 			</ListView.ItemTemplate>

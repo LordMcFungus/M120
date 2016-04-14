@@ -2,28 +2,24 @@
 // All rights reserved
 
 using System.Collections.ObjectModel;
+using Windows.Storage;
 using ZenChat.ZenChatService;
 
 namespace ZenChat.Group
 {
 	internal class AllGroupsViewModel
 	{
-		private ObservableCollection<ChatRoom> _allGroupChats;
-
-		public ObservableCollection<ChatRoom> AllGroupChats
-		{
-			get { return _allGroupChats; }
-			set { _allGroupChats = value; }
-		}
-
 		public AllGroupsViewModel()
 		{
-				LoadGroupChats();
+			LoadGroupChats();
 		}
+
+		public ObservableCollection<ChatRoom> AllGroupChats { get; set; }
+
 		public async void LoadGroupChats()
 		{
 			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
-			var id = Windows.Storage.ApplicationData.Current.LocalSettings.Values["UID"] as int?;
+			var id = ApplicationData.Current.LocalSettings.Values["UID"] as int?;
 			if (id.HasValue)
 			{
 				var chatrooms = await client.GetAllChatRoomsAsync(id.Value);
