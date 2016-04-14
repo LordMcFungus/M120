@@ -38,6 +38,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ChangePhoneNumber">
+      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangePhoneNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetUser">
       <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUser" style="document" />
       <wsdl:input>
@@ -188,6 +197,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="ChangeUsername">
       <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangeUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePhoneNumber">
+      <soap:operation soapAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangePhoneNumber" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

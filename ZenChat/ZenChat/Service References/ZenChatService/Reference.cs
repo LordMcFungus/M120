@@ -339,6 +339,11 @@ namespace ZenChat.ZenChatService {
             "Response")]
         System.Threading.Tasks.Task<ZenChat.ZenChatService.User> ChangeUsernameAsync(int userId, string newUsername);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangePhoneNum" +
+            "ber", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangePhoneNum" +
+            "berResponse")]
+        System.Threading.Tasks.Task<ZenChat.ZenChatService.User> ChangePhoneNumberAsync(int userId, string newPhoneNumber);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUser", ReplyAction="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUserRespons" +
             "e")]
         System.Threading.Tasks.Task<ZenChat.ZenChatService.User> GetUserAsync(string phoneNumber);
@@ -451,6 +456,10 @@ namespace ZenChat.ZenChatService {
         
         public System.Threading.Tasks.Task<ZenChat.ZenChatService.User> ChangeUsernameAsync(int userId, string newUsername) {
             return base.Channel.ChangeUsernameAsync(userId, newUsername);
+        }
+        
+        public System.Threading.Tasks.Task<ZenChat.ZenChatService.User> ChangePhoneNumberAsync(int userId, string newPhoneNumber) {
+            return base.Channel.ChangePhoneNumberAsync(userId, newPhoneNumber);
         }
         
         public System.Threading.Tasks.Task<ZenChat.ZenChatService.User> GetUserAsync(string phoneNumber) {

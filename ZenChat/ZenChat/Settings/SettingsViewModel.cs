@@ -51,11 +51,11 @@ namespace ZenChat.Settings
 
         public DelegateCommand Change { get; set; }
 
-        public void SaveChanges()
+        public async void SaveChanges()
         {
-            var client =
-                new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
-            client.ChangeUsernameAsync(Session.UserID, Username);
+            var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
+            await client.ChangeUsernameAsync(Session.UserID, Username);
+            await client.ChangePhoneNumberAsync(Session.UserID, Phonenumber);  
             var user = client.GetUserAsync(Phonenumber);
             Phonenumber = user.Result.PhoneNumber;
             Username = user.Result.Name;

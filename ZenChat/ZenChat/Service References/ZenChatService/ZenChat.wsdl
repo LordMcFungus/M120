@@ -14,6 +14,12 @@
   <wsdl:message name="ZenChatService_ChangeUsername_OutputMessage">
     <wsdl:part name="parameters" element="tns:ChangeUsernameResponse" />
   </wsdl:message>
+  <wsdl:message name="ZenChatService_ChangePhoneNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePhoneNumber" />
+  </wsdl:message>
+  <wsdl:message name="ZenChatService_ChangePhoneNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePhoneNumberResponse" />
+  </wsdl:message>
   <wsdl:message name="ZenChatService_GetUser_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUser" />
   </wsdl:message>
@@ -114,6 +120,10 @@
     <wsdl:operation name="ChangeUsername">
       <wsdl:input wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangeUsername" message="tns:ZenChatService_ChangeUsername_InputMessage" />
       <wsdl:output wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangeUsernameResponse" message="tns:ZenChatService_ChangeUsername_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePhoneNumber">
+      <wsdl:input wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangePhoneNumber" message="tns:ZenChatService_ChangePhoneNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/ChangePhoneNumberResponse" message="tns:ZenChatService_ChangePhoneNumber_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetUser">
       <wsdl:input wsaw:Action="http://zenchatservice.azurewebsites.net/ZenChat.svc/ZenChatService/GetUser" message="tns:ZenChatService_GetUser_InputMessage" />
