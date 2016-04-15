@@ -5,24 +5,25 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Windows.Storage;
+using Windows.UI.Popups;
 using Microsoft.Practices.Prism.Commands;
 using ZenChat.Annotations;
+using ZenChat.Models;
 using ZenChat.ZenChatService;
 
 namespace ZenChat.Friends
 {
-	internal class AllFriendsViewModel : INotifyPropertyChanged
+	internal sealed class AllFriendsViewModel : INotifyPropertyChanged
 	{
 		private string _newFriendPhoneNumber;
 
 		public AllFriendsViewModel()
 		{
-			//LoadFriends();
+			LoadFriends();
 			AddFriendCommand = new DelegateCommand(AddFriend, CanAddFriend);
 		}
 
-		public ObservableCollection<User> MyFriends { get; set; }
+		public ObservableCollection<User> MyFriends { get; } = new ObservableCollection<User>();
 
 		public string NewFriendPhoneNumber
 		{
@@ -46,26 +47,24 @@ namespace ZenChat.Friends
 		private async void AddFriend()
 		{
 			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
-			var id = ApplicationData.Current.LocalSettings.Values["UID"] as int?;
 			try
 			{
-				if (id.HasValue)
-				{
-					await client.AddFriendAsync(id.Value, NewFriendPhoneNumber);
-					var friend = await client.GetUserAsync(NewFriendPhoneNumber);
-					MyFriends.Add(friend);
-				}
+				await client.AddFriendAsync(Session.UserID, NewFriendPhoneNumber);
+				var friend = await client.GetUserAsync(NewFriendPhoneNumber);
+				MyFriends.Add(friend);
 			}
-			catch (Exception)
+			catch (Exception e)
 			{
+				var dialog = new MessageDialog(e.Message);
+				await dialog.ShowAsync();
 			}
 		}
 
 		private async void LoadFriends()
 		{
 			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
-			var id = ApplicationData.Current.LocalSettings.Values["UID"] as int?;
-			var user = await client.GetFriendsAsync(id.Value);
+
+			var user = await client.GetFriendsAsync(Session.UserID);
 			foreach (var friend in user)
 			{
 				MyFriends.Add(friend);
@@ -73,7 +72,7 @@ namespace ZenChat.Friends
 		}
 
 		[NotifyPropertyChangedInvocator]
-		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		private void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}

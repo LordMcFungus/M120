@@ -105,7 +105,6 @@
       <DependentUpon>AllFriendsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Friends\AllFriendsViewModel.cs" />
-    <Compile Include="Friends\FriendModel.cs" />
     <Compile Include="Group\AllGroupsView.xaml.cs">
       <DependentUpon>AllGroupsView.xaml</DependentUpon>
     </Compile>

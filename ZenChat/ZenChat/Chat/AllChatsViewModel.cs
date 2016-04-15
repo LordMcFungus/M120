@@ -2,7 +2,7 @@
 // All rights reserved
 
 using System.Collections.ObjectModel;
-using Windows.Storage;
+using ZenChat.Models;
 using ZenChat.ZenChatService;
 
 namespace ZenChat.Chat
@@ -19,17 +19,12 @@ namespace ZenChat.Chat
 		public async void GetChats()
 		{
 			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
-			var id = ApplicationData.Current.LocalSettings.Values["UID"] as int?;
-			if (id.HasValue)
+			var friends = await client.GetFriendsAsync(Session.UserID);
+			foreach (var friend in friends)
 			{
-				var friends = await client.GetFriendsAsync(id.Value);
-				foreach (var friend in friends)
-				{
-					var chat = await client.GetPrivateConversationAsync(id.Value, friend.PhoneNumber);
-					var chatModel = new ChatViewModel();
-					chatModel.Chat = chat;
-					MyChats.Add(chatModel);
-				}
+				var chat = await client.GetPrivateConversationAsync(Session.UserID, friend.PhoneNumber);
+				var chatModel = new ChatViewModel {Chat = chat};
+				MyChats.Add(chatModel);
 			}
 		}
 	}
