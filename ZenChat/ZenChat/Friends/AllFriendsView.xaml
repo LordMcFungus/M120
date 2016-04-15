@@ -6,14 +6,14 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance local:AllFriendsViewModel}">
-
+<Viewbox>
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="10*" />
 			<RowDefinition Height="1*" />
 			<RowDefinition Height="0.7*" />
 		</Grid.RowDefinitions>
-		<ListView ItemsSource="{Binding MyFriends}" Grid.RowSpan="3">
+		<ListView ItemsSource="{Binding MyFriends}" Grid.RowSpan="1" Grid.Row="2">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<Canvas>
@@ -27,4 +27,5 @@
 		         Margin="113,11,47,11.667" />
 		<Button Grid.Row="1" Command="{Binding AddFriendCommand}" Content="ADD Friend" />
 	</Grid>
+</Viewbox>
 </Page>

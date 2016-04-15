@@ -14,7 +14,7 @@ namespace ZenChat.Chat
 			GetChats();
 		}
 
-		public ObservableCollection<ChatViewModel> MyChats { get; set; }
+		public ObservableCollection<ChatViewModel> MyChats { get; } = new ObservableCollection<ChatViewModel>();
 
 		public async void GetChats()
 		{
