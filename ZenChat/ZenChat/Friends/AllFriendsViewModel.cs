@@ -46,7 +46,7 @@ namespace ZenChat.Friends
 
 		private async void AddFriend()
 		{
-			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
+			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			try
 			{
 				await client.AddFriendAsync(Session.UserID, NewFriendPhoneNumber);
@@ -62,7 +62,7 @@ namespace ZenChat.Friends
 
 		private async void LoadFriends()
 		{
-			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
+			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 
 			var user = await client.GetFriendsAsync(Session.UserID);
 			foreach (var friend in user)

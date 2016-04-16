@@ -77,7 +77,7 @@ namespace ZenChat
 
 		private static async void DoStuff(INavigate rootFrame, int id)
 		{
-			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
+			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			try
 			{
 				var user = await client.GetUserFromIdAsync(id);

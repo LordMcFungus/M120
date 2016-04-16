@@ -18,7 +18,7 @@ namespace ZenChat.Group
 
 		public async void LoadGroupChats()
 		{
-			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
+			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			var id = ApplicationData.Current.LocalSettings.Values["UID"] as int?;
 			if (id.HasValue)
 			{

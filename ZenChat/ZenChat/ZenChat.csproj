@@ -91,6 +91,32 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="project.json" />
+    <None Include="Service References\ZenChatService\ZenChat.wsdl" />
+    <None Include="Service References\ZenChatService\ZenChat.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ZenChatService\ZenChat.ZenChatService.ChatRoom.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ZenChatService\ZenChat.ZenChatService.PrivateConversation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ZenChatService\ZenChat.ZenChatService.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ZenChatService\ZenChat1.wsdl" />
+    <None Include="Service References\ZenChatService\ZenChat1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ZenChatService\ZenChat2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ZenChatService\ZenChat3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ZenChatService\ZenChat4.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -100,6 +126,9 @@
       <DependentUpon>AllChatsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Chat\AllChatsViewModel.cs" />
+    <Compile Include="Chat\ChatView.xaml.cs">
+      <DependentUpon>ChatView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Chat\ChatViewModel.cs" />
     <Compile Include="Friends\AllFriendsView.xaml.cs">
       <DependentUpon>AllFriendsView.xaml</DependentUpon>
@@ -139,29 +168,6 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
-    <None Include="Service References\ZenChatService\ZenChat.wsdl" />
-    <None Include="Service References\ZenChatService\ZenChat.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ZenChatService\ZenChat.ZenChatService.ChatBase.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ZenChatService\ZenChat.ZenChatService.User.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ZenChatService\ZenChat.ZenChatService.User.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ZenChatService\ZenChat1.wsdl" />
-    <None Include="Service References\ZenChatService\ZenChat1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ZenChatService\ZenChat2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ZenChatService\ZenChat4.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\BadgeLogo.scale-100.png" />
@@ -191,6 +197,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Chat\AllChatsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Chat\ChatView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -225,7 +235,6 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ZenChatService\" />
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

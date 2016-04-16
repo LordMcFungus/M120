@@ -56,7 +56,7 @@ namespace ZenChat.Login
 
 		private void Login()
 		{
-			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
+			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			var user = client.LoginAsync(PhoneNumber, Username);
 			ApplicationData.Current.LocalSettings.Values["UID"] = user.Result.Item1;
 

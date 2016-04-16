@@ -7,11 +7,11 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance local:AllChatsViewModel}">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<ListView ItemsSource="{Binding MyChats}">
+		<ListView ItemsSource="{Binding MyChats}" SelectedItem="{Binding SelectedChat, Mode=TwoWay}">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<Canvas>
-						<TextBlock Text="{Binding User}" />
+						<TextBlock Text="{Binding LastSentUser.Name}" />
 						<TextBlock Text="{Binding LastSentMessage}" />
 						<TextBlock Text="{Binding UnreadMessages}" />
 					</Canvas>

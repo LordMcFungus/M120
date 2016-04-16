@@ -4,6 +4,7 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.ServiceModel;
 using Windows.UI.Popups;
 using Microsoft.Practices.Prism.Commands;
 using ZenChat.Annotations;
@@ -65,7 +66,7 @@ namespace ZenChat.Settings
 		{
 
 			IsActive = true;
-			var client = new ZenChatServiceClient(ZenChatServiceClient.EndpointConfiguration.BasicHttpsBinding_ZenChatService);
+			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			User user;
 
 			if (Phonenumber == Session.PhoneNumber && Username == Session.Username)
@@ -78,43 +79,24 @@ namespace ZenChat.Settings
 
 			}
 
-			if (Phonenumber != Session.PhoneNumber)
+			if (!Equals(Phonenumber, Session.PhoneNumber))
 			{
-
 				try
 				{
-
 					user = await client.ChangePhoneNumberAsync(Session.UserID, Phonenumber);
 					Session.PhoneNumber = Phonenumber = user.PhoneNumber;
-
 				}
-
-				catch (Exception e)
+				catch (FaultException e)
 				{
-
 					var dialog = new MessageDialog(e.Message);
 					await dialog.ShowAsync();
-
+					Phonenumber = Session.PhoneNumber;
 				}
 			}
-			if (Username != Session.Username)
+			if (!Equals(Username, Session.Username))
 			{
-
-				try
-				{
-
-					user = await client.ChangeUsernameAsync(Session.UserID, Username);
-					Session.Username = Username = user.Name;
-
-				}
-
-				catch (Exception e)
-				{
-
-					var dialog = new MessageDialog(e.Message);
-					await dialog.ShowAsync();
-
-				}
+				user = await client.ChangeUsernameAsync(Session.UserID, Username);
+				Session.Username = Username = user.Name;
 			}
 
 				IsActive = false;
