@@ -1,7 +1,9 @@
 ﻿// Copyright (c) 2016 
 // All rights reserved
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.ServiceModel.Description;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -16,7 +18,7 @@ namespace ZenChat.Chat
 
 		public AllChatsViewModel()
 		{
-			GetChats();
+			LoadPrivateChats();
 		}
 
 		public ObservableCollection<ChatViewModel> MyChats { get; } = new ObservableCollection<ChatViewModel>();
@@ -27,21 +29,29 @@ namespace ZenChat.Chat
 			set
 			{
 				_selectedChat = value;
+				_selectedChat.ReadMessages();
 
 				var rootFrame = Window.Current.Content as Frame;
 				rootFrame?.Navigate(typeof(ChatView), _selectedChat);
 			}
 		}
 
-		public async void GetChats()
+		public async void LoadPrivateChats()
 		{
 			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			var friends = await client.GetFriendsAsync(Session.UserID);
+
+			var chats = new List<ChatViewModel>();
 			foreach (var friend in friends)
 			{
 				var chat = await client.GetPrivateConversationAsync(Session.UserID, friend.PhoneNumber);
-				var chatModel = new ChatViewModel {PrivateChat = chat};
-				MyChats.Add(chatModel);
+				var viewModel = new ChatViewModel {PrivateChat = chat};
+				chats.Add(viewModel);
+			}
+
+			foreach (var chat in chats.OrderByDescending(c => c.LastSentMessage))
+			{
+				MyChats.Add(chat);
 			}
 		}
 	}

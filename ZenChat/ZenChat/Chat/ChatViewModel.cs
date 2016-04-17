@@ -2,6 +2,7 @@
 // All rights reserved
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -67,8 +68,8 @@ namespace ZenChat.Chat
 				OrderedMessages.Add(message);
 			}
 
-			LastSentMessage = OrderedMessages.First().Created;
-			LastSentUser = OrderedMessages.First().Author;
+			LastSentMessage = OrderedMessages.Last().Created;
+			LastSentUser = OrderedMessages.Last().Author;
 
 			//Mark all Messages as received
 			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
