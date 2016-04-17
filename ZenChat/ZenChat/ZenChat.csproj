@@ -134,6 +134,7 @@
       <DependentUpon>AllFriendsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Friends\AllFriendsViewModel.cs" />
+    <Compile Include="Friends\UserViewModel.cs" />
     <Compile Include="LoginRegisterPage.xaml.cs">
       <DependentUpon>LoginRegisterPage.xaml</DependentUpon>
     </Compile>
