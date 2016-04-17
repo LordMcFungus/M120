@@ -6,26 +6,39 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance local:AllFriendsViewModel}">
-<Viewbox>
-	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="10*" />
-			<RowDefinition Height="1*" />
-			<RowDefinition Height="0.7*" />
-		</Grid.RowDefinitions>
-		<ListView ItemsSource="{Binding MyFriends}" Grid.RowSpan="1" Grid.Row="2">
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<Canvas>
-						<TextBlock Text="{Binding Name}" />
-					</Canvas>
-				</DataTemplate>
-			</ListView.ItemTemplate>
-		</ListView>
-		<TextBox Grid.Row="1" Width="200" Height="30"
-		         Text="{Binding NewFriendPhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-		         Margin="113,11,47,11.667" />
-		<Button Grid.Row="1" Command="{Binding AddFriendCommand}" Content="ADD Friend" />
-	</Grid>
-</Viewbox>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListView ItemsSource="{Binding MyFriends}" Grid.RowSpan="2" Grid.Row="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Name}" Grid.Column="0" />
+                        <Button Content="X"  Grid.Column="2" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <TextBox Grid.Row="1">
+            <TextBox.Template>
+                <ControlTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="1" Text="{Binding NewFriendPhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <Button Grid.Column="0" Content="Add Friend" Command="{Binding AddFriendCommand}" Margin="0,0,10,0"/>
+                    </Grid>
+                </ControlTemplate>
+            </TextBox.Template>
+        </TextBox>
+    </Grid>
 </Page>
