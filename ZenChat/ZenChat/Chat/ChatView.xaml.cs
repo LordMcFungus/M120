@@ -21,8 +21,13 @@ namespace ZenChat.Chat
 			currentView.BackRequested += (sender, e) =>
 			{
 				var rootFrame = Window.Current.Content as Frame;
-				rootFrame?.Navigate(typeof(AllChatsView));
-				e.Handled = true;
+
+				if (rootFrame != null && rootFrame.CanGoBack && !e.Handled)
+				{
+					rootFrame.GoBack();
+					SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+					e.Handled = true;
+				}
 			};
 		}
 

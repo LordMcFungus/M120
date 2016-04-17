@@ -34,8 +34,6 @@ namespace ZenChat.Chat
 
 		public async void GetChats()
 		{
-			//TODO PHO
-			return;
 			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			var friends = await client.GetFriendsAsync(Session.UserID);
 			foreach (var friend in friends)
