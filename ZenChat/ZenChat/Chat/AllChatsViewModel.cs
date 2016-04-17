@@ -18,7 +18,7 @@ namespace ZenChat.Chat
 
 		public AllChatsViewModel()
 		{
-			LoadPrivateChats();
+			LoadChats();
 		}
 
 		public ObservableCollection<ChatViewModel> MyChats { get; } = new ObservableCollection<ChatViewModel>();
@@ -36,7 +36,7 @@ namespace ZenChat.Chat
 			}
 		}
 
-		public async void LoadPrivateChats()
+		private async void LoadChats()
 		{
 			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			var friends = await client.GetFriendsAsync(Session.UserID);
@@ -48,6 +48,9 @@ namespace ZenChat.Chat
 				var viewModel = new ChatViewModel {PrivateChat = chat};
 				chats.Add(viewModel);
 			}
+
+			var chatrooms = await client.GetAllChatRoomsAsync(Session.UserID);
+			chats.AddRange(chatrooms.Select(c => new ChatViewModel {Chatroom = c}));
 
 			foreach (var chat in chats.OrderByDescending(c => c.LastSentMessage))
 			{

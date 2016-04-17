@@ -134,11 +134,6 @@
       <DependentUpon>AllFriendsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Friends\AllFriendsViewModel.cs" />
-    <Compile Include="Group\AllGroupsView.xaml.cs">
-      <DependentUpon>AllGroupsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Group\AllGroupsViewModel.cs" />
-    <Compile Include="Group\GroupChatViewModel.cs" />
     <Compile Include="LoginRegisterPage.xaml.cs">
       <DependentUpon>LoginRegisterPage.xaml</DependentUpon>
     </Compile>
@@ -205,10 +200,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Friends\AllFriendsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Group\AllGroupsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

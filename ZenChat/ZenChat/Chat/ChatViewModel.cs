@@ -57,7 +57,6 @@ namespace ZenChat.Chat
 				{
 					LoadMessages(_chatRoom.Messages);
 				}
-
 			}
 		}
 
