@@ -77,6 +77,16 @@ namespace ZenChat.Chat
 			LastSentMessage = OrderedMessages.Last().Created;
 			LastSentUser = OrderedMessages.Last().Author;
 
+			if (_privateChat != null)
+			{
+				var users = _privateChat.Members.First(m => !Equals(m.PhoneNumber, Session.PhoneNumber));
+				ChatName = users.Name;
+			}
+			else
+			{
+				ChatName = _chatRoom.Topic;
+			}
+
 			//Mark all Messages as received
 			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			foreach (var message in OrderedMessages.Where(m => !m.ArrivedAt.Select(u => u.PhoneNumber).Contains(Session.PhoneNumber)))
@@ -87,12 +97,12 @@ namespace ZenChat.Chat
 			UnreadMessages = OrderedMessages.Count(m => !m.ReadBy.Select(u => u.PhoneNumber).Contains(Session.PhoneNumber));
 		}
 
-		public void ReadMessages()
+		public async void ReadMessages()
 		{
 			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			foreach (var message in OrderedMessages.Where(m => !m.ReadBy.Select(u => u.PhoneNumber).Contains(Session.PhoneNumber)))
 			{
-				client.ReadChatMessageAsync(Session.UserID, message.Id);
+				await client.ReadChatMessageAsync(Session.UserID, message.Id);
 			}
 		}
 
@@ -116,6 +126,8 @@ namespace ZenChat.Chat
 		public DateTime? LastSentMessage { get; private set; }
 
 		public User LastSentUser { get; private set; }
+
+		public string ChatName { get; private set; }
 
 		public int UnreadMessages { get; private set; }
 

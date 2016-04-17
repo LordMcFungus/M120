@@ -44,9 +44,11 @@ namespace ZenChat.Friends
 			return !string.IsNullOrEmpty(NewFriendPhoneNumber);
 		}
 
-		private void RemoveUser(User user)
+		private async void RemoveUser(User user)
 		{
-			
+			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
+			await client.RemoveFriendAsync(Session.UserID, user.PhoneNumber);
+			LoadFriends();
 		}
 
 		private async void AddFriend()
@@ -68,7 +70,7 @@ namespace ZenChat.Friends
 		private async void LoadFriends()
 		{
 			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
-
+			MyFriends.Clear();
 			var user = await client.GetFriendsAsync(Session.UserID);
 			foreach (var friend in user)
 			{

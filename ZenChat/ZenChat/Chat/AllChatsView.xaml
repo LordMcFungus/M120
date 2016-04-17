@@ -20,10 +20,12 @@
 							<ColumnDefinition Width="*"/>
 							<ColumnDefinition Width="*"/>
 							<ColumnDefinition Width="*"/>
+						    <ColumnDefinition />
 						</Grid.ColumnDefinitions>
-						<TextBlock Text="{Binding LastSentUser.Name}" TextTrimming="CharacterEllipsis" Grid.Column="0"/>
-						<TextBlock Text="{Binding LastSentMessage}" TextTrimming="CharacterEllipsis" Grid.Column="1"/>
-						<TextBlock Text="{Binding UnreadMessages}" Grid.Column="2"/>
+                        <TextBlock Text="{Binding ChatName}" TextTrimming="CharacterEllipsis" Grid.Column="0"/>
+						<TextBlock Text="{Binding LastSentUser.Name}" TextTrimming="CharacterEllipsis" Grid.Column="1"/>
+						<TextBlock Text="{Binding LastSentMessage}" TextTrimming="CharacterEllipsis" Grid.Column="2"/>
+						<TextBlock Text="{Binding UnreadMessages}" Grid.Column="3"/>
 					</Grid>
 				</DataTemplate>
 			</ListView.ItemTemplate>
