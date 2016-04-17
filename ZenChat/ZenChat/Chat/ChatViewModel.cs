@@ -31,19 +31,24 @@ namespace ZenChat.Chat
 			return !string.IsNullOrEmpty(NewMessageText);
 		}
 
-		private void SendMessage()
+		private async void SendMessage()
 		{
 			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
+			dynamic chat;
 			if (Chatroom != null)
 			{
-				client.WriteGroupChatMessageAsync(Session.UserID, Chatroom.Id, NewMessageText);
+				await client.WriteGroupChatMessageAsync(Session.UserID, Chatroom.Id, NewMessageText);
+				chat = await client.GetChatRoomAsync(Chatroom.Id, Session.UserID);
 			}
 			else
 			{
-				client.WritePrivateChatMessageAsync(Session.UserID, PrivateChat.Members.First(m => !Equals(m.PhoneNumber, Session.PhoneNumber)).PhoneNumber, NewMessageText);
+				await client.WritePrivateChatMessageAsync(Session.UserID, PrivateChat.Members.First(m => !Equals(m.PhoneNumber, Session.PhoneNumber)).PhoneNumber, NewMessageText);
+				chat = await client.GetPrivateConversationAsync(Session.UserID, PrivateChat.Members.First(m => !Equals(m.PhoneNumber, Session.PhoneNumber)).PhoneNumber);
 			}
 
 			NewMessageText = string.Empty;
+
+			LoadMessages(chat.Messages);
 		}
 
 		public ChatRoom Chatroom
@@ -62,6 +67,8 @@ namespace ZenChat.Chat
 
 		private void LoadMessages(IEnumerable<ChatMessage> messages)
 		{
+			OrderedMessages.Clear();
+
 			foreach (var message in messages.OrderBy(m => m.Created))
 			{
 				OrderedMessages.Add(message);
