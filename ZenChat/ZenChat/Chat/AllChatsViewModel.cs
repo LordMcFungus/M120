@@ -27,6 +27,7 @@ namespace ZenChat.Chat
 			set
 			{
 				_selectedChat = value;
+
 				var rootFrame = Window.Current.Content as Frame;
 				rootFrame?.Navigate(typeof(ChatView), _selectedChat);
 			}

@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -61,19 +62,34 @@ namespace ZenChat.Chat
 
 		private void LoadMessages(IEnumerable<ChatMessage> messages)
 		{
-			var orderedMessages = messages.OrderBy(m => m.Created);
-			LastSentMessage = orderedMessages.First().Created;
-			LastSentUser = orderedMessages.First().Author;
+			foreach (var message in messages.OrderBy(m => m.Created))
+			{
+				OrderedMessages.Add(message);
+			}
+
+			LastSentMessage = OrderedMessages.First().Created;
+			LastSentUser = OrderedMessages.First().Author;
 
 			//Mark all Messages as received
 			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
-			foreach (var message in orderedMessages.Where(m => m.ArrivedAt.Select(u => u.PhoneNumber).Contains(Session.PhoneNumber)))
+			foreach (var message in OrderedMessages.Where(m => !m.ArrivedAt.Select(u => u.PhoneNumber).Contains(Session.PhoneNumber)))
 			{
 				client.ReceiveChatMessageAsync(Session.UserID, message.Id);
 			}
 
-			UnreadMessages = orderedMessages.Count(m => !m.ReadBy.Select(u => u.PhoneNumber).Contains(Session.PhoneNumber));
+			UnreadMessages = OrderedMessages.Count(m => !m.ReadBy.Select(u => u.PhoneNumber).Contains(Session.PhoneNumber));
 		}
+
+		public void ReadMessages()
+		{
+			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
+			foreach (var message in OrderedMessages.Where(m => !m.ReadBy.Select(u => u.PhoneNumber).Contains(Session.PhoneNumber)))
+			{
+				client.ReadChatMessageAsync(Session.UserID, message.Id);
+			}
+		}
+
+		public ObservableCollection<ChatMessage> OrderedMessages { get; } = new ObservableCollection<ChatMessage>();
 
 		public PrivateConversation PrivateChat
 		{

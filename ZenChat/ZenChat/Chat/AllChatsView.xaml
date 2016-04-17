@@ -7,14 +7,24 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance local:AllChatsViewModel}">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<ListView ItemsSource="{Binding MyChats}" SelectedItem="{Binding SelectedChat, Mode=TwoWay}">
+		<ListView ItemsSource="{Binding MyChats}" SelectedItem="{Binding SelectedChat, Mode=TwoWay}" HorizontalAlignment="Stretch">
+			<ListView.ItemContainerStyle>
+				<Style TargetType="ListViewItem">
+					<Setter Property="HorizontalAlignment" Value="Stretch"/>
+				</Style>
+			</ListView.ItemContainerStyle>
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					<Canvas>
-						<TextBlock Text="{Binding LastSentUser.Name}" />
-						<TextBlock Text="{Binding LastSentMessage}" />
-						<TextBlock Text="{Binding UnreadMessages}" />
-					</Canvas>
+					<Grid HorizontalAlignment="Stretch">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Text="{Binding LastSentUser.Name}" TextTrimming="CharacterEllipsis" Grid.Column="0"/>
+						<TextBlock Text="{Binding LastSentMessage}" TextTrimming="CharacterEllipsis" Grid.Column="1"/>
+						<TextBlock Text="{Binding UnreadMessages}" Grid.Column="2"/>
+					</Grid>
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
