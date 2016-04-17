@@ -23,7 +23,7 @@ namespace ZenChat.Friends
 			AddFriendCommand = new DelegateCommand(AddFriend, CanAddFriend);
 		}
 
-		public ObservableCollection<User> MyFriends { get; } = new ObservableCollection<User>();
+		public ObservableCollection<UserViewModel> MyFriends { get; } = new ObservableCollection<UserViewModel>();
 
 		public string NewFriendPhoneNumber
 		{
@@ -44,6 +44,11 @@ namespace ZenChat.Friends
 			return !string.IsNullOrEmpty(NewFriendPhoneNumber);
 		}
 
+		private void RemoveUser(User user)
+		{
+			
+		}
+
 		private async void AddFriend()
 		{
 			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
@@ -51,7 +56,7 @@ namespace ZenChat.Friends
 			{
 				await client.AddFriendAsync(Session.UserID, NewFriendPhoneNumber);
 				var friend = await client.GetUserAsync(NewFriendPhoneNumber);
-				MyFriends.Add(friend);
+				MyFriends.Add(new UserViewModel(friend, RemoveUser));
 			}
 			catch (Exception e)
 			{
@@ -67,7 +72,7 @@ namespace ZenChat.Friends
 			var user = await client.GetFriendsAsync(Session.UserID);
 			foreach (var friend in user)
 			{
-				MyFriends.Add(friend);
+				MyFriends.Add(new UserViewModel(friend, RemoveUser));
 			}
 		}
 

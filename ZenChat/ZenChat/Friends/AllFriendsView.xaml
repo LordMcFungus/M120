@@ -24,8 +24,8 @@
 							<ColumnDefinition Width="*" />
 							<ColumnDefinition Width="Auto" />
 						</Grid.ColumnDefinitions>
-						<TextBlock Text="{Binding Name}" Grid.Column="0" />
-						<Button Content="X" Grid.Column="1" />
+						<TextBlock Text="{Binding User.Name}" Grid.Column="0" />
+						<Button Content="X" Grid.Column="1" Command="{Binding RemoveUserCommand}"/>
 					</Grid>
 				</DataTemplate>
 			</ListView.ItemTemplate>

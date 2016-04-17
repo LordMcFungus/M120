@@ -1,6 +1,11 @@
-﻿namespace ZenChat.ViewModels
+﻿using System;
+using Microsoft.Practices.Prism.Commands;
+using ZenChat.ZenChatService;
+
+namespace ZenChat.ViewModels
 {
-	internal class UserViewModel
+	public class UserViewModel
 	{
+		
 	}
 }

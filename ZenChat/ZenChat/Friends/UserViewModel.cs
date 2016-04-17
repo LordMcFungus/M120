@@ -1,20 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Practices.Prism.Commands;
+using ZenChat.ZenChatService;
 
 namespace ZenChat.Friends
 {
-	class UserViewModel
+	public class UserViewModel
 	{
-		public ZenChatService.User User { get; set; }
-		public DelegateCommand RemoveUsercommand{get; set;}
-
-		public UserViewModel()
+		public UserViewModel(User friend, Action<User> removeUser)
 		{
-			RemoveUsercommand = new DelegateCommand();
+			User = friend;
+			RemoveUserCommand = new DelegateCommand(() => removeUser(User));
 		}
 
+		public User User { get; }
+
+		public DelegateCommand RemoveUserCommand { get; }
+
 	}
+}
