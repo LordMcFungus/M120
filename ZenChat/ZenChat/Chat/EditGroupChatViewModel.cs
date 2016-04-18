@@ -1,14 +1,27 @@
-﻿using System.Linq;
+﻿using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using ZenChat.Annotations;
 using ZenChat.Friends;
 using ZenChat.Models;
 using ZenChat.ZenChatService;
 
 namespace ZenChat.Chat
 {
-	public class EditGroupChatViewModel
+	public class EditGroupChatViewModel : INotifyPropertyChanged
 	{
-		private ChatRoom _chatroom;
-		public AllFriendsViewModel AllFriendsViewModel {get; private set; }
+		private readonly ChatRoom _chatroom;
+		private AllFriendsViewModel _allFriendsViewModel;
+
+		public AllFriendsViewModel AllFriendsViewModel
+		{
+			get { return _allFriendsViewModel; }
+			private set
+			{
+				_allFriendsViewModel = value; 
+				OnPropertyChanged();
+			}
+		}
 
 		public EditGroupChatViewModel(ChatRoom chatroom)
 		{
@@ -34,6 +47,14 @@ namespace ZenChat.Chat
 			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			var friends = await client.GetFriendsAsync(Session.UserID);
 			AllFriendsViewModel = new AllFriendsViewModel(AddUser, () => true, DeleteUser, friends, true, true, false, false);
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		[NotifyPropertyChangedInvocator]
+		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
