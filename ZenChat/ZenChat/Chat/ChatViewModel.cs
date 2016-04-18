@@ -62,6 +62,7 @@ namespace ZenChat.Chat
 				{
 					LoadMessages(_chatRoom.Messages);
 				}
+				ChatName = _chatRoom.Topic;
 			}
 		}
 
@@ -76,16 +77,6 @@ namespace ZenChat.Chat
 
 			LastSentMessage = OrderedMessages.Last().Created;
 			LastSentUser = OrderedMessages.Last().Author;
-
-			if (_privateChat != null)
-			{
-				var users = _privateChat.Members.First(m => !Equals(m.PhoneNumber, Session.PhoneNumber));
-				ChatName = users.Name;
-			}
-			else
-			{
-				ChatName = _chatRoom.Topic;
-			}
 
 			//Mark all Messages as received
 			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
@@ -119,7 +110,8 @@ namespace ZenChat.Chat
 				{
 					LoadMessages(_privateChat.Messages);
 				}
-				
+				var users = _privateChat.Members.First(m => !Equals(m.PhoneNumber, Session.PhoneNumber));
+				ChatName = users.Name;
 			}
 		}
 
