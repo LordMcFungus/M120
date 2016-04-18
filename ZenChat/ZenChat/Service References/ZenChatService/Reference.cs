@@ -230,7 +230,7 @@ namespace ZenChat.ZenChatService {
     [System.Runtime.Serialization.DataContractAttribute(Name="ChatMessage", Namespace="http://schemas.datacontract.org/2004/07/ZenChatService.ServiceClasses")]
     public partial class ChatMessage : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private System.Collections.Generic.List<ZenChat.ZenChatService.User> ArrivedAtField;
+        private System.Collections.Generic.List<string> ArrivedAtField;
         
         private ZenChat.ZenChatService.User AuthorField;
         
@@ -240,12 +240,12 @@ namespace ZenChat.ZenChatService {
         
         private string MessageField;
         
-        private System.Collections.Generic.List<ZenChat.ZenChatService.User> ReadByField;
+        private System.Collections.Generic.List<string> ReadByField;
         
-        private System.Collections.Generic.List<ZenChat.ZenChatService.User> SentToField;
+        private System.Collections.Generic.List<string> SentToField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<ZenChat.ZenChatService.User> ArrivedAt {
+        public System.Collections.Generic.List<string> ArrivedAt {
             get {
                 return this.ArrivedAtField;
             }
@@ -310,7 +310,7 @@ namespace ZenChat.ZenChatService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<ZenChat.ZenChatService.User> ReadBy {
+        public System.Collections.Generic.List<string> ReadBy {
             get {
                 return this.ReadByField;
             }
@@ -323,7 +323,7 @@ namespace ZenChat.ZenChatService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.List<ZenChat.ZenChatService.User> SentTo {
+        public System.Collections.Generic.List<string> SentTo {
             get {
                 return this.SentToField;
             }

@@ -1,363 +1,259 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
-                  xmlns:wsa10="http://www.w3.org/2005/08/addressing"
-                  xmlns:tns="https://zenchatservice.azurewebsites.net/ZenChat.svc"
-                  xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
-                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
-                  xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
-                  xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
-                  xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
-                  xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
-                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
-                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
-                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-                  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
-                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                  targetNamespace="https://zenchatservice.azurewebsites.net/ZenChat.svc"
-                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-	<wsdl:types>
-		<xsd:schema targetNamespace="https://zenchatservice.azurewebsites.net/ZenChat.svc/Imports">
-			<xsd:import schemaLocation="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd0"
-			            namespace="https://zenchatservice.azurewebsites.net/ZenChat.svc" />
-			<xsd:import schemaLocation="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd1"
-			            namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-			<xsd:import schemaLocation="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd2"
-			            namespace="http://schemas.datacontract.org/2004/07/ZenChatService.ServiceClasses" />
-			<xsd:import schemaLocation="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd3"
-			            namespace="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" />
-			<xsd:import schemaLocation="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd4"
-			            namespace="http://schemas.datacontract.org/2004/07/System" />
-		</xsd:schema>
-	</wsdl:types>
-	<wsdl:message name="Zen_ChangeUsername_InputMessage">
-		<wsdl:part name="parameters" element="tns:ChangeUsername" />
-	</wsdl:message>
-	<wsdl:message name="Zen_ChangeUsername_OutputMessage">
-		<wsdl:part name="parameters" element="tns:ChangeUsernameResponse" />
-	</wsdl:message>
-	<wsdl:message name="Zen_ChangePhoneNumber_InputMessage">
-		<wsdl:part name="parameters" element="tns:ChangePhoneNumber" />
-	</wsdl:message>
-	<wsdl:message name="Zen_ChangePhoneNumber_OutputMessage">
-		<wsdl:part name="parameters" element="tns:ChangePhoneNumberResponse" />
-	</wsdl:message>
-	<wsdl:message name="Zen_ChangePhoneNumber_PhoneNumberAlreadyExistsExceptionFault_FaultMessage">
-		<wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail"
-		           element="q1:PhoneNumberAlreadyExistsException" />
-	</wsdl:message>
-	<wsdl:message name="Zen_GetUser_InputMessage">
-		<wsdl:part name="parameters" element="tns:GetUser" />
-	</wsdl:message>
-	<wsdl:message name="Zen_GetUser_OutputMessage">
-		<wsdl:part name="parameters" element="tns:GetUserResponse" />
-	</wsdl:message>
-	<wsdl:message name="Zen_GetUser_UserNotFoundExceptionFault_FaultMessage">
-		<wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail"
-		           element="q2:UserNotFoundException" />
-	</wsdl:message>
-	<wsdl:message name="Zen_GetUserFromId_InputMessage">
-		<wsdl:part name="parameters" element="tns:GetUserFromId" />
-	</wsdl:message>
-	<wsdl:message name="Zen_GetUserFromId_OutputMessage">
-		<wsdl:part name="parameters" element="tns:GetUserFromIdResponse" />
-	</wsdl:message>
-	<wsdl:message name="Zen_GetUserFromId_UserNotFoundExceptionFault_FaultMessage">
-		<wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail"
-		           element="q3:UserNotFoundException" />
-	</wsdl:message>
-	<wsdl:message name="Zen_Login_InputMessage">
-		<wsdl:part name="parameters" element="tns:Login" />
-	</wsdl:message>
-	<wsdl:message name="Zen_Login_OutputMessage">
-		<wsdl:part name="parameters" element="tns:LoginResponse" />
-	</wsdl:message>
-	<wsdl:message name="Zen_GetFriends_InputMessage">
-		<wsdl:part name="parameters" element="tns:GetFriends" />
-	</wsdl:message>
-	<wsdl:message name="Zen_GetFriends_OutputMessage">
-		<wsdl:part name="parameters" element="tns:GetFriendsResponse" />
-	</wsdl:message>
-	<wsdl:message name="Zen_AddFriend_InputMessage">
-		<wsdl:part name="parameters" element="tns:AddFriend" />
-	</wsdl:message>
-	<wsdl:message name="Zen_AddFriend_OutputMessage">
-		<wsdl:part name="parameters" element="tns:AddFriendResponse" />
-	</wsdl:message>
-	<wsdl:message name="Zen_AddFriend_UserNotFoundExceptionFault_FaultMessage">
-		<wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail"
-		           element="q4:UserNotFoundException" />
-	</wsdl:message>
-	<wsdl:message name="Zen_AddFriend_AlreadyFriendExceptionFault_FaultMessage">
-		<wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail"
-		           element="q5:AlreadyFriendException" />
-	</wsdl:message>
-	<wsdl:message name="Zen_RemoveFriend_InputMessage">
-		<wsdl:part name="parameters" element="tns:RemoveFriend" />
-	</wsdl:message>
-	<wsdl:message name="Zen_RemoveFriend_OutputMessage">
-		<wsdl:part name="parameters" element="tns:RemoveFriendResponse" />
-	</wsdl:message>
-	<wsdl:message name="Zen_RemoveFriend_UserNotFoundExceptionFault_FaultMessage">
-		<wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail"
-		           element="q6:UserNotFoundException" />
-	</wsdl:message>
-	<wsdl:message name="Zen_GetAllChatRooms_InputMessage">
-		<wsdl:part name="parameters" element="tns:GetAllChatRooms" />
-	</wsdl:message>
-	<wsdl:message name="Zen_GetAllChatRooms_OutputMessage">
-		<wsdl:part name="parameters" element="tns:GetAllChatRoomsResponse" />
-	</wsdl:message>
-	<wsdl:message name="Zen_GetChatRoom_InputMessage">
-		<wsdl:part name="parameters" element="tns:GetChatRoom" />
-	</wsdl:message>
-	<wsdl:message name="Zen_GetChatRoom_OutputMessage">
-		<wsdl:part name="parameters" element="tns:GetChatRoomResponse" />
-	</wsdl:message>
-	<wsdl:message name="Zen_GetChatRoom_ChatNotFoundExceptionFault_FaultMessage">
-		<wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail"
-		           element="q7:ChatNotFoundException" />
-	</wsdl:message>
-	<wsdl:message name="Zen_GetChatRoom_MemberNotFoundExceptionFault_FaultMessage">
-		<wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail"
-		           element="q8:MemberNotFoundException" />
-	</wsdl:message>
-	<wsdl:message name="Zen_CreateChatRoom_InputMessage">
-		<wsdl:part name="parameters" element="tns:CreateChatRoom" />
-	</wsdl:message>
-	<wsdl:message name="Zen_CreateChatRoom_OutputMessage">
-		<wsdl:part name="parameters" element="tns:CreateChatRoomResponse" />
-	</wsdl:message>
-	<wsdl:message name="Zen_InviteToChatRoom_InputMessage">
-		<wsdl:part name="parameters" element="tns:InviteToChatRoom" />
-	</wsdl:message>
-	<wsdl:message name="Zen_InviteToChatRoom_OutputMessage">
-		<wsdl:part name="parameters" element="tns:InviteToChatRoomResponse" />
-	</wsdl:message>
-	<wsdl:message name="Zen_InviteToChatRoom_AlreadyMemberExceptionFault_FaultMessage">
-		<wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail"
-		           element="q9:AlreadyMemberException" />
-	</wsdl:message>
-	<wsdl:message name="Zen_InviteToChatRoom_NoPermissionExceptionFault_FaultMessage">
-		<wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail"
-		           element="q10:NoPermissionException" />
-	</wsdl:message>
-	<wsdl:message name="Zen_RemoveFromChatRoom_InputMessage">
-		<wsdl:part name="parameters" element="tns:RemoveFromChatRoom" />
-	</wsdl:message>
-	<wsdl:message name="Zen_RemoveFromChatRoom_OutputMessage">
-		<wsdl:part name="parameters" element="tns:RemoveFromChatRoomResponse" />
-	</wsdl:message>
-	<wsdl:message name="Zen_RemoveFromChatRoom_MemberNotFoundExceptionFault_FaultMessage">
-		<wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail"
-		           element="q11:MemberNotFoundException" />
-	</wsdl:message>
-	<wsdl:message name="Zen_RemoveFromChatRoom_NoPermissionExceptionFault_FaultMessage">
-		<wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail"
-		           element="q12:NoPermissionException" />
-	</wsdl:message>
-	<wsdl:message name="Zen_WriteGroupChatMessage_InputMessage">
-		<wsdl:part name="parameters" element="tns:WriteGroupChatMessage" />
-	</wsdl:message>
-	<wsdl:message name="Zen_WriteGroupChatMessage_OutputMessage">
-		<wsdl:part name="parameters" element="tns:WriteGroupChatMessageResponse" />
-	</wsdl:message>
-	<wsdl:message name="Zen_WriteGroupChatMessage_ChatNotFoundExceptionFault_FaultMessage">
-		<wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail"
-		           element="q13:ChatNotFoundException" />
-	</wsdl:message>
-	<wsdl:message name="Zen_WriteGroupChatMessage_NoPermissionExceptionFault_FaultMessage">
-		<wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail"
-		           element="q14:NoPermissionException" />
-	</wsdl:message>
-	<wsdl:message name="Zen_GetPrivateConversation_InputMessage">
-		<wsdl:part name="parameters" element="tns:GetPrivateConversation" />
-	</wsdl:message>
-	<wsdl:message name="Zen_GetPrivateConversation_OutputMessage">
-		<wsdl:part name="parameters" element="tns:GetPrivateConversationResponse" />
-	</wsdl:message>
-	<wsdl:message name="Zen_GetPrivateConversation_UserNotFoundExceptionFault_FaultMessage">
-		<wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail"
-		           element="q15:UserNotFoundException" />
-	</wsdl:message>
-	<wsdl:message name="Zen_WritePrivateChatMessage_InputMessage">
-		<wsdl:part name="parameters" element="tns:WritePrivateChatMessage" />
-	</wsdl:message>
-	<wsdl:message name="Zen_WritePrivateChatMessage_OutputMessage">
-		<wsdl:part name="parameters" element="tns:WritePrivateChatMessageResponse" />
-	</wsdl:message>
-	<wsdl:message name="Zen_WritePrivateChatMessage_UserNotFoundExceptionFault_FaultMessage">
-		<wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail"
-		           element="q16:UserNotFoundException" />
-	</wsdl:message>
-	<wsdl:message name="Zen_ReadChatMessage_InputMessage">
-		<wsdl:part name="parameters" element="tns:ReadChatMessage" />
-	</wsdl:message>
-	<wsdl:message name="Zen_ReadChatMessage_OutputMessage">
-		<wsdl:part name="parameters" element="tns:ReadChatMessageResponse" />
-	</wsdl:message>
-	<wsdl:message name="Zen_ReceiveChatMessage_InputMessage">
-		<wsdl:part name="parameters" element="tns:ReceiveChatMessage" />
-	</wsdl:message>
-	<wsdl:message name="Zen_ReceiveChatMessage_OutputMessage">
-		<wsdl:part name="parameters" element="tns:ReceiveChatMessageResponse" />
-	</wsdl:message>
-	<wsdl:portType msc:usingSession="false" name="Zen">
-		<wsdl:operation name="ChangeUsername">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ChangeUsername"
-			            message="tns:Zen_ChangeUsername_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ChangeUsernameResponse"
-			             message="tns:Zen_ChangeUsername_OutputMessage" />
-		</wsdl:operation>
-		<wsdl:operation name="ChangePhoneNumber">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ChangePhoneNumber"
-			            message="tns:Zen_ChangePhoneNumber_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ChangePhoneNumberResponse"
-			             message="tns:Zen_ChangePhoneNumber_OutputMessage" />
-			<wsdl:fault
-				wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ChangePhoneNumberPhoneNumberAlreadyExistsExceptionFault"
-				name="PhoneNumberAlreadyExistsExceptionFault"
-				message="tns:Zen_ChangePhoneNumber_PhoneNumberAlreadyExistsExceptionFault_FaultMessage" />
-		</wsdl:operation>
-		<wsdl:operation name="GetUser">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetUser"
-			            message="tns:Zen_GetUser_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetUserResponse"
-			             message="tns:Zen_GetUser_OutputMessage" />
-			<wsdl:fault wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetUserUserNotFoundExceptionFault"
-			            name="UserNotFoundExceptionFault" message="tns:Zen_GetUser_UserNotFoundExceptionFault_FaultMessage" />
-		</wsdl:operation>
-		<wsdl:operation name="GetUserFromId">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetUserFromId"
-			            message="tns:Zen_GetUserFromId_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetUserFromIdResponse"
-			             message="tns:Zen_GetUserFromId_OutputMessage" />
-			<wsdl:fault
-				wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetUserFromIdUserNotFoundExceptionFault"
-				name="UserNotFoundExceptionFault" message="tns:Zen_GetUserFromId_UserNotFoundExceptionFault_FaultMessage" />
-		</wsdl:operation>
-		<wsdl:operation name="Login">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/Login"
-			            message="tns:Zen_Login_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/LoginResponse"
-			             message="tns:Zen_Login_OutputMessage" />
-		</wsdl:operation>
-		<wsdl:operation name="GetFriends">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetFriends"
-			            message="tns:Zen_GetFriends_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetFriendsResponse"
-			             message="tns:Zen_GetFriends_OutputMessage" />
-		</wsdl:operation>
-		<wsdl:operation name="AddFriend">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/AddFriend"
-			            message="tns:Zen_AddFriend_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/AddFriendResponse"
-			             message="tns:Zen_AddFriend_OutputMessage" />
-			<wsdl:fault
-				wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/AddFriendUserNotFoundExceptionFault"
-				name="UserNotFoundExceptionFault" message="tns:Zen_AddFriend_UserNotFoundExceptionFault_FaultMessage" />
-			<wsdl:fault
-				wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/AddFriendAlreadyFriendExceptionFault"
-				name="AlreadyFriendExceptionFault" message="tns:Zen_AddFriend_AlreadyFriendExceptionFault_FaultMessage" />
-		</wsdl:operation>
-		<wsdl:operation name="RemoveFriend">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFriend"
-			            message="tns:Zen_RemoveFriend_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFriendResponse"
-			             message="tns:Zen_RemoveFriend_OutputMessage" />
-			<wsdl:fault
-				wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFriendUserNotFoundExceptionFault"
-				name="UserNotFoundExceptionFault" message="tns:Zen_RemoveFriend_UserNotFoundExceptionFault_FaultMessage" />
-		</wsdl:operation>
-		<wsdl:operation name="GetAllChatRooms">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetAllChatRooms"
-			            message="tns:Zen_GetAllChatRooms_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetAllChatRoomsResponse"
-			             message="tns:Zen_GetAllChatRooms_OutputMessage" />
-		</wsdl:operation>
-		<wsdl:operation name="GetChatRoom">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetChatRoom"
-			            message="tns:Zen_GetChatRoom_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetChatRoomResponse"
-			             message="tns:Zen_GetChatRoom_OutputMessage" />
-			<wsdl:fault
-				wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetChatRoomChatNotFoundExceptionFault"
-				name="ChatNotFoundExceptionFault" message="tns:Zen_GetChatRoom_ChatNotFoundExceptionFault_FaultMessage" />
-			<wsdl:fault
-				wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetChatRoomMemberNotFoundExceptionFault"
-				name="MemberNotFoundExceptionFault" message="tns:Zen_GetChatRoom_MemberNotFoundExceptionFault_FaultMessage" />
-		</wsdl:operation>
-		<wsdl:operation name="CreateChatRoom">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/CreateChatRoom"
-			            message="tns:Zen_CreateChatRoom_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/CreateChatRoomResponse"
-			             message="tns:Zen_CreateChatRoom_OutputMessage" />
-		</wsdl:operation>
-		<wsdl:operation name="InviteToChatRoom">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/InviteToChatRoom"
-			            message="tns:Zen_InviteToChatRoom_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/InviteToChatRoomResponse"
-			             message="tns:Zen_InviteToChatRoom_OutputMessage" />
-			<wsdl:fault
-				wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/InviteToChatRoomAlreadyMemberExceptionFault"
-				name="AlreadyMemberExceptionFault" message="tns:Zen_InviteToChatRoom_AlreadyMemberExceptionFault_FaultMessage" />
-			<wsdl:fault
-				wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/InviteToChatRoomNoPermissionExceptionFault"
-				name="NoPermissionExceptionFault" message="tns:Zen_InviteToChatRoom_NoPermissionExceptionFault_FaultMessage" />
-		</wsdl:operation>
-		<wsdl:operation name="RemoveFromChatRoom">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFromChatRoom"
-			            message="tns:Zen_RemoveFromChatRoom_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFromChatRoomResponse"
-			             message="tns:Zen_RemoveFromChatRoom_OutputMessage" />
-			<wsdl:fault
-				wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFromChatRoomMemberNotFoundExceptionFault"
-				name="MemberNotFoundExceptionFault" message="tns:Zen_RemoveFromChatRoom_MemberNotFoundExceptionFault_FaultMessage" />
-			<wsdl:fault
-				wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFromChatRoomNoPermissionExceptionFault"
-				name="NoPermissionExceptionFault" message="tns:Zen_RemoveFromChatRoom_NoPermissionExceptionFault_FaultMessage" />
-		</wsdl:operation>
-		<wsdl:operation name="WriteGroupChatMessage">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WriteGroupChatMessage"
-			            message="tns:Zen_WriteGroupChatMessage_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WriteGroupChatMessageResponse"
-			             message="tns:Zen_WriteGroupChatMessage_OutputMessage" />
-			<wsdl:fault
-				wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WriteGroupChatMessageChatNotFoundExceptionFault"
-				name="ChatNotFoundExceptionFault" message="tns:Zen_WriteGroupChatMessage_ChatNotFoundExceptionFault_FaultMessage" />
-			<wsdl:fault
-				wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WriteGroupChatMessageNoPermissionExceptionFault"
-				name="NoPermissionExceptionFault" message="tns:Zen_WriteGroupChatMessage_NoPermissionExceptionFault_FaultMessage" />
-		</wsdl:operation>
-		<wsdl:operation name="GetPrivateConversation">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetPrivateConversation"
-			            message="tns:Zen_GetPrivateConversation_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetPrivateConversationResponse"
-			             message="tns:Zen_GetPrivateConversation_OutputMessage" />
-			<wsdl:fault
-				wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetPrivateConversationUserNotFoundExceptionFault"
-				name="UserNotFoundExceptionFault" message="tns:Zen_GetPrivateConversation_UserNotFoundExceptionFault_FaultMessage" />
-		</wsdl:operation>
-		<wsdl:operation name="WritePrivateChatMessage">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WritePrivateChatMessage"
-			            message="tns:Zen_WritePrivateChatMessage_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WritePrivateChatMessageResponse"
-			             message="tns:Zen_WritePrivateChatMessage_OutputMessage" />
-			<wsdl:fault
-				wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WritePrivateChatMessageUserNotFoundExceptionFault"
-				name="UserNotFoundExceptionFault" message="tns:Zen_WritePrivateChatMessage_UserNotFoundExceptionFault_FaultMessage" />
-		</wsdl:operation>
-		<wsdl:operation name="ReadChatMessage">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ReadChatMessage"
-			            message="tns:Zen_ReadChatMessage_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ReadChatMessageResponse"
-			             message="tns:Zen_ReadChatMessage_OutputMessage" />
-		</wsdl:operation>
-		<wsdl:operation name="ReceiveChatMessage">
-			<wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ReceiveChatMessage"
-			            message="tns:Zen_ReceiveChatMessage_InputMessage" />
-			<wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ReceiveChatMessageResponse"
-			             message="tns:Zen_ReceiveChatMessage_OutputMessage" />
-		</wsdl:operation>
-	</wsdl:portType>
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="https://zenchatservice.azurewebsites.net/ZenChat.svc" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="https://zenchatservice.azurewebsites.net/ZenChat.svc" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="https://zenchatservice.azurewebsites.net/ZenChat.svc/Imports">
+      <xsd:import schemaLocation="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd0" namespace="https://zenchatservice.azurewebsites.net/ZenChat.svc" />
+      <xsd:import schemaLocation="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ZenChatService.ServiceClasses" />
+      <xsd:import schemaLocation="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" />
+      <xsd:import schemaLocation="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://zenchatservice.azurewebsites.net/ZenChat.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Zen_ChangeUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeUsername" />
+  </wsdl:message>
+  <wsdl:message name="Zen_ChangeUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zen_ChangePhoneNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePhoneNumber" />
+  </wsdl:message>
+  <wsdl:message name="Zen_ChangePhoneNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePhoneNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zen_ChangePhoneNumber_PhoneNumberAlreadyExistsExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail" element="q1:PhoneNumberAlreadyExistsException" />
+  </wsdl:message>
+  <wsdl:message name="Zen_GetUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUser" />
+  </wsdl:message>
+  <wsdl:message name="Zen_GetUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zen_GetUser_UserNotFoundExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail" element="q2:UserNotFoundException" />
+  </wsdl:message>
+  <wsdl:message name="Zen_GetUserFromId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserFromId" />
+  </wsdl:message>
+  <wsdl:message name="Zen_GetUserFromId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserFromIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zen_GetUserFromId_UserNotFoundExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail" element="q3:UserNotFoundException" />
+  </wsdl:message>
+  <wsdl:message name="Zen_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="Zen_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zen_GetFriends_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriends" />
+  </wsdl:message>
+  <wsdl:message name="Zen_GetFriends_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zen_AddFriend_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddFriend" />
+  </wsdl:message>
+  <wsdl:message name="Zen_AddFriend_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddFriendResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zen_AddFriend_UserNotFoundExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail" element="q4:UserNotFoundException" />
+  </wsdl:message>
+  <wsdl:message name="Zen_AddFriend_AlreadyFriendExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail" element="q5:AlreadyFriendException" />
+  </wsdl:message>
+  <wsdl:message name="Zen_RemoveFriend_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFriend" />
+  </wsdl:message>
+  <wsdl:message name="Zen_RemoveFriend_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFriendResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zen_RemoveFriend_UserNotFoundExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail" element="q6:UserNotFoundException" />
+  </wsdl:message>
+  <wsdl:message name="Zen_GetAllChatRooms_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllChatRooms" />
+  </wsdl:message>
+  <wsdl:message name="Zen_GetAllChatRooms_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllChatRoomsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zen_GetChatRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetChatRoom" />
+  </wsdl:message>
+  <wsdl:message name="Zen_GetChatRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetChatRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zen_GetChatRoom_ChatNotFoundExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail" element="q7:ChatNotFoundException" />
+  </wsdl:message>
+  <wsdl:message name="Zen_GetChatRoom_MemberNotFoundExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail" element="q8:MemberNotFoundException" />
+  </wsdl:message>
+  <wsdl:message name="Zen_CreateChatRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateChatRoom" />
+  </wsdl:message>
+  <wsdl:message name="Zen_CreateChatRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateChatRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zen_InviteToChatRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:InviteToChatRoom" />
+  </wsdl:message>
+  <wsdl:message name="Zen_InviteToChatRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InviteToChatRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zen_InviteToChatRoom_AlreadyMemberExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail" element="q9:AlreadyMemberException" />
+  </wsdl:message>
+  <wsdl:message name="Zen_InviteToChatRoom_NoPermissionExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail" element="q10:NoPermissionException" />
+  </wsdl:message>
+  <wsdl:message name="Zen_RemoveFromChatRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFromChatRoom" />
+  </wsdl:message>
+  <wsdl:message name="Zen_RemoveFromChatRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveFromChatRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zen_RemoveFromChatRoom_MemberNotFoundExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail" element="q11:MemberNotFoundException" />
+  </wsdl:message>
+  <wsdl:message name="Zen_RemoveFromChatRoom_NoPermissionExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail" element="q12:NoPermissionException" />
+  </wsdl:message>
+  <wsdl:message name="Zen_WriteGroupChatMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:WriteGroupChatMessage" />
+  </wsdl:message>
+  <wsdl:message name="Zen_WriteGroupChatMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WriteGroupChatMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zen_WriteGroupChatMessage_ChatNotFoundExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail" element="q13:ChatNotFoundException" />
+  </wsdl:message>
+  <wsdl:message name="Zen_WriteGroupChatMessage_NoPermissionExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail" element="q14:NoPermissionException" />
+  </wsdl:message>
+  <wsdl:message name="Zen_GetPrivateConversation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrivateConversation" />
+  </wsdl:message>
+  <wsdl:message name="Zen_GetPrivateConversation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrivateConversationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zen_GetPrivateConversation_UserNotFoundExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail" element="q15:UserNotFoundException" />
+  </wsdl:message>
+  <wsdl:message name="Zen_WritePrivateChatMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:WritePrivateChatMessage" />
+  </wsdl:message>
+  <wsdl:message name="Zen_WritePrivateChatMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WritePrivateChatMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zen_WritePrivateChatMessage_UserNotFoundExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" name="detail" element="q16:UserNotFoundException" />
+  </wsdl:message>
+  <wsdl:message name="Zen_ReadChatMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadChatMessage" />
+  </wsdl:message>
+  <wsdl:message name="Zen_ReadChatMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadChatMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zen_ReceiveChatMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveChatMessage" />
+  </wsdl:message>
+  <wsdl:message name="Zen_ReceiveChatMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveChatMessageResponse" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="false" name="Zen">
+    <wsdl:operation name="ChangeUsername">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ChangeUsername" message="tns:Zen_ChangeUsername_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ChangeUsernameResponse" message="tns:Zen_ChangeUsername_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePhoneNumber">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ChangePhoneNumber" message="tns:Zen_ChangePhoneNumber_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ChangePhoneNumberResponse" message="tns:Zen_ChangePhoneNumber_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ChangePhoneNumberPhoneNumberAlreadyExistsExceptionFault" name="PhoneNumberAlreadyExistsExceptionFault" message="tns:Zen_ChangePhoneNumber_PhoneNumberAlreadyExistsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetUser" message="tns:Zen_GetUser_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetUserResponse" message="tns:Zen_GetUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetUserUserNotFoundExceptionFault" name="UserNotFoundExceptionFault" message="tns:Zen_GetUser_UserNotFoundExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFromId">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetUserFromId" message="tns:Zen_GetUserFromId_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetUserFromIdResponse" message="tns:Zen_GetUserFromId_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetUserFromIdUserNotFoundExceptionFault" name="UserNotFoundExceptionFault" message="tns:Zen_GetUserFromId_UserNotFoundExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/Login" message="tns:Zen_Login_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/LoginResponse" message="tns:Zen_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFriends">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetFriends" message="tns:Zen_GetFriends_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetFriendsResponse" message="tns:Zen_GetFriends_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFriend">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/AddFriend" message="tns:Zen_AddFriend_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/AddFriendResponse" message="tns:Zen_AddFriend_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/AddFriendUserNotFoundExceptionFault" name="UserNotFoundExceptionFault" message="tns:Zen_AddFriend_UserNotFoundExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/AddFriendAlreadyFriendExceptionFault" name="AlreadyFriendExceptionFault" message="tns:Zen_AddFriend_AlreadyFriendExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFriend">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFriend" message="tns:Zen_RemoveFriend_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFriendResponse" message="tns:Zen_RemoveFriend_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFriendUserNotFoundExceptionFault" name="UserNotFoundExceptionFault" message="tns:Zen_RemoveFriend_UserNotFoundExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllChatRooms">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetAllChatRooms" message="tns:Zen_GetAllChatRooms_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetAllChatRoomsResponse" message="tns:Zen_GetAllChatRooms_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChatRoom">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetChatRoom" message="tns:Zen_GetChatRoom_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetChatRoomResponse" message="tns:Zen_GetChatRoom_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetChatRoomChatNotFoundExceptionFault" name="ChatNotFoundExceptionFault" message="tns:Zen_GetChatRoom_ChatNotFoundExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetChatRoomMemberNotFoundExceptionFault" name="MemberNotFoundExceptionFault" message="tns:Zen_GetChatRoom_MemberNotFoundExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateChatRoom">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/CreateChatRoom" message="tns:Zen_CreateChatRoom_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/CreateChatRoomResponse" message="tns:Zen_CreateChatRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InviteToChatRoom">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/InviteToChatRoom" message="tns:Zen_InviteToChatRoom_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/InviteToChatRoomResponse" message="tns:Zen_InviteToChatRoom_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/InviteToChatRoomAlreadyMemberExceptionFault" name="AlreadyMemberExceptionFault" message="tns:Zen_InviteToChatRoom_AlreadyMemberExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/InviteToChatRoomNoPermissionExceptionFault" name="NoPermissionExceptionFault" message="tns:Zen_InviteToChatRoom_NoPermissionExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFromChatRoom">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFromChatRoom" message="tns:Zen_RemoveFromChatRoom_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFromChatRoomResponse" message="tns:Zen_RemoveFromChatRoom_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFromChatRoomMemberNotFoundExceptionFault" name="MemberNotFoundExceptionFault" message="tns:Zen_RemoveFromChatRoom_MemberNotFoundExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFromChatRoomNoPermissionExceptionFault" name="NoPermissionExceptionFault" message="tns:Zen_RemoveFromChatRoom_NoPermissionExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteGroupChatMessage">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WriteGroupChatMessage" message="tns:Zen_WriteGroupChatMessage_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WriteGroupChatMessageResponse" message="tns:Zen_WriteGroupChatMessage_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WriteGroupChatMessageChatNotFoundExceptionFault" name="ChatNotFoundExceptionFault" message="tns:Zen_WriteGroupChatMessage_ChatNotFoundExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WriteGroupChatMessageNoPermissionExceptionFault" name="NoPermissionExceptionFault" message="tns:Zen_WriteGroupChatMessage_NoPermissionExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPrivateConversation">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetPrivateConversation" message="tns:Zen_GetPrivateConversation_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetPrivateConversationResponse" message="tns:Zen_GetPrivateConversation_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetPrivateConversationUserNotFoundExceptionFault" name="UserNotFoundExceptionFault" message="tns:Zen_GetPrivateConversation_UserNotFoundExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WritePrivateChatMessage">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WritePrivateChatMessage" message="tns:Zen_WritePrivateChatMessage_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WritePrivateChatMessageResponse" message="tns:Zen_WritePrivateChatMessage_OutputMessage" />
+      <wsdl:fault wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WritePrivateChatMessageUserNotFoundExceptionFault" name="UserNotFoundExceptionFault" message="tns:Zen_WritePrivateChatMessage_UserNotFoundExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadChatMessage">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ReadChatMessage" message="tns:Zen_ReadChatMessage_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ReadChatMessageResponse" message="tns:Zen_ReadChatMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveChatMessage">
+      <wsdl:input wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ReceiveChatMessage" message="tns:Zen_ReceiveChatMessage_InputMessage" />
+      <wsdl:output wsaw:Action="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ReceiveChatMessageResponse" message="tns:Zen_ReceiveChatMessage_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
 </wsdl:definitions>

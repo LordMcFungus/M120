@@ -125,18 +125,18 @@ namespace ZenChat.Chat
 
 			//Mark all Messages as received
 			foreach (
-				var message in OrderedMessages.Where(m => !m.ArrivedAt.Select(u => u.PhoneNumber).Contains(Session.PhoneNumber)))
+				var message in OrderedMessages.Where(m => !m.ArrivedAt.Contains(Session.PhoneNumber)))
 			{
 				Session.Client.ReceiveChatMessageAsync(Session.UserID, message.Id);
 			}
 
-			UnreadMessages = OrderedMessages.Count(m => !m.ReadBy.Select(u => u.PhoneNumber).Contains(Session.PhoneNumber));
+			UnreadMessages = OrderedMessages.Count(m => !m.ReadBy.Contains(Session.PhoneNumber));
 		}
 
 		public async void ReadMessages()
 		{
 			foreach (
-				var message in OrderedMessages.Where(m => !m.ReadBy.Select(u => u.PhoneNumber).Contains(Session.PhoneNumber)))
+				var message in OrderedMessages.Where(m => !m.ReadBy.Contains(Session.PhoneNumber)))
 			{
 				await Session.Client.ReadChatMessageAsync(Session.UserID, message.Id);
 			}
