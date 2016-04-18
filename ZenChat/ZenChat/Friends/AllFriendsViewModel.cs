@@ -5,29 +5,25 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.UI.Popups;
 using Microsoft.Practices.Prism.Commands;
 using ZenChat.Annotations;
 using ZenChat.Models;
 using ZenChat.ZenChatService;
-using Microsoft.VisualBasic;
 
 namespace ZenChat.Friends
 {
 	public sealed class AllFriendsViewModel : INotifyPropertyChanged
 	{
+		private readonly Action<User> _removeUser;
 		private string _newFriendPhoneNumber;
-
-		public string Title { get; set; }
 
 		public AllFriendsViewModel()
 		{
 			_removeUser = async user =>
 			{
-				var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
-				await client.RemoveFriendAsync(Session.UserID, user.PhoneNumber);
+				await Session.Client.RemoveFriendAsync(Session.UserID, user.PhoneNumber);
 				LoadFriends();
 			};
 
@@ -36,7 +32,7 @@ namespace ZenChat.Friends
 		}
 
 		/// <summary>
-		/// Constructor for the advanced mode
+		///     Constructor for the advanced mode
 		/// </summary>
 		/// <param name="add"></param>
 		/// <param name="canAdd"></param>
@@ -46,7 +42,8 @@ namespace ZenChat.Friends
 		/// <param name="displayAddButton"></param>
 		/// <param name="displayAddTextbox"></param>
 		/// <param name="displayX"></param>
-		public AllFriendsViewModel(Action add, Func<bool> canAdd, Action<User> onXClicked, IEnumerable<User> usersToDisplay, bool allowSelection, bool displayAddButton, bool displayAddTextbox, bool displayX)
+		public AllFriendsViewModel(Action add, Func<bool> canAdd, Action<User> onXClicked, IEnumerable<User> usersToDisplay,
+			bool allowSelection, bool displayAddButton, bool displayAddTextbox, bool displayX)
 		{
 			DisplayAddButton = displayAddButton;
 			DisplayAddTextbox = displayAddTextbox;
@@ -59,6 +56,8 @@ namespace ZenChat.Friends
 			}
 			AddFriendCommand = new DelegateCommand(add, canAdd);
 		}
+
+		public string Title { get; set; }
 
 		public bool DisplayAddTextbox { get; private set; } = true;
 
@@ -86,15 +85,12 @@ namespace ZenChat.Friends
 			return !string.IsNullOrEmpty(NewFriendPhoneNumber);
 		}
 
-		private readonly Action<User> _removeUser;
-
 		private async void AddFriend()
 		{
-			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			try
 			{
-				await client.AddFriendAsync(Session.UserID, NewFriendPhoneNumber);
-				var friend = await client.GetUserAsync(NewFriendPhoneNumber);
+				await Session.Client.AddFriendAsync(Session.UserID, NewFriendPhoneNumber);
+				var friend = await Session.Client.GetUserAsync(NewFriendPhoneNumber);
 				MyFriends.Add(new FriendViewModel(friend, _removeUser));
 			}
 			catch (Exception e)
@@ -106,9 +102,8 @@ namespace ZenChat.Friends
 
 		private async void LoadFriends()
 		{
-			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			MyFriends.Clear();
-			var user = await client.GetFriendsAsync(Session.UserID);
+			var user = await Session.Client.GetFriendsAsync(Session.UserID);
 			foreach (var friend in user)
 			{
 				MyFriends.Add(new FriendViewModel(friend, _removeUser));
@@ -120,6 +115,5 @@ namespace ZenChat.Friends
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
-
 	}
 }

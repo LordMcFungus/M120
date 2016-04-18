@@ -16,38 +16,13 @@ namespace ZenChat.Chat
 {
 	public class ChatViewModel : INotifyPropertyChanged
 	{
-		private PrivateConversation _privateChat;
 		private ChatRoom _chatRoom;
 		private string _newMessageText;
+		private PrivateConversation _privateChat;
 
 		public ChatViewModel()
 		{
 			SendMessageCommand = new DelegateCommand(SendMessage, CanSendMessage);
-		}
-
-		private bool CanSendMessage()
-		{
-			return !string.IsNullOrEmpty(NewMessageText);
-		}
-
-		private async void SendMessage()
-		{
-			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
-			dynamic chat;
-			if (Chatroom != null)
-			{
-				await client.WriteGroupChatMessageAsync(Session.UserID, Chatroom.Id, NewMessageText);
-				chat = await client.GetChatRoomAsync(Chatroom.Id, Session.UserID);
-			}
-			else
-			{
-				await client.WritePrivateChatMessageAsync(Session.UserID, PrivateChat.Members.First(m => !Equals(m.PhoneNumber, Session.PhoneNumber)).PhoneNumber, NewMessageText);
-				chat = await client.GetPrivateConversationAsync(Session.UserID, PrivateChat.Members.First(m => !Equals(m.PhoneNumber, Session.PhoneNumber)).PhoneNumber);
-			}
-
-			NewMessageText = string.Empty;
-
-			LoadMessages(chat.Messages);
 		}
 
 		public ChatRoom Chatroom
@@ -62,37 +37,6 @@ namespace ZenChat.Chat
 					LoadMessages(_chatRoom.Messages);
 				}
 				ChatName = _chatRoom.Topic;
-			}
-		}
-
-		private void LoadMessages(IEnumerable<ChatMessage> messages)
-		{
-			OrderedMessages.Clear();
-
-			foreach (var message in messages.OrderBy(m => m.Created))
-			{
-				OrderedMessages.Add(message);
-			}
-
-			LastSentMessage = OrderedMessages.Last().Created;
-			LastSentUser = OrderedMessages.Last().Author;
-
-			//Mark all Messages as received
-			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
-			foreach (var message in OrderedMessages.Where(m => !m.ArrivedAt.Select(u => u.PhoneNumber).Contains(Session.PhoneNumber)))
-			{
-				client.ReceiveChatMessageAsync(Session.UserID, message.Id);
-			}
-
-			UnreadMessages = OrderedMessages.Count(m => !m.ReadBy.Select(u => u.PhoneNumber).Contains(Session.PhoneNumber));
-		}
-
-		public async void ReadMessages()
-		{
-			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
-			foreach (var message in OrderedMessages.Where(m => !m.ReadBy.Select(u => u.PhoneNumber).Contains(Session.PhoneNumber)))
-			{
-				await client.ReadChatMessageAsync(Session.UserID, message.Id);
 			}
 		}
 
@@ -137,6 +81,66 @@ namespace ZenChat.Chat
 
 		/// <summary>Tritt ein, wenn sich ein Eigenschaftswert ändert.</summary>
 		public event PropertyChangedEventHandler PropertyChanged;
+
+		private bool CanSendMessage()
+		{
+			return !string.IsNullOrEmpty(NewMessageText);
+		}
+
+		private async void SendMessage()
+		{
+			dynamic chat;
+			if (Chatroom != null)
+			{
+				await Session.Client.WriteGroupChatMessageAsync(Session.UserID, Chatroom.Id, NewMessageText);
+				chat = await Session.Client.GetChatRoomAsync(Chatroom.Id, Session.UserID);
+			}
+			else
+			{
+				await
+					Session.Client.WritePrivateChatMessageAsync(Session.UserID,
+						PrivateChat.Members.First(m => !Equals(m.PhoneNumber, Session.PhoneNumber)).PhoneNumber, NewMessageText);
+				chat =
+					await
+						Session.Client.GetPrivateConversationAsync(Session.UserID,
+							PrivateChat.Members.First(m => !Equals(m.PhoneNumber, Session.PhoneNumber)).PhoneNumber);
+			}
+
+			NewMessageText = string.Empty;
+
+			LoadMessages(chat.Messages);
+		}
+
+		private void LoadMessages(IEnumerable<ChatMessage> messages)
+		{
+			OrderedMessages.Clear();
+
+			foreach (var message in messages.OrderBy(m => m.Created))
+			{
+				OrderedMessages.Add(message);
+			}
+
+			LastSentMessage = OrderedMessages.Last().Created;
+			LastSentUser = OrderedMessages.Last().Author;
+
+			//Mark all Messages as received
+			foreach (
+				var message in OrderedMessages.Where(m => !m.ArrivedAt.Select(u => u.PhoneNumber).Contains(Session.PhoneNumber)))
+			{
+				Session.Client.ReceiveChatMessageAsync(Session.UserID, message.Id);
+			}
+
+			UnreadMessages = OrderedMessages.Count(m => !m.ReadBy.Select(u => u.PhoneNumber).Contains(Session.PhoneNumber));
+		}
+
+		public async void ReadMessages()
+		{
+			foreach (
+				var message in OrderedMessages.Where(m => !m.ReadBy.Select(u => u.PhoneNumber).Contains(Session.PhoneNumber)))
+			{
+				await Session.Client.ReadChatMessageAsync(Session.UserID, message.Id);
+			}
+		}
 
 		[NotifyPropertyChangedInvocator]
 		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

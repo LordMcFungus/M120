@@ -15,9 +15,9 @@ namespace ZenChat.Settings
 {
 	internal class SettingsViewModel : INotifyPropertyChanged
 	{
+		private bool _isActive;
 		private string _phonenumber;
 		private string _username;
-		private bool _isActive;
 
 
 		public SettingsViewModel()
@@ -64,26 +64,22 @@ namespace ZenChat.Settings
 
 		private async void SaveChanges()
 		{
-
 			IsActive = true;
-			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			User user;
 
 			if (Phonenumber == Session.PhoneNumber && Username == Session.Username)
 			{
-
 				IsActive = false;
 				var dialog = new MessageDialog("Es gibt keine Änderungen");
 				await dialog.ShowAsync();
 				return;
-
 			}
 
 			if (!Equals(Phonenumber, Session.PhoneNumber))
 			{
 				try
 				{
-					user = await client.ChangePhoneNumberAsync(Session.UserID, Phonenumber);
+					user = await Session.Client.ChangePhoneNumberAsync(Session.UserID, Phonenumber);
 					Session.PhoneNumber = Phonenumber = user.PhoneNumber;
 				}
 				catch (FaultException e)
@@ -95,12 +91,11 @@ namespace ZenChat.Settings
 			}
 			if (!Equals(Username, Session.Username))
 			{
-				user = await client.ChangeUsernameAsync(Session.UserID, Username);
+				user = await Session.Client.ChangeUsernameAsync(Session.UserID, Username);
 				Session.Username = Username = user.Name;
 			}
 
-				IsActive = false;
-
+			IsActive = false;
 		}
 
 		[NotifyPropertyChangedInvocator]

@@ -1,31 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:complexType name="PhoneNumberAlreadyExistsException">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:element name="PhoneNumberAlreadyExistsException" nillable="true" type="tns:PhoneNumberAlreadyExistsException" />
-  <xs:complexType name="UserNotFoundException">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:element name="UserNotFoundException" nillable="true" type="tns:UserNotFoundException" />
-  <xs:complexType name="AlreadyFriendException">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:element name="AlreadyFriendException" nillable="true" type="tns:AlreadyFriendException" />
-  <xs:complexType name="ChatNotFoundException">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:element name="ChatNotFoundException" nillable="true" type="tns:ChatNotFoundException" />
-  <xs:complexType name="MemberNotFoundException">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:element name="MemberNotFoundException" nillable="true" type="tns:MemberNotFoundException" />
-  <xs:complexType name="AlreadyMemberException">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:element name="AlreadyMemberException" nillable="true" type="tns:AlreadyMemberException" />
-  <xs:complexType name="NoPermissionException">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:element name="NoPermissionException" nillable="true" type="tns:NoPermissionException" />
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions" elementFormDefault="qualified"
+           targetNamespace="http://schemas.datacontract.org/2004/07/ZenChatService.Exceptions"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:complexType name="PhoneNumberAlreadyExistsException">
+		<xs:sequence />
+	</xs:complexType>
+	<xs:element name="PhoneNumberAlreadyExistsException" nillable="true" type="tns:PhoneNumberAlreadyExistsException" />
+	<xs:complexType name="UserNotFoundException">
+		<xs:sequence />
+	</xs:complexType>
+	<xs:element name="UserNotFoundException" nillable="true" type="tns:UserNotFoundException" />
+	<xs:complexType name="AlreadyFriendException">
+		<xs:sequence />
+	</xs:complexType>
+	<xs:element name="AlreadyFriendException" nillable="true" type="tns:AlreadyFriendException" />
+	<xs:complexType name="ChatNotFoundException">
+		<xs:sequence />
+	</xs:complexType>
+	<xs:element name="ChatNotFoundException" nillable="true" type="tns:ChatNotFoundException" />
+	<xs:complexType name="MemberNotFoundException">
+		<xs:sequence />
+	</xs:complexType>
+	<xs:element name="MemberNotFoundException" nillable="true" type="tns:MemberNotFoundException" />
+	<xs:complexType name="AlreadyMemberException">
+		<xs:sequence />
+	</xs:complexType>
+	<xs:element name="AlreadyMemberException" nillable="true" type="tns:AlreadyMemberException" />
+	<xs:complexType name="NoPermissionException">
+		<xs:sequence />
+	</xs:complexType>
+	<xs:element name="NoPermissionException" nillable="true" type="tns:NoPermissionException" />
 </xs:schema>

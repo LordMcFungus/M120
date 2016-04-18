@@ -5,7 +5,7 @@
 	xmlns:zenChat="using:ZenChat"
 	xmlns:settings="using:ZenChat.Settings"
 	RequestedTheme="Light">
-<Application.Resources>
-		<settings:VisibilityConverter x:Key="BoolToVis"/>
-</Application.Resources>
+	<Application.Resources>
+		<settings:VisibilityConverter x:Key="BoolToVis" />
+	</Application.Resources>
 </Application>

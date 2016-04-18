@@ -14,12 +14,18 @@ namespace ZenChat.Chat
 		private AllFriendsViewModel _allFriendsViewModel;
 		private AllFriendsViewModel _chatMembers;
 
+		public EditGroupChatViewModel(ChatRoom chatroom)
+		{
+			_chatroom = chatroom;
+			Constructor();
+		}
+
 		public AllFriendsViewModel AllFriendsViewModel
 		{
 			get { return _allFriendsViewModel; }
 			private set
 			{
-				_allFriendsViewModel = value; 
+				_allFriendsViewModel = value;
 				OnPropertyChanged();
 			}
 		}
@@ -34,34 +40,27 @@ namespace ZenChat.Chat
 			}
 		}
 
-		public EditGroupChatViewModel(ChatRoom chatroom)
-		{
-			_chatroom = chatroom;
-			Constructor();
-		}
+		public event PropertyChangedEventHandler PropertyChanged;
+
 		public void AddUser()
 		{
-			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			foreach (var user in AllFriendsViewModel.MyFriends.Where(n => n.IsSelected))
 			{
-				client.InviteToChatRoomAsync(Session.UserID, user.User.PhoneNumber, _chatroom.Id);
-			} 
+				Session.Client.InviteToChatRoomAsync(Session.UserID, user.User.PhoneNumber, _chatroom.Id);
+			}
 		}
 
 		public void DeleteUser(User user)
 		{
-
 		}
 
 		private async void Constructor()
 		{
-			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
-			var friends = await client.GetFriendsAsync(Session.UserID);
+			var friends = await Session.Client.GetFriendsAsync(Session.UserID);
 			AllFriendsViewModel = new AllFriendsViewModel(AddUser, () => true, null, friends, true, true, false, false);
-			ChatMembers = new AllFriendsViewModel(() => {}, () => false, (u) => {}, _chatroom.Members.Where(user => user.PhoneNumber != Session.PhoneNumber),false,false,false,true);
+			ChatMembers = new AllFriendsViewModel(() => { }, () => false, u => { },
+				_chatroom.Members.Where(user => user.PhoneNumber != Session.PhoneNumber), false, false, false, true);
 		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
 
 		[NotifyPropertyChangedInvocator]
 		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

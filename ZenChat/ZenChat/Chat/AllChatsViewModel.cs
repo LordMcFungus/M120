@@ -9,12 +9,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Microsoft.Practices.Prism.Commands;
 using ZenChat.Annotations;
 using ZenChat.Models;
-using ZenChat.ZenChatService;
 
 namespace ZenChat.Chat
 {
@@ -22,13 +20,14 @@ namespace ZenChat.Chat
 	{
 		private ChatViewModel _selectedChat;
 		private string _topic = string.Empty;
-		public DelegateCommand CreateGroupChatCommand { get; }
 
 		public AllChatsViewModel()
 		{
 			LoadChats();
 			CreateGroupChatCommand = new DelegateCommand(CreateGroupChatMethod);
 		}
+
+		public DelegateCommand CreateGroupChatCommand { get; }
 
 		public ObservableCollection<ChatViewModel> MyChats { get; } = new ObservableCollection<ChatViewModel>();
 
@@ -45,20 +44,31 @@ namespace ZenChat.Chat
 			}
 		}
 
+		public string Topic
+		{
+			get { return _topic; }
+			set
+			{
+				_topic = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
 		private async void LoadChats()
 		{
-			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
-			var friends = await client.GetFriendsAsync(Session.UserID);
+			var friends = await Session.Client.GetFriendsAsync(Session.UserID);
 
 			var chats = new List<ChatViewModel>();
 			foreach (var friend in friends)
 			{
-				var chat = await client.GetPrivateConversationAsync(Session.UserID, friend.PhoneNumber);
+				var chat = await Session.Client.GetPrivateConversationAsync(Session.UserID, friend.PhoneNumber);
 				var viewModel = new ChatViewModel {PrivateChat = chat};
 				chats.Add(viewModel);
 			}
 
-			var chatrooms = await client.GetAllChatRoomsAsync(Session.UserID);
+			var chatrooms = await Session.Client.GetAllChatRoomsAsync(Session.UserID);
 			chats.AddRange(chatrooms.Select(c => new ChatViewModel {Chatroom = c}));
 
 			foreach (var chat in chats.OrderByDescending(c => c.LastSentMessage))
@@ -73,7 +83,7 @@ namespace ZenChat.Chat
 
 			var textBox = new TextBox();
 
-			var binding = new Binding {Path = new PropertyPath(nameof(Topic)) };
+			var binding = new Binding {Path = new PropertyPath(nameof(Topic))};
 
 			textBox.SetBinding(TextBox.TextProperty, binding);
 
@@ -92,24 +102,11 @@ namespace ZenChat.Chat
 
 		private async void DoOnOkClicked()
 		{
-			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
-			var createdChat = await client.CreateChatRoomAsync(Session.UserID, Topic);
+			var createdChat = await Session.Client.CreateChatRoomAsync(Session.UserID, Topic);
 
 			var rootFrame = Window.Current.Content as Frame;
 			rootFrame?.Navigate(typeof(EditGroupChat), createdChat);
 		}
-
-		public string Topic
-		{
-			get { return _topic; }
-			set
-			{
-				_topic = value;
-				OnPropertyChanged();
-			}
-		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
 
 		[NotifyPropertyChangedInvocator]
 		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

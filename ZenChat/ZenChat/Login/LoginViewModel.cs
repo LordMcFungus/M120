@@ -6,7 +6,6 @@ using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.Prism.Commands;
 using ZenChat.Annotations;
 using ZenChat.Models;
-using ZenChat.ZenChatService;
 
 namespace ZenChat.Login
 {
@@ -56,8 +55,7 @@ namespace ZenChat.Login
 
 		private void Login()
 		{
-			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
-			var user = client.LoginAsync(PhoneNumber, Username);
+			var user = Session.Client.LoginAsync(PhoneNumber, Username);
 			ApplicationData.Current.LocalSettings.Values["UID"] = user.Result.Item1;
 
 			Session.UserID = user.Result.Item1;

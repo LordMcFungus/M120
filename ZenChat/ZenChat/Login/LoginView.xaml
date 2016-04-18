@@ -6,23 +6,23 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance local:LoginViewModel}">
-    <Viewbox>
-	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="0.5*" />
-			<RowDefinition Height="0.5*" />
-			<RowDefinition Height="0.5*" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="0.5*" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
-		</Grid.RowDefinitions>
-		<TextBlock Text="LOGIN/REGISTER" FontSize="32" />
-		<TextBlock Text="Username:" FontSize="25" Grid.Row="2" />
-		<TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="3" />
-		<TextBlock Text="Phone Number:" FontSize="25" Grid.Row="4" />
-		<TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="5" />
-		<Button Content="Login" Command="{Binding LoginCommand}" Grid.Row="6" IsEnabled="True" />
-	</Grid>
-    </Viewbox>
+	<Viewbox>
+		<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="0.5*" />
+				<RowDefinition Height="0.5*" />
+				<RowDefinition Height="0.5*" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="0.5*" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<TextBlock Text="LOGIN/REGISTER" FontSize="32" />
+			<TextBlock Text="Username:" FontSize="25" Grid.Row="2" />
+			<TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="3" />
+			<TextBlock Text="Phone Number:" FontSize="25" Grid.Row="4" />
+			<TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="5" />
+			<Button Content="Login" Command="{Binding LoginCommand}" Grid.Row="6" IsEnabled="True" />
+		</Grid>
+	</Viewbox>
 </Page>

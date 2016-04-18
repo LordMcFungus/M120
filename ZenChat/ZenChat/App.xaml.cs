@@ -55,12 +55,10 @@ namespace ZenChat
 				Window.Current.Content = rootFrame;
 			}
 
+			Session.Client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
+
 			if (rootFrame.Content == null)
 			{
-				// When the navigation stack isn't restored navigate to the first page,
-				// configuring the new page by passing required information as a navigation
-				// parameter
-
 				var id = ApplicationData.Current.LocalSettings.Values["UID"] as int?;
 				if (!id.HasValue)
 				{
@@ -68,19 +66,18 @@ namespace ZenChat
 				}
 				else
 				{
-					DoStuff(rootFrame, id.Value);
+					TryAutoLogin(rootFrame, id.Value);
 				}
 			}
 			// Ensure the current window is active
 			Window.Current.Activate();
 		}
 
-		private static async void DoStuff(INavigate rootFrame, int id)
+		private static async void TryAutoLogin(INavigate rootFrame, int id)
 		{
-			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			try
 			{
-				var user = await client.GetUserFromIdAsync(id);
+				var user = await Session.Client.GetUserFromIdAsync(id);
 				Session.Username = user.Name;
 				Session.PhoneNumber = user.PhoneNumber;
 				Session.UserID = id;

@@ -9,7 +9,7 @@ namespace ZenChat.Friends
 	{
 		public FriendsControl()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 		}
 
 		private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
