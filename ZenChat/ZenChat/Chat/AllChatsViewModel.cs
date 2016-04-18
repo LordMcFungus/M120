@@ -7,6 +7,7 @@ using System.Linq;
 using System.ServiceModel.Description;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Practices.Prism.Commands;
 using ZenChat.Models;
 using ZenChat.ZenChatService;
 
@@ -15,10 +16,12 @@ namespace ZenChat.Chat
 	internal class AllChatsViewModel
 	{
 		private ChatViewModel _selectedChat;
+		public DelegateCommand CreateGroupChat { get; }
 
 		public AllChatsViewModel()
 		{
 			LoadChats();
+			CreateGroupChat = new DelegateCommand(CreateGroupChatMethod);
 		}
 
 		public ObservableCollection<ChatViewModel> MyChats { get; } = new ObservableCollection<ChatViewModel>();
@@ -56,6 +59,18 @@ namespace ZenChat.Chat
 			{
 				MyChats.Add(chat);
 			}
+		}
+
+		private void CreateGroupChatMethod()
+		{
+			/*var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
+			 var chatroom = client.CreateChatRoomAsync(Session.UserID, Title);
+			foreach (var user in MyFriends.Where(n => n.IsSelectet == true))
+			{
+				client.InviteToChatRoomAsync(Session.UserID, user.User.PhoneNumber, chatroom.Id);
+			} */
+			var rootFrame = Window.Current.Content as Frame;
+			rootFrame?.Navigate(typeof());
 		}
 	}
 }

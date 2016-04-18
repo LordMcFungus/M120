@@ -4,18 +4,33 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.UI.Popups;
 using Microsoft.Practices.Prism.Commands;
 using ZenChat.Annotations;
 using ZenChat.Models;
 using ZenChat.ZenChatService;
+using Microsoft.VisualBasic;
 
 namespace ZenChat.Friends
 {
 	internal sealed class AllFriendsViewModel : INotifyPropertyChanged
 	{
 		private string _newFriendPhoneNumber;
+		private bool _isChecked = false;
+
+		public bool IsChecked
+		{
+			get { return _isChecked; }
+			set
+			{
+				_isChecked = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public string Title { get; set; }
 
 		public AllFriendsViewModel()
 		{
@@ -37,6 +52,7 @@ namespace ZenChat.Friends
 		}
 
 		public DelegateCommand AddFriendCommand { get; }
+
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		private bool CanAddFriend()
@@ -83,5 +99,6 @@ namespace ZenChat.Friends
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
+
 	}
 }

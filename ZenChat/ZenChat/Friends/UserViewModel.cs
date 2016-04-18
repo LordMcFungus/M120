@@ -14,6 +14,8 @@ namespace ZenChat.Friends
 
 		public User User { get; }
 
+		public bool IsSelectet { get; set; }
+
 		public DelegateCommand RemoveUserCommand { get; }
 
 	}

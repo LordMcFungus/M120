@@ -22,5 +22,6 @@ namespace ZenChat.Friends
 			ViewModel = new AllFriendsViewModel();
 			DataContext = ViewModel;
 		}
+
 	}
 }
