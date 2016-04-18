@@ -122,6 +122,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Settings\VisibilityConverter.cs" />
     <Compile Include="Chat\AllChatsView.xaml.cs">
       <DependentUpon>AllChatsView.xaml</DependentUpon>
     </Compile>

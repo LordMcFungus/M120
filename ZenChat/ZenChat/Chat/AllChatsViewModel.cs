@@ -3,25 +3,41 @@
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
-using System.ServiceModel.Description;
+using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.Prism.Commands;
+using ZenChat.Annotations;
 using ZenChat.Models;
 using ZenChat.ZenChatService;
 
 namespace ZenChat.Chat
 {
-	internal class AllChatsViewModel
+	internal class AllChatsViewModel : INotifyPropertyChanged
 	{
 		private ChatViewModel _selectedChat;
+		private string _topic = string.Empty;
+		private bool _displayTopic;
 		public DelegateCommand CreateGroupChat { get; }
+		public DelegateCommand EditGroupChat { get; }
 
 		public AllChatsViewModel()
 		{
 			LoadChats();
-			CreateGroupChat = new DelegateCommand(CreateGroupChatMethod);
+			CreateGroupChat = new DelegateCommand(() => DisplayTopic = true);
+			EditGroupChat = new DelegateCommand(CreateGroupChatMethod);
+		}
+
+		public bool DisplayTopic
+		{
+			get { return _displayTopic; }
+			set
+			{
+				_displayTopic = value;
+				OnPropertyChanged();
+			}
 		}
 
 		public ObservableCollection<ChatViewModel> MyChats { get; } = new ObservableCollection<ChatViewModel>();
@@ -61,16 +77,31 @@ namespace ZenChat.Chat
 			}
 		}
 
-		private void CreateGroupChatMethod()
+		private async void CreateGroupChatMethod()
 		{
-			/*var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
-			 var chatroom = client.CreateChatRoomAsync(Session.UserID, Title);
-			foreach (var user in MyFriends.Where(n => n.IsSelectet == true))
-			{
-				client.InviteToChatRoomAsync(Session.UserID, user.User.PhoneNumber, chatroom.Id);
-			} */
+			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
+			var createdChat = await client.CreateChatRoomAsync(Session.UserID, Topic);
+
 			var rootFrame = Window.Current.Content as Frame;
-			rootFrame?.Navigate(typeof(EditGroupChat));
+			rootFrame?.Navigate(typeof(EditGroupChat), createdChat);
+		}
+
+		public string Topic
+		{
+			get { return _topic; }
+			set
+			{
+				_topic = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		[NotifyPropertyChangedInvocator]
+		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }

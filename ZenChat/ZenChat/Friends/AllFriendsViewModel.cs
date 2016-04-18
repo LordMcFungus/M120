@@ -44,10 +44,12 @@ namespace ZenChat.Friends
 		/// <param name="usersToDisplay"></param>
 		/// <param name="allowSelection"></param>
 		/// <param name="displayAddButton"></param>
+		/// <param name="displayAddTextbox"></param>
 		/// <param name="displayX"></param>
-		public AllFriendsViewModel(Action add, Func<bool> canAdd, Action<User> onXClicked, IEnumerable<User> usersToDisplay, bool allowSelection, bool displayAddButton, bool displayX)
+		public AllFriendsViewModel(Action add, Func<bool> canAdd, Action<User> onXClicked, IEnumerable<User> usersToDisplay, bool allowSelection, bool displayAddButton, bool displayAddTextbox, bool displayX)
 		{
 			DisplayAddButton = displayAddButton;
+			DisplayAddTextbox = displayAddTextbox;
 			DisplayRemoveButton = displayX;
 
 			_removeUser = onXClicked;
@@ -58,6 +60,8 @@ namespace ZenChat.Friends
 			}
 			AddFriendCommand = new DelegateCommand(add, canAdd);
 		}
+
+		public bool DisplayAddTextbox { get; private set; }
 
 		public bool DisplayAddButton { get; private set; }
 		public bool DisplayRemoveButton { get; private set; }
