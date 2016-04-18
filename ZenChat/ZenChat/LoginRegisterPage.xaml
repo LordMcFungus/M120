@@ -16,7 +16,7 @@
 		</TransitionCollection>
 	</Page.Transitions>
 
-	<Pivot x:Uid="Pivot" Title="MY APPLICATION" x:Name="pivot" CommonNavigationTransitionInfo.IsStaggerElement="True">
+	<Pivot x:Uid="Pivot" Title="ZenChat" CommonNavigationTransitionInfo.IsStaggerElement="True">
 		<!--Pivot item one-->
 		<PivotItem Header="Login">
 			<login:LoginView />
