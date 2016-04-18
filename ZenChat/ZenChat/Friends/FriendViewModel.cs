@@ -4,9 +4,9 @@ using ZenChat.ZenChatService;
 
 namespace ZenChat.Friends
 {
-	public class UserViewModel
+	public class FriendViewModel
 	{
-		public UserViewModel(User friend, Action<User> removeUser)
+		public FriendViewModel(User friend, Action<User> removeUser)
 		{
 			User = friend;
 			RemoveUserCommand = new DelegateCommand(() => removeUser(User));
