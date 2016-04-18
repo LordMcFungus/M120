@@ -20,8 +20,8 @@
 							<ColumnDefinition />
                             <ColumnDefinition Width="Auto"/>
 						</Grid.ColumnDefinitions>
-						<TextBox Grid.Column="0" Text="{Binding NewFriendPhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-						<Button Grid.Column="1" Content="Add Friend" Command="{Binding AddFriendCommand}" Margin="0,0,0,0" />
+						<TextBox Grid.Column="0" Text="{Binding NewFriendPhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding DisplayAddTextbox, Converter={StaticResource BoolToVis}}"/>
+						<Button Grid.Column="1" Content="Add Friend" Command="{Binding AddFriendCommand}" Margin="0,0,0,0" Visibility="{Binding DisplayAddButton, Converter={StaticResource BoolToVis}}"/>
 					</Grid>
 				</ControlTemplate>
 			</TextBox.Template>
