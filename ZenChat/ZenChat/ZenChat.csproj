@@ -126,6 +126,10 @@
       <DependentUpon>AllChatsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Chat\AllChatsViewModel.cs" />
+    <Compile Include="Chat\EditGroupChatViewModel.cs" />
+    <Compile Include="Chat\EditGroupChat.xaml.cs">
+      <DependentUpon>EditGroupChat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Chat\ChatView.xaml.cs">
       <DependentUpon>ChatView.xaml</DependentUpon>
     </Compile>
@@ -196,6 +200,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Chat\AllChatsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Chat\EditGroupChat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

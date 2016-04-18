@@ -70,7 +70,7 @@ namespace ZenChat.Chat
 				client.InviteToChatRoomAsync(Session.UserID, user.User.PhoneNumber, chatroom.Id);
 			} */
 			var rootFrame = Window.Current.Content as Frame;
-			rootFrame?.Navigate(typeof());
+			rootFrame?.Navigate(typeof(EditGroupChat));
 		}
 	}
 }
