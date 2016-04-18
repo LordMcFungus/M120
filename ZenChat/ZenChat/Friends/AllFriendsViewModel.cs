@@ -2,6 +2,7 @@
 // All rights reserved
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -13,17 +14,35 @@ using ZenChat.ZenChatService;
 
 namespace ZenChat.Friends
 {
-	internal sealed class AllFriendsViewModel : INotifyPropertyChanged
+	public sealed class AllFriendsViewModel : INotifyPropertyChanged
 	{
 		private string _newFriendPhoneNumber;
 
 		public AllFriendsViewModel()
 		{
+			_removeUser = async user =>
+			{
+				var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
+				await client.RemoveFriendAsync(Session.UserID, user.PhoneNumber);
+				LoadFriends();
+			};
+
 			LoadFriends();
 			AddFriendCommand = new DelegateCommand(AddFriend, CanAddFriend);
 		}
 
-		public ObservableCollection<UserViewModel> MyFriends { get; } = new ObservableCollection<UserViewModel>();
+		public AllFriendsViewModel(Action add, Func<bool> canAdd, Action<User> onXClicked, IEnumerable<User> usersToDisplay)
+		{
+			_removeUser = onXClicked;
+
+			foreach (var user in usersToDisplay)
+			{
+				MyFriends.Add(new FriendViewModel(user, onXClicked));
+			}
+			AddFriendCommand = new DelegateCommand(add, canAdd);
+		}
+
+		public ObservableCollection<FriendViewModel> MyFriends { get; } = new ObservableCollection<FriendViewModel>();
 
 		public string NewFriendPhoneNumber
 		{
@@ -44,12 +63,7 @@ namespace ZenChat.Friends
 			return !string.IsNullOrEmpty(NewFriendPhoneNumber);
 		}
 
-		private async void RemoveUser(User user)
-		{
-			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
-			await client.RemoveFriendAsync(Session.UserID, user.PhoneNumber);
-			LoadFriends();
-		}
+		private Action<User> _removeUser;
 
 		private async void AddFriend()
 		{
@@ -58,7 +72,7 @@ namespace ZenChat.Friends
 			{
 				await client.AddFriendAsync(Session.UserID, NewFriendPhoneNumber);
 				var friend = await client.GetUserAsync(NewFriendPhoneNumber);
-				MyFriends.Add(new UserViewModel(friend, RemoveUser));
+				MyFriends.Add(new FriendViewModel(friend, _removeUser));
 			}
 			catch (Exception e)
 			{
@@ -74,7 +88,7 @@ namespace ZenChat.Friends
 			var user = await client.GetFriendsAsync(Session.UserID);
 			foreach (var friend in user)
 			{
-				MyFriends.Add(new UserViewModel(friend, RemoveUser));
+				MyFriends.Add(new FriendViewModel(friend, _removeUser));
 			}
 		}
 
