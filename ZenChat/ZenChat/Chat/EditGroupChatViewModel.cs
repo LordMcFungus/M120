@@ -12,6 +12,7 @@ namespace ZenChat.Chat
 	{
 		private readonly ChatRoom _chatroom;
 		private AllFriendsViewModel _allFriendsViewModel;
+		private AllFriendsViewModel _chatMembers;
 
 		public AllFriendsViewModel AllFriendsViewModel
 		{
@@ -19,6 +20,16 @@ namespace ZenChat.Chat
 			private set
 			{
 				_allFriendsViewModel = value; 
+				OnPropertyChanged();
+			}
+		}
+
+		public AllFriendsViewModel ChatMembers
+		{
+			get { return _chatMembers; }
+			private set
+			{
+				_chatMembers = value;
 				OnPropertyChanged();
 			}
 		}
@@ -46,7 +57,8 @@ namespace ZenChat.Chat
 		{
 			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			var friends = await client.GetFriendsAsync(Session.UserID);
-			AllFriendsViewModel = new AllFriendsViewModel(AddUser, () => true, DeleteUser, friends, true, true, false, false);
+			AllFriendsViewModel = new AllFriendsViewModel(AddUser, () => true, null, friends, true, true, false, false);
+			ChatMembers = new AllFriendsViewModel(() => {}, () => false, (u) => {}, _chatroom.Members.Where(user => user.PhoneNumber != Session.PhoneNumber),false,false,false,true);
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

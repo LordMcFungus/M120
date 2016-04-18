@@ -6,9 +6,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:friends="using:ZenChat.Friends"
-    mc:Ignorable="d">
+    mc:Ignorable="d" d:DataContext="{d:DesignInstance local:EditGroupChatViewModel}">
+    
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <friends:FriendsControl DataContext="{Binding FriendsViewModel}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <friends:AllFriendsView DataContext="{Binding AllFriendsViewModel}" Grid.Column="0"/>
+        <friends:AllFriendsView DataContext="{Binding ChatMembers}" Grid.Column="1"/>
     </Grid>
 </Page>
