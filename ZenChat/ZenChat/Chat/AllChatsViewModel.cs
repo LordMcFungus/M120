@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2016 
 // All rights reserved
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -8,6 +9,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
 using Microsoft.Practices.Prism.Commands;
 using ZenChat.Annotations;
 using ZenChat.Models;
@@ -19,25 +22,12 @@ namespace ZenChat.Chat
 	{
 		private ChatViewModel _selectedChat;
 		private string _topic = string.Empty;
-		private bool _displayTopic;
-		public DelegateCommand CreateGroupChat { get; }
-		public DelegateCommand EditGroupChat { get; }
+		public DelegateCommand CreateGroupChatCommand { get; }
 
 		public AllChatsViewModel()
 		{
 			LoadChats();
-			CreateGroupChat = new DelegateCommand(() => DisplayTopic = true);
-			EditGroupChat = new DelegateCommand(CreateGroupChatMethod);
-		}
-
-		public bool DisplayTopic
-		{
-			get { return _displayTopic; }
-			set
-			{
-				_displayTopic = value;
-				OnPropertyChanged();
-			}
+			CreateGroupChatCommand = new DelegateCommand(CreateGroupChatMethod);
 		}
 
 		public ObservableCollection<ChatViewModel> MyChats { get; } = new ObservableCollection<ChatViewModel>();
@@ -78,6 +68,29 @@ namespace ZenChat.Chat
 		}
 
 		private async void CreateGroupChatMethod()
+		{
+			var panel = new StackPanel();
+
+			var textBox = new TextBox();
+
+			var binding = new Binding {Path = new PropertyPath(nameof(Topic)) };
+
+			textBox.SetBinding(TextBox.TextProperty, binding);
+
+			panel.Children.Add(textBox);
+
+			var dialog = new ContentDialog
+			{
+				Title = "Neuen Chat erstellen",
+				Content = panel,
+				PrimaryButtonCommand = new DelegateCommand(DoOnOkClicked),
+				PrimaryButtonText = "Erstellen"
+			};
+
+			await dialog.ShowAsync();
+		}
+
+		private async void DoOnOkClicked()
 		{
 			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			var createdChat = await client.CreateChatRoomAsync(Session.UserID, Topic);
