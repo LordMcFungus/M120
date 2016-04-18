@@ -50,21 +50,19 @@ namespace ZenChat.Friends
 		{
 			DisplayAddButton = displayAddButton;
 			DisplayAddTextbox = displayAddTextbox;
-			DisplayRemoveButton = displayX;
 
 			_removeUser = onXClicked;
 
 			foreach (var user in usersToDisplay)
 			{
-				MyFriends.Add(new FriendViewModel(user, onXClicked, allowSelection));
+				MyFriends.Add(new FriendViewModel(user, onXClicked, allowSelection, displayX));
 			}
 			AddFriendCommand = new DelegateCommand(add, canAdd);
 		}
 
-		public bool DisplayAddTextbox { get; private set; }
+		public bool DisplayAddTextbox { get; private set; } = true;
 
-		public bool DisplayAddButton { get; private set; }
-		public bool DisplayRemoveButton { get; private set; }
+		public bool DisplayAddButton { get; private set; } = true;
 
 		public ObservableCollection<FriendViewModel> MyFriends { get; } = new ObservableCollection<FriendViewModel>();
 

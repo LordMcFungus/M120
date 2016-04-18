@@ -42,7 +42,7 @@ namespace ZenChat.Chat
 		public void AddUser()
 		{
 			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
-			foreach (var user in AllFriendsViewModel.MyFriends.Where(n => n.IsSelectet))
+			foreach (var user in AllFriendsViewModel.MyFriends.Where(n => n.IsSelected))
 			{
 				client.InviteToChatRoomAsync(Session.UserID, user.User.PhoneNumber, _chatroom.Id);
 			} 
