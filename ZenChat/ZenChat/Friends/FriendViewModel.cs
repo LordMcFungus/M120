@@ -6,15 +6,27 @@ namespace ZenChat.Friends
 {
 	public class FriendViewModel
 	{
-		public FriendViewModel(User friend, Action<User> removeUser)
+		private readonly bool _allowSelection;
+		private bool _isSelected;
+
+		public FriendViewModel(User friend, Action<User> removeUser, bool allowSelection = false)
 		{
 			User = friend;
 			RemoveUserCommand = new DelegateCommand(() => removeUser(User));
+			_allowSelection = allowSelection;
 		}
 
 		public User User { get; }
 
-		public bool IsSelectet { get; set; }
+		public bool IsSelected
+		{
+			get { return _isSelected; }
+			set
+			{
+				if (!_allowSelection) return;
+				_isSelected = value;
+			}
+		}
 
 		public DelegateCommand RemoveUserCommand { get; }
 

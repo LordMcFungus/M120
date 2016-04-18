@@ -9,7 +9,7 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
 	d:DataContext="{d:DesignInstance local:AllFriendsViewModel}">
-	<ListView ItemsSource="{Binding MyFriends}">
+	<ListView ItemsSource="{Binding MyFriends}" SelectionMode="Multiple" SelectionChanged="Selector_OnSelectionChanged" x:Name="Friends">
 		<ListView.ItemContainerStyle>
 			<Style TargetType="ListViewItem">
 				<Setter Property="HorizontalContentAlignment" Value="Stretch" />

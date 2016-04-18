@@ -19,17 +19,6 @@ namespace ZenChat.Friends
 	public sealed class AllFriendsViewModel : INotifyPropertyChanged
 	{
 		private string _newFriendPhoneNumber;
-		private bool _isChecked = false;
-
-		public bool IsChecked
-		{
-			get { return _isChecked; }
-			set
-			{
-				_isChecked = value;
-				OnPropertyChanged();
-			}
-		}
 
 		public string Title { get; set; }
 
@@ -46,16 +35,32 @@ namespace ZenChat.Friends
 			AddFriendCommand = new DelegateCommand(AddFriend, CanAddFriend);
 		}
 
-		public AllFriendsViewModel(Action add, Func<bool> canAdd, Action<User> onXClicked, IEnumerable<User> usersToDisplay)
+		/// <summary>
+		/// Constructor for the advanced mode
+		/// </summary>
+		/// <param name="add"></param>
+		/// <param name="canAdd"></param>
+		/// <param name="onXClicked"></param>
+		/// <param name="usersToDisplay"></param>
+		/// <param name="allowSelection"></param>
+		/// <param name="displayAddButton"></param>
+		/// <param name="displayX"></param>
+		public AllFriendsViewModel(Action add, Func<bool> canAdd, Action<User> onXClicked, IEnumerable<User> usersToDisplay, bool allowSelection, bool displayAddButton, bool displayX)
 		{
+			DisplayAddButton = displayAddButton;
+			DisplayRemoveButton = displayX;
+
 			_removeUser = onXClicked;
 
 			foreach (var user in usersToDisplay)
 			{
-				MyFriends.Add(new FriendViewModel(user, onXClicked));
+				MyFriends.Add(new FriendViewModel(user, onXClicked, allowSelection));
 			}
 			AddFriendCommand = new DelegateCommand(add, canAdd);
 		}
+
+		public bool DisplayAddButton { get; private set; }
+		public bool DisplayRemoveButton { get; private set; }
 
 		public ObservableCollection<FriendViewModel> MyFriends { get; } = new ObservableCollection<FriendViewModel>();
 
@@ -79,7 +84,7 @@ namespace ZenChat.Friends
 			return !string.IsNullOrEmpty(NewFriendPhoneNumber);
 		}
 
-		private Action<User> _removeUser;
+		private readonly Action<User> _removeUser;
 
 		private async void AddFriend()
 		{
