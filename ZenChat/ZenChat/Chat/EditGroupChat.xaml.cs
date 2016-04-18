@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using ZenChat.ZenChatService;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -21,17 +22,11 @@ namespace ZenChat.Chat
 	/// <summary>
 	/// An empty page that can be used on its own or navigated to within a Frame.
 	/// </summary>
-	public sealed partial class EditGroupChat : Page
+	public sealed partial class EditGroupChat
 	{
-
-		private readonly EditGroupChatViewModel ViewModel;
-
 		public EditGroupChat()
 		{
 			InitializeComponent();
-			ViewModel = new EditGroupChatViewModel();
-			DataContext = ViewModel;
-
 			var currentView = SystemNavigationManager.GetForCurrentView();
 			currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
 			currentView.BackRequested += (sender, e) =>
@@ -50,6 +45,7 @@ namespace ZenChat.Chat
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
+			DataContext = new EditGroupChatViewModel(e.Parameter as ChatRoom);
 		}
 	}
 }

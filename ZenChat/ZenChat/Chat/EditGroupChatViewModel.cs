@@ -1,38 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Practices.Prism.Commands;
+﻿using System.Linq;
 using ZenChat.Friends;
 using ZenChat.Models;
 using ZenChat.ZenChatService;
 
 namespace ZenChat.Chat
 {
-	class EditGroupChatViewModel
+	public class EditGroupChatViewModel
 	{
+		private ChatRoom _chatroom;
 		public AllFriendsViewModel AllFriendsViewModel {get; private set; }
-		public DelegateCommand AddUser { get; set; }
 
-		public  void EditGroupChat(ChatRoom chatroom)
+		public EditGroupChatViewModel(ChatRoom chatroom)
 		{
-	
+			_chatroom = chatroom;
+			Constructor();
 		}
-
-		public string ChatTopic { get; set; }
-
-		public void AddUseres()
+		public void AddUser()
 		{
 			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
-			var chatroom = client.CreateChatRoomAsync(Session.UserID, ChatTopic);
-			foreach (var user in AllFriendsViewModel.MyFriends.Where(n => n.IsSelectet == true))
+			foreach (var user in AllFriendsViewModel.MyFriends.Where(n => n.IsSelectet))
 			{
-				client.InviteToChatRoomAsync(Session.UserID, user.User.PhoneNumber, chatroom.Id);
+				client.InviteToChatRoomAsync(Session.UserID, user.User.PhoneNumber, _chatroom.Id);
 			} 
 		}
 
-		public void DeleteUseres(User user)
+		public void DeleteUser(User user)
 		{
 
 		}
@@ -41,8 +33,7 @@ namespace ZenChat.Chat
 		{
 			var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
 			var friends = await client.GetFriendsAsync(Session.UserID);
-			AddUser = new DelegateCommand(AddUseres);
-			AllFriendsViewModel = new AllFriendsViewModel(null, null, DeleteUseres,friends,true,false,false);
+			AllFriendsViewModel = new AllFriendsViewModel(AddUser, () => true, DeleteUser, friends, true, true, false, false);
 		}
 	}
 }
