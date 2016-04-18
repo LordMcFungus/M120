@@ -63,12 +63,7 @@ namespace ZenChat.Chat
 
 		private void CreateGroupChatMethod()
 		{
-			/*var client = new ZenClient(ZenClient.EndpointConfiguration.BasicHttpBinding_Zen);
-			 var chatroom = client.CreateChatRoomAsync(Session.UserID, Title);
-			foreach (var user in MyFriends.Where(n => n.IsSelectet == true))
-			{
-				client.InviteToChatRoomAsync(Session.UserID, user.User.PhoneNumber, chatroom.Id);
-			} */
+			
 			var rootFrame = Window.Current.Content as Frame;
 			rootFrame?.Navigate(typeof(EditGroupChat));
 		}
