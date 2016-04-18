@@ -7,6 +7,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.Prism.Commands;
 using ZenChat.Annotations;
 using ZenChat.Models;
@@ -23,6 +26,13 @@ namespace ZenChat.Chat
 		public ChatViewModel()
 		{
 			SendMessageCommand = new DelegateCommand(SendMessage, CanSendMessage);
+			EditCommand = new DelegateCommand(Edit);
+		}
+
+		private void Edit()
+		{
+			var rootFrame = Window.Current.Content as Frame;
+			rootFrame?.Navigate(typeof(EditGroupChat), Chatroom);
 		}
 
 		public ChatRoom Chatroom
@@ -78,6 +88,10 @@ namespace ZenChat.Chat
 		}
 
 		public DelegateCommand SendMessageCommand { get; }
+
+		public bool IsGroupChat => Chatroom != null;
+
+		public ICommand EditCommand { get; }
 
 		/// <summary>Tritt ein, wenn sich ein Eigenschaftswert ändert.</summary>
 		public event PropertyChangedEventHandler PropertyChanged;

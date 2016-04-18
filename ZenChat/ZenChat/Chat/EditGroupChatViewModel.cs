@@ -50,15 +50,16 @@ namespace ZenChat.Chat
 			}
 		}
 
-		public void DeleteUser(User user)
+		public async void DeleteUser(User user)
 		{
+			await Session.Client.RemoveFromChatRoomAsync(Session.UserID, user.PhoneNumber, _chatroom.Id);
 		}
 
 		private async void Constructor()
 		{
 			var friends = await Session.Client.GetFriendsAsync(Session.UserID);
-			AllFriendsViewModel = new AllFriendsViewModel(AddUser, () => true, null, friends, true, true, false, false);
-			ChatMembers = new AllFriendsViewModel(() => { }, () => false, u => { },
+			AllFriendsViewModel = new AllFriendsViewModel(AddUser, () => true, null, friends.Except(_chatroom.Members), true, true, false, false);
+			ChatMembers = new AllFriendsViewModel(() => { }, () => false, DeleteUser,
 				_chatroom.Members.Where(user => user.PhoneNumber != Session.PhoneNumber), false, false, false, true);
 		}
 

@@ -2,10 +2,8 @@
 // All rights reserved
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -20,11 +18,45 @@ namespace ZenChat.Chat
 	{
 		private ChatViewModel _selectedChat;
 		private string _topic = string.Empty;
+		private int _amountOfWorkers;
 
 		public AllChatsViewModel()
 		{
-			LoadChats();
+			LoadPrivateChats();
+			LoadGroupChats();
 			CreateGroupChatCommand = new DelegateCommand(CreateGroupChatMethod);
+		}
+
+		private async void LoadGroupChats()
+		{
+			AmountOfWorkers++;
+			var chatrooms = await Session.Client.GetAllChatRoomsAsync(Session.UserID);
+			foreach (var chat in chatrooms)
+			{
+				MyChats.Add(new ChatViewModel { Chatroom = chat });
+			}
+			AmountOfWorkers--;
+		}
+
+		private async void LoadPrivateChats()
+		{
+			AmountOfWorkers++;
+			var friends = await Session.Client.GetFriendsAsync(Session.UserID);
+
+			foreach (var friend in friends)
+			{
+				LoadChatForFriend(friend.PhoneNumber);
+			}
+			AmountOfWorkers--;
+		}
+
+		private async void LoadChatForFriend(string phone)
+		{
+			AmountOfWorkers++;
+			var chat = await Session.Client.GetPrivateConversationAsync(Session.UserID, phone);
+			var viewModel = new ChatViewModel { PrivateChat = chat };
+			MyChats.Add(viewModel);
+			AmountOfWorkers--;
 		}
 
 		public DelegateCommand CreateGroupChatCommand { get; }
@@ -56,26 +88,17 @@ namespace ZenChat.Chat
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		private async void LoadChats()
+		private int AmountOfWorkers
 		{
-			var friends = await Session.Client.GetFriendsAsync(Session.UserID);
-
-			var chats = new List<ChatViewModel>();
-			foreach (var friend in friends)
+			get { return _amountOfWorkers; }
+			set
 			{
-				var chat = await Session.Client.GetPrivateConversationAsync(Session.UserID, friend.PhoneNumber);
-				var viewModel = new ChatViewModel {PrivateChat = chat};
-				chats.Add(viewModel);
-			}
-
-			var chatrooms = await Session.Client.GetAllChatRoomsAsync(Session.UserID);
-			chats.AddRange(chatrooms.Select(c => new ChatViewModel {Chatroom = c}));
-
-			foreach (var chat in chats.OrderByDescending(c => c.LastSentMessage))
-			{
-				MyChats.Add(chat);
+				_amountOfWorkers = value;
+				OnPropertyChanged(nameof(Working));
 			}
 		}
+
+		public bool Working => AmountOfWorkers > 0;
 
 		private async void CreateGroupChatMethod()
 		{
