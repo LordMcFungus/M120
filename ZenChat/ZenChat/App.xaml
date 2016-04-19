@@ -7,5 +7,6 @@
 	RequestedTheme="Light">
 	<Application.Resources>
 		<settings:VisibilityConverter x:Key="BoolToVis" />
+		<settings:HaeckenConverter x:Key="ListToVis" />
 	</Application.Resources>
 </Application>

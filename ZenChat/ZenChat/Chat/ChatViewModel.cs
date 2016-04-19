@@ -22,7 +22,7 @@ namespace ZenChat.Chat
 		private ChatRoom _chatRoom;
 		private string _newMessageText;
 		private PrivateConversation _privateChat;
-
+		
 		public ChatViewModel()
 		{
 			SendMessageCommand = new DelegateCommand(SendMessage, CanSendMessage);
@@ -123,6 +123,7 @@ namespace ZenChat.Chat
 			NewMessageText = string.Empty;
 
 			LoadMessages(chat.Messages);
+
 		}
 
 		private void LoadMessages(IEnumerable<ChatMessage> messages)
