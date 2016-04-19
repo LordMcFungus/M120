@@ -106,9 +106,7 @@ namespace ZenChat.Chat
 
 			var textBox = new TextBox();
 
-			var binding = new Binding {Path = new PropertyPath(nameof(Topic))};
-
-			textBox.SetBinding(TextBox.TextProperty, binding);
+			textBox.TextChanged += (sender, e) => { Topic = textBox.Text; };
 
 			panel.Children.Add(textBox);
 

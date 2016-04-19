@@ -2,10 +2,19 @@
 	x:Class="ZenChat.App"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:zenChat="using:ZenChat"
 	xmlns:settings="using:ZenChat.Settings"
-	RequestedTheme="Light">
+	RequestedTheme="Dark">
 	<Application.Resources>
 		<settings:VisibilityConverter x:Key="BoolToVis" />
+		<Style TargetType="TextBox">
+			<Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
+		</Style>
+		<Style TargetType="TextBlock">
+			<Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
+		</Style>
+		<Style TargetType="Pivot">
+			<Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
+			<Setter Property="Background" Value="{StaticResource ApplicationPageBackgroundThemeBrush}"/>
+		</Style>
 	</Application.Resources>
 </Application>
