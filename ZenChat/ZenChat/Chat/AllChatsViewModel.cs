@@ -129,6 +129,10 @@ namespace ZenChat.Chat
 
 			var rootFrame = Window.Current.Content as Frame;
 			rootFrame?.Navigate(typeof(EditGroupChat), createdChat);
+
+			LoadPrivateChats();
+			LoadGroupChats();
+
 		}
 
 		[NotifyPropertyChangedInvocator]

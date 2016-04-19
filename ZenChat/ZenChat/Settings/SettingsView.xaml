@@ -6,31 +6,21 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance local:SettingsViewModel}">
-	<Viewbox Stretch="Fill">
-		<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition />
-				<ColumnDefinition />
-			</Grid.ColumnDefinitions>
-			<Grid.RowDefinitions>
-				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition />
-			</Grid.RowDefinitions>
-			<TextBlock Text="Account Settings" FontSize="32" Grid.Row="0" />
-			<ProgressRing Grid.Row="1" Grid.RowSpan="6" Grid.Column="0" IsActive="{Binding IsActive}" Height="100" Width="100" />
-			<TextBlock Text="Username:" FontSize="25" Grid.Row="3" Grid.Column="0" />
-			<TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="3" Grid.Column="1"
-			         Width="200" />
-			<TextBlock Text="Phone Number:" FontSize="25" Grid.Row="5" Grid.Column="0" />
-			<TextBox Text="{Binding Phonenumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="5" Grid.Column="1"
-			         Width="200" />
-			<Button Command="{Binding Change}" Content="Save Changes" Grid.Row="7" IsEnabled="True" />
-		</Grid>
-	</Viewbox>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ProgressRing Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" IsActive="{Binding IsActive}" />
+        <TextBlock Text="Username:" Grid.Row="0" Grid.Column="0" />
+        <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" Margin="0,0,0,5"/>
+        <TextBlock Text="Phone Number:" Grid.Row="1" Grid.Column="0" />
+        <TextBox Text="{Binding Phonenumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5"/>
+        <Button Command="{Binding Change}" Content="Save Changes" Grid.Row="2" IsEnabled="True" Grid.Column="0"/>
+    </Grid>
 </Page>
