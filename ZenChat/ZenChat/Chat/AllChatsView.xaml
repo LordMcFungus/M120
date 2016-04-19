@@ -8,7 +8,7 @@
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance local:AllChatsViewModel}">
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto" />
 			<RowDefinition />
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
@@ -46,7 +46,8 @@
 						<TextBlock Text="{Binding LastSentUser.Name}" TextTrimming="CharacterEllipsis" Grid.Column="1" />
 						<TextBlock Text="{Binding LastSentMessage}" TextTrimming="CharacterEllipsis" Grid.Column="2" />
 						<TextBlock Text="{Binding UnreadMessages}" Grid.Column="3" />
-						<Button Content="🔧"  Grid.Column="4" Margin="10, 0" Visibility="{Binding IsGroupChat, Converter={StaticResource BoolToVis}}" Command="{Binding EditCommand}"/>
+						<Button Content="🔧" Grid.Column="4" Margin="10, 0"
+						        Visibility="{Binding IsGroupChat, Converter={StaticResource BoolToVis}}" Command="{Binding EditCommand}" />
 					</Grid>
 				</DataTemplate>
 			</ListView.ItemTemplate>

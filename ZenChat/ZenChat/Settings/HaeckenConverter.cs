@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel.Channels;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Copyright (c) 2016 
+// All rights reserved
+
+using System;
 using Windows.UI.Xaml.Data;
 using ZenChat.ZenChatService;
 
@@ -18,24 +16,18 @@ namespace ZenChat.Settings
 			{
 				return string.Empty;
 			}
-			else
+			var sentTo = message.SentTo.Count;
+			var arrivedAt = message.ArrivedAt.Count;
+			var readBy = message.ReadBy.Count;
+			if (readBy == sentTo)
 			{
-				var sentTo = message.SentTo.Count;
-				var arrivedAt = message.ArrivedAt.Count;
-				var readBy = message.ReadBy.Count;
-				if (readBy == sentTo)
-				{
-					return "✓✓✓";
-				}
-				else if (arrivedAt == sentTo)
-				{
-					return "✓✓";
-				}
-				else
-				{
-					return "✓";
-				}
+				return "✓✓✓";
 			}
+			if (arrivedAt == sentTo)
+			{
+				return "✓✓";
+			}
+			return "✓";
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, string language)

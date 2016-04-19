@@ -1,4 +1,7 @@
-﻿using Windows.UI.Core;
+﻿// Copyright (c) 2016 
+// All rights reserved
+
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;

@@ -22,17 +22,11 @@ namespace ZenChat.Chat
 		private ChatRoom _chatRoom;
 		private string _newMessageText;
 		private PrivateConversation _privateChat;
-		
+
 		public ChatViewModel()
 		{
 			SendMessageCommand = new DelegateCommand(SendMessage, CanSendMessage);
 			EditCommand = new DelegateCommand(Edit);
-		}
-
-		private void Edit()
-		{
-			var rootFrame = Window.Current.Content as Frame;
-			rootFrame?.Navigate(typeof(EditGroupChat), Chatroom);
 		}
 
 		public ChatRoom Chatroom
@@ -96,6 +90,12 @@ namespace ZenChat.Chat
 		/// <summary>Tritt ein, wenn sich ein Eigenschaftswert ändert.</summary>
 		public event PropertyChangedEventHandler PropertyChanged;
 
+		private void Edit()
+		{
+			var rootFrame = Window.Current.Content as Frame;
+			rootFrame?.Navigate(typeof (EditGroupChat), Chatroom);
+		}
+
 		private bool CanSendMessage()
 		{
 			return !string.IsNullOrEmpty(NewMessageText);
@@ -106,24 +106,18 @@ namespace ZenChat.Chat
 			dynamic chat;
 			if (Chatroom != null)
 			{
-				await Session.Client.WriteGroupChatMessageAsync(Session.UserID, Chatroom.Id, NewMessageText);
-				chat = await Session.Client.GetChatRoomAsync(Chatroom.Id, Session.UserID);
+				chat = await Session.Client.WriteGroupChatMessageAsync(Session.UserID, Chatroom.Id, NewMessageText);
 			}
 			else
 			{
-				await
+				chat = await
 					Session.Client.WritePrivateChatMessageAsync(Session.UserID,
 						PrivateChat.Members.First(m => !Equals(m.PhoneNumber, Session.PhoneNumber)).PhoneNumber, NewMessageText);
-				chat =
-					await
-						Session.Client.GetPrivateConversationAsync(Session.UserID,
-							PrivateChat.Members.First(m => !Equals(m.PhoneNumber, Session.PhoneNumber)).PhoneNumber);
 			}
 
 			NewMessageText = string.Empty;
 
 			LoadMessages(chat.Messages);
-
 		}
 
 		private void LoadMessages(IEnumerable<ChatMessage> messages)

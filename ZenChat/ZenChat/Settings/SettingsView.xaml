@@ -6,21 +6,23 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance local:SettingsViewModel}">
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <ProgressRing Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" IsActive="{Binding IsActive}" />
-        <TextBlock Text="Username:" Grid.Row="0" Grid.Column="0" />
-        <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" Margin="0,0,0,5"/>
-        <TextBlock Text="Phone Number:" Grid.Row="1" Grid.Column="0" />
-        <TextBox Text="{Binding Phonenumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5"/>
-        <Button Command="{Binding Change}" Content="Save Changes" Grid.Row="2" IsEnabled="True" Grid.Column="0"/>
-    </Grid>
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<ProgressRing Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" IsActive="{Binding IsActive}" />
+		<TextBlock Text="Username:" Grid.Row="0" Grid.Column="0" />
+		<TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="0" Grid.Column="1"
+		         Margin="0,0,0,5" />
+		<TextBlock Text="Phone Number:" Grid.Row="1" Grid.Column="0" />
+		<TextBox Text="{Binding Phonenumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="1" Grid.Column="1"
+		         Margin="0,0,0,5" />
+		<Button Command="{Binding Change}" Content="Save Changes" Grid.Row="2" IsEnabled="True" Grid.Column="0" />
+	</Grid>
 </Page>

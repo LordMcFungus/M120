@@ -1,223 +1,250 @@
-<?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:i0="https://zenchatservice.azurewebsites.net/ZenChat.svc" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ZenChat" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsdl:import namespace="https://zenchatservice.azurewebsites.net/ZenChat.svc" location="http://zenchatservice.azurewebsites.net/ZenChat.svc?wsdl=wsdl0" />
-  <wsdl:types />
-  <wsdl:binding name="BasicHttpBinding_Zen" type="i0:Zen">
-    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="ChangeUsername">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ChangeUsername" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ChangePhoneNumber">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ChangePhoneNumber" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-      <wsdl:fault name="PhoneNumberAlreadyExistsExceptionFault">
-        <soap:fault use="literal" name="PhoneNumberAlreadyExistsExceptionFault" namespace="" />
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="GetUser">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetUser" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-      <wsdl:fault name="UserNotFoundExceptionFault">
-        <soap:fault use="literal" name="UserNotFoundExceptionFault" namespace="" />
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="GetUserFromId">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetUserFromId" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-      <wsdl:fault name="UserNotFoundExceptionFault">
-        <soap:fault use="literal" name="UserNotFoundExceptionFault" namespace="" />
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="Login">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/Login" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetFriends">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetFriends" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AddFriend">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/AddFriend" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-      <wsdl:fault name="UserNotFoundExceptionFault">
-        <soap:fault use="literal" name="UserNotFoundExceptionFault" namespace="" />
-      </wsdl:fault>
-      <wsdl:fault name="AlreadyFriendExceptionFault">
-        <soap:fault use="literal" name="AlreadyFriendExceptionFault" namespace="" />
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="RemoveFriend">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFriend" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-      <wsdl:fault name="UserNotFoundExceptionFault">
-        <soap:fault use="literal" name="UserNotFoundExceptionFault" namespace="" />
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="GetAllChatRooms">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetAllChatRooms" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetChatRoom">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetChatRoom" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-      <wsdl:fault name="ChatNotFoundExceptionFault">
-        <soap:fault use="literal" name="ChatNotFoundExceptionFault" namespace="" />
-      </wsdl:fault>
-      <wsdl:fault name="MemberNotFoundExceptionFault">
-        <soap:fault use="literal" name="MemberNotFoundExceptionFault" namespace="" />
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="CreateChatRoom">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/CreateChatRoom" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InviteToChatRoom">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/InviteToChatRoom" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-      <wsdl:fault name="AlreadyMemberExceptionFault">
-        <soap:fault use="literal" name="AlreadyMemberExceptionFault" namespace="" />
-      </wsdl:fault>
-      <wsdl:fault name="NoPermissionExceptionFault">
-        <soap:fault use="literal" name="NoPermissionExceptionFault" namespace="" />
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="RemoveFromChatRoom">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFromChatRoom" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-      <wsdl:fault name="MemberNotFoundExceptionFault">
-        <soap:fault use="literal" name="MemberNotFoundExceptionFault" namespace="" />
-      </wsdl:fault>
-      <wsdl:fault name="NoPermissionExceptionFault">
-        <soap:fault use="literal" name="NoPermissionExceptionFault" namespace="" />
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="WriteGroupChatMessage">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WriteGroupChatMessage" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-      <wsdl:fault name="ChatNotFoundExceptionFault">
-        <soap:fault use="literal" name="ChatNotFoundExceptionFault" namespace="" />
-      </wsdl:fault>
-      <wsdl:fault name="NoPermissionExceptionFault">
-        <soap:fault use="literal" name="NoPermissionExceptionFault" namespace="" />
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="GetPrivateConversation">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetPrivateConversation" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-      <wsdl:fault name="UserNotFoundExceptionFault">
-        <soap:fault use="literal" name="UserNotFoundExceptionFault" namespace="" />
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="WritePrivateChatMessage">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WritePrivateChatMessage" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-      <wsdl:fault name="UserNotFoundExceptionFault">
-        <soap:fault use="literal" name="UserNotFoundExceptionFault" namespace="" />
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="ReadChatMessage">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ReadChatMessage" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ReceiveChatMessage">
-      <soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ReceiveChatMessage" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:service name="ZenChat">
-    <wsdl:port name="BasicHttpBinding_Zen" binding="tns:BasicHttpBinding_Zen">
-      <soap:address location="http://zenchatservice.azurewebsites.net/ZenChat.svc" />
-    </wsdl:port>
-  </wsdl:service>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
+                  xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/"
+                  xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
+                  xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+                  xmlns:i0="https://zenchatservice.azurewebsites.net/ZenChat.svc"
+                  xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+                  xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ZenChat" targetNamespace="http://tempuri.org/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	<wsdl:import namespace="https://zenchatservice.azurewebsites.net/ZenChat.svc"
+	             location="http://zenchatservice.azurewebsites.net/ZenChat.svc?wsdl=wsdl0" />
+	<wsdl:types />
+	<wsdl:binding name="BasicHttpBinding_Zen" type="i0:Zen">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="ChangeUsername">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ChangeUsername"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ChangePhoneNumber">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ChangePhoneNumber"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="PhoneNumberAlreadyExistsExceptionFault">
+				<soap:fault use="literal" name="PhoneNumberAlreadyExistsExceptionFault" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="GetUser">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetUser" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="UserNotFoundExceptionFault">
+				<soap:fault use="literal" name="UserNotFoundExceptionFault" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="GetUserFromId">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetUserFromId" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="UserNotFoundExceptionFault">
+				<soap:fault use="literal" name="UserNotFoundExceptionFault" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="Login">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/Login" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetFriends">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetFriends" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AddFriend">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/AddFriend" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="UserNotFoundExceptionFault">
+				<soap:fault use="literal" name="UserNotFoundExceptionFault" namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="AlreadyFriendExceptionFault">
+				<soap:fault use="literal" name="AlreadyFriendExceptionFault" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveFriend">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFriend" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="UserNotFoundExceptionFault">
+				<soap:fault use="literal" name="UserNotFoundExceptionFault" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="GetAllChatRooms">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetAllChatRooms"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetChatRoom">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetChatRoom" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="ChatNotFoundExceptionFault">
+				<soap:fault use="literal" name="ChatNotFoundExceptionFault" namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="MemberNotFoundExceptionFault">
+				<soap:fault use="literal" name="MemberNotFoundExceptionFault" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="CreateChatRoom">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/CreateChatRoom"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="InviteToChatRoom">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/InviteToChatRoom"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="AlreadyMemberExceptionFault">
+				<soap:fault use="literal" name="AlreadyMemberExceptionFault" namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="NoPermissionExceptionFault">
+				<soap:fault use="literal" name="NoPermissionExceptionFault" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="RemoveFromChatRoom">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/RemoveFromChatRoom"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="MemberNotFoundExceptionFault">
+				<soap:fault use="literal" name="MemberNotFoundExceptionFault" namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="NoPermissionExceptionFault">
+				<soap:fault use="literal" name="NoPermissionExceptionFault" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="WriteGroupChatMessage">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WriteGroupChatMessage"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="ChatNotFoundExceptionFault">
+				<soap:fault use="literal" name="ChatNotFoundExceptionFault" namespace="" />
+			</wsdl:fault>
+			<wsdl:fault name="NoPermissionExceptionFault">
+				<soap:fault use="literal" name="NoPermissionExceptionFault" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="GetPrivateConversation">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/GetPrivateConversation"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="UserNotFoundExceptionFault">
+				<soap:fault use="literal" name="UserNotFoundExceptionFault" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="WritePrivateChatMessage">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/WritePrivateChatMessage"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="UserNotFoundExceptionFault">
+				<soap:fault use="literal" name="UserNotFoundExceptionFault" namespace="" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="ReadChatMessage">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ReadChatMessage"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ReceiveChatMessage">
+			<soap:operation soapAction="https://zenchatservice.azurewebsites.net/ZenChat.svc/Zen/ReceiveChatMessage"
+			                style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ZenChat">
+		<wsdl:port name="BasicHttpBinding_Zen" binding="tns:BasicHttpBinding_Zen">
+			<soap:address location="http://zenchatservice.azurewebsites.net/ZenChat.svc" />
+		</wsdl:port>
+	</wsdl:service>
 </wsdl:definitions>

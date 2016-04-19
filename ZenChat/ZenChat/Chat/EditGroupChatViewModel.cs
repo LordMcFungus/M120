@@ -1,4 +1,7 @@
-﻿using System.ComponentModel;
+﻿// Copyright (c) 2016 
+// All rights reserved
+
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using ZenChat.Annotations;
@@ -10,9 +13,9 @@ namespace ZenChat.Chat
 {
 	public class EditGroupChatViewModel : INotifyPropertyChanged
 	{
-		private ChatRoom _chatroom;
 		private AllFriendsViewModel _allFriendsViewModel;
 		private AllFriendsViewModel _chatMembers;
+		private ChatRoom _chatroom;
 
 		public EditGroupChatViewModel(ChatRoom chatroom)
 		{
@@ -69,7 +72,8 @@ namespace ZenChat.Chat
 			AllFriendsViewModel = null;
 			ChatMembers = null;
 			var friends = await Session.Client.GetFriendsAsync(Session.UserID);
-			AllFriendsViewModel = new AllFriendsViewModel(AddUser, () => true, null, friends.Where(f => !_chatroom.Members.Select(m => m.PhoneNumber).Contains(f.PhoneNumber)), true, true, false, false);
+			AllFriendsViewModel = new AllFriendsViewModel(AddUser, () => true, null,
+				friends.Where(f => !_chatroom.Members.Select(m => m.PhoneNumber).Contains(f.PhoneNumber)), true, true, false, false);
 			ChatMembers = new AllFriendsViewModel(() => { }, () => false, DeleteUser,
 				_chatroom.Members.Where(user => user.PhoneNumber != Session.PhoneNumber), false, false, false, true);
 		}

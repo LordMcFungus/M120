@@ -62,7 +62,7 @@ namespace ZenChat
 				var id = ApplicationData.Current.LocalSettings.Values["UID"] as int?;
 				if (!id.HasValue)
 				{
-					rootFrame.Navigate(typeof(LoginRegisterPage), e.Arguments);
+					rootFrame.Navigate(typeof (LoginRegisterPage), e.Arguments);
 				}
 				else
 				{
@@ -81,12 +81,12 @@ namespace ZenChat
 				Session.Username = user.Name;
 				Session.PhoneNumber = user.PhoneNumber;
 				Session.UserID = id;
-				rootFrame.Navigate(typeof(MainPage));
+				rootFrame.Navigate(typeof (MainPage));
 			}
 			catch (Exception)
 			{
 				//Auto-Login failed
-				rootFrame.Navigate(typeof(LoginRegisterPage));
+				rootFrame.Navigate(typeof (LoginRegisterPage));
 			}
 		}
 

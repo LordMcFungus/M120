@@ -7,7 +7,6 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
 using Microsoft.Practices.Prism.Commands;
 using ZenChat.Annotations;
 using ZenChat.Models;
@@ -16,9 +15,9 @@ namespace ZenChat.Chat
 {
 	internal class AllChatsViewModel : INotifyPropertyChanged
 	{
+		private int _amountOfWorkers;
 		private ChatViewModel _selectedChat;
 		private string _topic = string.Empty;
-		private int _amountOfWorkers;
 
 		public AllChatsViewModel()
 		{
@@ -27,13 +26,54 @@ namespace ZenChat.Chat
 			CreateGroupChatCommand = new DelegateCommand(CreateGroupChatMethod);
 		}
 
+		public DelegateCommand CreateGroupChatCommand { get; }
+
+		public ObservableCollection<ChatViewModel> MyChats { get; } = new ObservableCollection<ChatViewModel>();
+
+		public ChatViewModel SelectedChat
+		{
+			get { return _selectedChat; }
+			set
+			{
+				_selectedChat = value;
+				_selectedChat.ReadMessages();
+
+				var rootFrame = Window.Current.Content as Frame;
+				rootFrame?.Navigate(typeof (ChatView), _selectedChat);
+			}
+		}
+
+		public string Topic
+		{
+			get { return _topic; }
+			set
+			{
+				_topic = value;
+				OnPropertyChanged();
+			}
+		}
+
+		private int AmountOfWorkers
+		{
+			get { return _amountOfWorkers; }
+			set
+			{
+				_amountOfWorkers = value;
+				OnPropertyChanged(nameof(Working));
+			}
+		}
+
+		public bool Working => AmountOfWorkers > 0;
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
 		private async void LoadGroupChats()
 		{
 			AmountOfWorkers++;
 			var chatrooms = await Session.Client.GetAllChatRoomsAsync(Session.UserID);
 			foreach (var chat in chatrooms)
 			{
-				MyChats.Add(new ChatViewModel { Chatroom = chat });
+				MyChats.Add(new ChatViewModel {Chatroom = chat});
 			}
 			AmountOfWorkers--;
 		}
@@ -54,51 +94,10 @@ namespace ZenChat.Chat
 		{
 			AmountOfWorkers++;
 			var chat = await Session.Client.GetPrivateConversationAsync(Session.UserID, phone);
-			var viewModel = new ChatViewModel { PrivateChat = chat };
+			var viewModel = new ChatViewModel {PrivateChat = chat};
 			MyChats.Add(viewModel);
 			AmountOfWorkers--;
 		}
-
-		public DelegateCommand CreateGroupChatCommand { get; }
-
-		public ObservableCollection<ChatViewModel> MyChats { get; } = new ObservableCollection<ChatViewModel>();
-
-		public ChatViewModel SelectedChat
-		{
-			get { return _selectedChat; }
-			set
-			{
-				_selectedChat = value;
-				_selectedChat.ReadMessages();
-
-				var rootFrame = Window.Current.Content as Frame;
-				rootFrame?.Navigate(typeof(ChatView), _selectedChat);
-			}
-		}
-
-		public string Topic
-		{
-			get { return _topic; }
-			set
-			{
-				_topic = value;
-				OnPropertyChanged();
-			}
-		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		private int AmountOfWorkers
-		{
-			get { return _amountOfWorkers; }
-			set
-			{
-				_amountOfWorkers = value;
-				OnPropertyChanged(nameof(Working));
-			}
-		}
-
-		public bool Working => AmountOfWorkers > 0;
 
 		private async void CreateGroupChatMethod()
 		{
@@ -126,11 +125,10 @@ namespace ZenChat.Chat
 			var createdChat = await Session.Client.CreateChatRoomAsync(Session.UserID, Topic);
 
 			var rootFrame = Window.Current.Content as Frame;
-			rootFrame?.Navigate(typeof(EditGroupChat), createdChat);
+			rootFrame?.Navigate(typeof (EditGroupChat), createdChat);
 
 			LoadPrivateChats();
 			LoadGroupChats();
-
 		}
 
 		[NotifyPropertyChangedInvocator]

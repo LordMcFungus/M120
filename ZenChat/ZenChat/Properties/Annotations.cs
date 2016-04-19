@@ -352,7 +352,7 @@ namespace ZenChat.Annotations
 	/// </code>
 	/// </example>
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-	[BaseTypeRequired(typeof(Attribute))]
+	[BaseTypeRequired(typeof (Attribute))]
 	public sealed class BaseTypeRequiredAttribute : Attribute
 	{
 		public BaseTypeRequiredAttribute([NotNull] Type baseType)

@@ -18,7 +18,9 @@
 		</TransitionCollection>
 	</Page.Transitions>
 
-	<Pivot x:Uid="Pivot" Title="ZenChat" CommonNavigationTransitionInfo.IsStaggerElement="True" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}">
+	<Pivot x:Uid="Pivot" Title="ZenChat" CommonNavigationTransitionInfo.IsStaggerElement="True"
+	       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+	       Foreground="{ThemeResource ApplicationForegroundThemeBrush}">
 		<!--Pivot item one-->
 		<PivotItem Header="Chats">
 			<chat:AllChatsView />

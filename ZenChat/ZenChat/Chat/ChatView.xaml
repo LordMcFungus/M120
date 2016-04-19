@@ -23,7 +23,7 @@
 					<StackPanel HorizontalAlignment="Stretch">
 						<TextBlock Text="{Binding Message}" HorizontalAlignment="Left" />
 						<TextBlock Text="{Binding Author.Name}" FontSize="12" HorizontalAlignment="Right" />
-						<TextBlock Text="{Binding Converter={StaticResource ListToVis}}"/>
+						<TextBlock Text="{Binding Converter={StaticResource ListToVis}}" />
 					</StackPanel>
 				</DataTemplate>
 			</ListView.ItemTemplate>

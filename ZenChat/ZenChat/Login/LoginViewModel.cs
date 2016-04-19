@@ -1,4 +1,7 @@
-﻿using System.ComponentModel;
+﻿// Copyright (c) 2016 
+// All rights reserved
+
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.Storage;
 using Windows.UI.Xaml;
@@ -66,7 +69,7 @@ namespace ZenChat.Login
 
 		private void ChangeWindow()
 		{
-			((Frame) Window.Current.Content).Navigate(typeof(MainPage));
+			((Frame) Window.Current.Content).Navigate(typeof (MainPage));
 		}
 
 		/// <summary>

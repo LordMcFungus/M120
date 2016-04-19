@@ -3,18 +3,18 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:settings="using:ZenChat.Settings"
-	RequestedTheme="Dark">
+	RequestedTheme="Light">
 	<Application.Resources>
 		<settings:VisibilityConverter x:Key="BoolToVis" />
 		<Style TargetType="TextBox">
-			<Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
+			<Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}" />
 		</Style>
 		<Style TargetType="TextBlock">
-			<Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
+			<Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}" />
 		</Style>
 		<Style TargetType="Pivot">
-			<Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
-			<Setter Property="Background" Value="{StaticResource ApplicationPageBackgroundThemeBrush}"/>
+			<Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}" />
+			<Setter Property="Background" Value="{StaticResource ApplicationPageBackgroundThemeBrush}" />
 		</Style>
 		<settings:HaeckenConverter x:Key="ListToVis" />
 	</Application.Resources>

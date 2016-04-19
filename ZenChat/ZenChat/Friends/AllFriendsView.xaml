@@ -5,7 +5,7 @@
 	xmlns:local="using:ZenChat.Friends"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance local:AllFriendsViewModel}" >
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance local:AllFriendsViewModel}">
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*" />
@@ -18,9 +18,9 @@
 				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
 			<TextBox Grid.Column="0" Text="{Binding NewFriendPhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-						         Visibility="{Binding DisplayAddTextbox, Converter={StaticResource BoolToVis}}" />
+			         Visibility="{Binding DisplayAddTextbox, Converter={StaticResource BoolToVis}}" />
 			<Button Grid.Column="1" Content="Add Friend" Command="{Binding AddFriendCommand}"
-						        Visibility="{Binding DisplayAddButton, Converter={StaticResource BoolToVis}}" />
+			        Visibility="{Binding DisplayAddButton, Converter={StaticResource BoolToVis}}" />
 		</Grid>
 	</Grid>
 </Page>

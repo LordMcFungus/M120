@@ -1,4 +1,7 @@
-﻿using ZenChat.ZenChatService;
+﻿// Copyright (c) 2016 
+// All rights reserved
+
+using ZenChat.ZenChatService;
 
 namespace ZenChat.Models
 {

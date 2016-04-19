@@ -334,8 +334,8 @@ namespace ZenChat.ZenChatService {
                 }
             }
         }
-
-	    public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
