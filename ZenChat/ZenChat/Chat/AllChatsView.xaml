@@ -13,18 +13,20 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 		<ProgressRing IsActive="{Binding Working}" Grid.RowSpan="3" />
-		<Grid Grid.Row="0" Margin="0, 0, 0, 5">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*" />
-				<ColumnDefinition Width="*" />
-				<ColumnDefinition Width="*" />
-				<ColumnDefinition Width="Auto" />
-			</Grid.ColumnDefinitions>
-			<TextBlock Text="Chat Name" TextTrimming="CharacterEllipsis" Grid.Column="0" />
-			<TextBlock Text="Letzter Autor" TextTrimming="CharacterEllipsis" Grid.Column="1" />
-			<TextBlock Text="Letzte Nachricht" TextTrimming="CharacterEllipsis" Grid.Column="2" />
-			<TextBlock Text="Ungelesene Nachrichten" Grid.Column="3" />
-		</Grid>
+		<Viewbox Grid.Row="0" Stretch="UniformToFill">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+				<TextBlock Text="Chat Name" TextTrimming="CharacterEllipsis" Grid.Column="0" Margin="0, 0, 10, 0"/>
+				<TextBlock Text="Letzer Autor" TextTrimming="CharacterEllipsis" Grid.Column="1" Margin="10, 0"/>
+				<TextBlock Text="Letztes Datum" TextTrimming="CharacterEllipsis" Grid.Column="2" Margin="10, 0"/>
+				<TextBlock Text="Ungelesene Nachrichten" Grid.Column="3" Margin="10, 0, 0, 0"/>
+			</Grid>
+		</Viewbox>
 		<ListView ItemsSource="{Binding MyChats}" SelectedItem="{Binding SelectedChat, Mode=TwoWay}"
 		          HorizontalAlignment="Stretch" Grid.Row="1">
 			<ListView.ItemContainerStyle>
@@ -36,18 +38,17 @@
 				<DataTemplate>
 					<Grid HorizontalAlignment="Stretch">
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="3*" />
-							<ColumnDefinition Width="3*" />
-							<ColumnDefinition Width="3*" />
-							<ColumnDefinition Width="Auto" />
 							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="Auto" />
 						</Grid.ColumnDefinitions>
 						<TextBlock Text="{Binding ChatName}" TextTrimming="CharacterEllipsis" Grid.Column="0" />
 						<TextBlock Text="{Binding LastSentUser.Name}" TextTrimming="CharacterEllipsis" Grid.Column="1" />
 						<TextBlock Text="{Binding LastSentMessage}" TextTrimming="CharacterEllipsis" Grid.Column="2" />
 						<TextBlock Text="{Binding UnreadMessages}" Grid.Column="3" />
-						<Button Content="🔧" Grid.Column="4" Margin="10, 0"
-						        Visibility="{Binding IsGroupChat, Converter={StaticResource BoolToVis}}" Command="{Binding EditCommand}" />
+						<Button Content="🔧" Grid.Column="4" IsEnabled="{Binding IsGroupChat}" Command="{Binding EditCommand}" Margin="5, 0, 0, 0"/>
 					</Grid>
 				</DataTemplate>
 			</ListView.ItemTemplate>
