@@ -16,5 +16,6 @@
 			<Setter Property="Foreground" Value="{StaticResource ApplicationForegroundThemeBrush}"/>
 			<Setter Property="Background" Value="{StaticResource ApplicationPageBackgroundThemeBrush}"/>
 		</Style>
+		<settings:HaeckenConverter x:Key="ListToVis" />
 	</Application.Resources>
 </Application>
