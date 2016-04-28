@@ -1,8 +1,37 @@
 Pascal Lernjournal
 ==================
 Pascal Honegger
-Version 1.2, 02.01.2016
+Version 1.0, 28.04.2016
 :toc:
 
-=== 30.12.2015
-Gestern haben Seraphin und ich uns den Kopf über das Problem mit dem Spieler, Invader und allgemein Schiffen zerbrochen. Momentan bin ich immer noch mit dem Erstellen des Klassendiagramms beschäftigt. Ich gehe dabei jedoch nicht konventionell vor. Ich habe nicht Visio gestartet und dort ein Klassendiagramm erstellt, stattdessen habe ich Visual Studio gestartet und dort unser Projekt Projekt angepasst. Visual Studio hat die möglichkeit ein Klassendiagramm aus den klassen zu generieren und vice versa. Indem ich das Klassendiagramm in Visual Studio erstelle habe ich zwar nicht die Möglichkeit manuell Relationen einzutragen, dafür generiere ich den Code gleich dazu und muss diesen nicht nachführen. 
+= 19.04.2016
+== Performance & Optimierung
+Zu Beginn dachte ich, dass wir niemals auf Performance-Probleme stossen werden. Unser Client und der Server haben müssen keine grösseren Berechnungen anstellen, daher haben wir das Thema Performance in den Hintergrund gestellt. Als wir mit dem explorativen Testen vor der Abgabe begonnen haben viel uns auf, wie die Leistung mit jeder geschriebenen Nachricht nachgelassen hat. Mein erster Instinkt war, dass das Problem an dem Azure-Server liegt. Daher habe ich kurz drauf die Hardware der Datenbank und des Servers um 300% aufgerüstet. Zu meiner Überraschung hat dies die Leistung nur minimal beeinflusst. Ich habe danach über einen Profiler (link:https://www.jetbrains.com/profiler/[dotTrace]) die Testfälle auf ein mögliches Performance-Problem durchsucht. Dort viel auf, dass sehr viel Zeit in das Laden der Nachrichten floss. Jede Nachricht verfügte über drei Listen mit User-Objekten. Diese User-Objekte wurde aber auf der Client-Seite auf die Telefonnummer heruntergebrochen. Daher habe ich mich dazu entschieden lediglich die Telefonnummer zurückzugeben. Nach genauer Inspektion des Codes und einem Code-Review in unserer Gruppe viel ausserdem auf, dass der Code nicht optimiert war. Die Logik war so konzipiert, dass ALLE Nachrichten geladen wurden, nicht nur die relevanten für diesen Chat. Danach wurde über C#-Code nur die relevanten Nachrichten an den Client übermittelt. Dies hat dafür gesorgt, dass mit jeder Nachricht welche jemals an irgendjemanden gesendet wurde die Ladezeiten ein Stückchen länger wurden. Mit einer simplen Änderung der SQL-Abfrage konnte ich die Leistung um den Faktor X steigern.
+
+= Erfahrungen
+== Windows Universal Plattform (WUP)
+* Schlechter Support
+* Kleinere Community als WPF
+* Lohnt sich nur, falls man die Applikation auf mehreren Plattformen veröffentlichen möchte
+
+Xamarin erlaubt es C#-Code zusammen mit link:https://www.xamarin.com/forms[Xamarin-GUI] in Visual Studio zu entwickeln. Xamarin gibt es bereits eine längere Zeit und wurde kürzlich von Microsoft erworben, daher kann man mit einer besseren Visual Studio Integrierung rechnen. Der Vorteil von Xamarin ist, dass die App danach für Windows, iOS, Android und Mac veröffentlich werden kann. Der Aufwand mit Xamarin ist grösser als mit WUP, dafür hat man eine grössere Community und mehr Plattformen. 
+
+== Git & Github
+* Git ist das bekannteste Version Control System
+* Erlaubt gleichzeitiges Arbeiten
+
+== Visual Studio
+* WYSIWYG-Editor für das GUI
+* Viel Code-Generation dank link:https://www.jetbrains.com/resharper/[reSharper]
+
+== WebService / SOAP
+* Client kann generiert werden
+* Software-Unabhängig
+* W3C-Standard
+* Xml-Struktur ist leserlich falls man nach Fehler suchen muss
+
+== Azure
+* Gute Visual Studio Integration
+* Continous Deployment => Nach Push auf Github automatisch installiert
+* Einfaches Setup
+* Leistung ist akzeptable

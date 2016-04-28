@@ -1,20 +1,8 @@
 Teamwork
 ========
 Alain Keller, Pascal Honegger und Seraphin Rihm
-Version 1.1, 05.04.2016
+Version 1.2, 28.04.2016
 :toc:
-
-= Vorlage
-* Datum
-** Problemstellung
-*** Gedanken
-*** Lösung / Was gelernt
-
-= 29.03.2016
-== Soap-Service
-TODO: 
-* Weshalb SOAP?
-* Vorteile / Nachteile
 
 = 05.04.2016
 == Technische Probleme
@@ -23,23 +11,6 @@ Bis jetzt hatten wir nie grössere technische Schwierigkeiten. Im Normalfall kon
 == "Schwarze Magie"
 Wir nennen unerklärliche Phänomene oft "Schwarze Magie". Diese "Schwarze Magie" ist besonders nervig, da man oft keine Ahnung hat, was sie verursacht. So hatten wir heute einen sehr verwirrenden Fall. Pascal hat sich hauptsächlich auf die Implementierung des Server fokussiert. Er hat dabei alle Kernfunktionen mit Tests überprüft und die vermeintlich funktionierende Version auf dem Server installiert. Das Problem: Auf dem Server ging nichts! Beim Aufruf eines Services warft der Server immer eine "FaultException: Index was out of Bounds of Array" und eine Zeile im Code, welche nicht einmal ein Array beinhaltete. Zu Testzwecken hat Pascal diese Zeile auskommentiert und den Code lokal installiert. Dort kann ohne Probleme mit dem sogenannten C#-Testclient alle Serviceoperationen aufrufen und die Antworten als XML sehen. Das Problem hierbei: Der auskommentierte Code warf immer noch einen komplett bezugslosen Fehler. Falls man versucht hat den einen Breakpoint zu setzen, um somit den Fehler genauer zu analysieren, sagte Visual Studio "Won't stop at Breakpoint because no Symbols are loaded" -> Der kompilierte / installierte Quellcode konnte nicht korrekt geladen werden. Im Internet findet man keine Ähnlichen Fälle von unerklärbaren Fehlern. Der Code funktioniert einwand frei, bis man diesen als Service installiert.
 Die Lösung auf das Problem ergab sich dann erst durch einen Zufall: Beim ausführen einer Code-Analyse um allgemeine Fehler zu finden und beheben informiert der .Net-Compiler darüber, dass der Namespace "ZenChat" nicht existiert. Diese Warnung wurde bis zu diesem Zeitpunkt unterdrückt, obwohl dies eigentlich als Fehler behandelt werden sollte. Vor einer geraumen Zeit wurde entschieden, dass das Projekt "ZenChat" in "ZenChatService" umbenannt werden sollte. Dies wurde aufgrund der Namenskonvention im Client entschieden. Jedoch wurde eine kleinere Anpassung in einer Konfigurations-Datei nicht gemacht und hat die komplette Installation gestört. Dieser Fehler wäre vielleicht nicht aufgetreten, hätten wir das Refactoring als Team durchgeführt oder ein Code-Review durchgeführt!
-
-= 19.04.2016
-== Performance & Optimierung
-Zu Beginn dachten wir, wir werden niemals auf Performance-Probleme stossen. Unser Client und der Server haben immerhin keine grösseren Berechnungen angestellt, also haben wir das Thema Performance vernachlässigt. Als wir dann mit dem explorativen Testen begannen viel uns auf, wie die Leistung exponentiell mit jeder geschriebenen Nachricht nachgelassen hat. Unser erster Instinkt war, dass das Problem an dem Azure-Server liegt. Daher haben wir kurz drauf die Hardware der Datenbank und des Servers um 300% aufgerüstet. Zu unserer Überraschung hat dies die Leistung nur minimal beinflusst. Wir haben danach über einen Profiler die Testfälle auf ein mögliches Performance-Loch durchsucht. Dort viel auf, dass sehr viel Zeit in das Laden der Nachrichten floss. Nach genauer inspektion des Codes und eines Code-Reviews zwischen Pascal und Seraphin viel auf, dass der Code enorm unoptimiert war. Die Logik war so konzipiert, dass alle Nachrichten sinnloserweise geladen wurden, aber nicht an den Client übermittelt. Dies hat dafür gesorgt, dass mit jeder Nachricht welche jemals an irgendjemanden gesendet wurde die Ladezeiten für alle ein Stückchen länger wurde. Mit einer simplen Änderung der SQL-Abfrage konnten wir die Leistung um den Faktor X steigern.
-
-= Erfahrungen
-== Windows Universal Plattform (WUP)
-* Schlechter Support
-* Wenig gute Anleitungen im Internet
-* Falls verwendet zuerst informieren
-* Xamarin meist "besser"
-
-== Git & Github
-* Gleichzeitiges Arbeiten
-
-== Visual Studio
-* WYSIWYG-Editor
 
 = Tipps
 == Selbe wie zuvor
