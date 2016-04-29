@@ -3,3 +3,15 @@ Seraphin Lernjournal
 Alain Keller, Pascal Honegger und Seraphin Rihm
 Version 1.0, 15.12.2015
 :toc:
+
+= Erfahrungen
+Dies war mein erstes nicht Webprojekt in dem wir einen Server und einen Client hatten. Das heisst wir haben unser Projekt so aufgeteilt das eine Person den Server übernimmt und dort die gesammte Logik implementiert. Die anderen beiden haben den Client übernommen, welcher grosse Priorität hatte da es ein GUI-Modul war. Dies war mein drittes Modul welches mit Scrum und C# umgesetzt wurde. Vor allem die art wie Scrum funktioniert gefällt mir immer besser, da sich jeder die Arbeitnehmen kann welche er möchte(natürlich ist das nicht immer Möglich, Dokumentation ist da immer eine Ausnahme). Auch dieses Projekt ist es mir wieder aufgefallen wie wenig Erfahrung ich im Programmieren habe, da ich im Betrieb im Moment keine Möglichkeit habe OOP zu programmieren. Was ich in einer Stunde mühsam zusammenprogrammiere kann z.B. Pascal in fünf Minuten umsezten.
+
+== Programmiererfahrung
+* In diesem Projekt haben wir eine Platformübergreifenede (Handy, PC) Applikatioen entwickelt
+* Arbeit mit einem Service der von einem Server zur verfühgung gestelt wird
+* Erstes mehrstufiges GUI mit WPF
+* MVVM
+
+= Fazit
+In diesem Modul habe ich viele Dinge über C# und OOP im Allgemeinen gelernt. Auch ist mir klar geworden wie wichtig eine saubere Planung ist. Da wir gengen Ende des Modules richtig unter Zeitdruck geekommen sind, was vor allem am weit zurückliegenden Client lag. Dies führte dazu das ich am letzten tag 10 Stunden am Stück am Client arbeitete. Doch Schlussendlich haben wir ein gutes Endprodukt erstellt welches alle geplanten Features implementiert hatte. Meine Ziele für das nächste Modul sind es mehr in der Freizeit an dem Projekt zu abreiten und vor allem meine Programmierfähigkeiten zu verbessern.
